@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "PlayingCards",
+        "repositoryURL": "/Users/maciejpiotrowski/Developer/Blackjack/PlayingCards",
+        "state": {
+          "branch": null,
+          "revision": "97c8894dbdee1dbdeacc5d2b02383fec496a5da8",
+          "version": "0.0.5"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
