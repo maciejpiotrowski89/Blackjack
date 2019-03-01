@@ -6,8 +6,17 @@
         "repositoryURL": "/Users/maciejpiotrowski/Developer/Blackjack/PlayingCards",
         "state": {
           "branch": null,
-          "revision": "97c8894dbdee1dbdeacc5d2b02383fec496a5da8",
-          "version": "0.0.5"
+          "revision": "6b2fe01c2695f83b53f559841c5e42ed1c567966",
+          "version": "0.0.6"
+        }
+      },
+      {
+        "package": "Shuffling",
+        "repositoryURL": "/Users/maciejpiotrowski/Developer/Blackjack/Shuffling",
+        "state": {
+          "branch": null,
+          "revision": "b9742069dc2442987bf143c7b58b1a8297aa1aa1",
+          "version": "0.0.4"
         }
       }
     ]
