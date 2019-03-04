@@ -27,14 +27,13 @@ public class CardShoe: CardDealing, CardShuffling {
     public var isEmpty: Bool { return cards.isEmpty }
     let shuffler: Shuffling
     
-    public init(deck: Deck, shuffler: Shuffling = Shuffler()) {
-        self.cards = deck.cards
-        self.shuffler = shuffler
-    }
-    
     public init(decks: [Deck], shuffler: Shuffling = Shuffler()) {
         self.cards = decks.flatMap({$0.cards})
         self.shuffler = shuffler
+    }
+    
+    public convenience init(deck: Deck, shuffler: Shuffling = Shuffler()) {
+        self.init(decks: [deck], shuffler: shuffler)
     }
     
     public static func with(numberOfDecks n: UInt) -> CardShoe {
@@ -47,7 +46,7 @@ public class CardShoe: CardDealing, CardShuffling {
     }
     
     public static func standardShoe() -> CardShoe {
-        return CardShoe.with(numberOfDecks: 8)
+        return CardShoe.with(numberOfDecks: 6)
     }
     
     public func deal() -> Card? {
@@ -55,8 +54,8 @@ public class CardShoe: CardDealing, CardShuffling {
         return cards.removeFirst()
     }
     
-    public func discard(_ card: Card) {
-        discardBox.append(card)
+    public final func discard(_ card: Card) {
+        self.discard([card])
     }
     
     public func discard(_ cards: [Card]) {
@@ -64,7 +63,7 @@ public class CardShoe: CardDealing, CardShuffling {
     }
     
     public func emptyDiscardBox() -> [Card] {
-        return removeAllCardsFromDiscardBox()
+        return removeAllCards(from: \.discardBox)
     }
     
     public func fillFromDiscardBox() {
@@ -78,27 +77,14 @@ public class CardShoe: CardDealing, CardShuffling {
 }
 
 protocol CardsRemoving {
-    func removeAllCards() -> [Card]
-    func removeAllCardsFromDiscardBox() -> [Card]
+    func removeAllCards(from kp: ReferenceWritableKeyPath<CardShoe, [Card]>) -> [Card]
 }
 
 extension CardShoe: CardsRemoving {
-    func removeAllCards() -> [Card] {
+    func removeAllCards(from kp: ReferenceWritableKeyPath<CardShoe, [Card]>) -> [Card] {
         defer {
-            cards = []
+            self[keyPath: kp] = []
         }
-        return cards
+        return self[keyPath: kp]
     }
-    
-    func removeAllCardsFromDiscardBox() -> [Card] {
-        defer {
-            discardBox = []
-        }
-        return discardBox
-    }
-}
-
-public class ContinuousCardShuffler: CardShoe {
-    //todo: shuffle methods when count drops below n = 52?
-    
 }
