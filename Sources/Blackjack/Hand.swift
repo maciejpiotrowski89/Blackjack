@@ -1,18 +1,7 @@
 import PlayingCards
 
-extension Card {
-    var blackjackValue: Int {
-        switch rank {
-        case .jack, .queen, .king: return 10
-        default: return Int(rank.rawValue)
-        }
-    }
-}
-
-public struct Hand: Comparable {
-    public static func < (lhs: Hand, rhs: Hand) -> Bool {
-        return false
-    }
+public struct Hand {
+    static let Blackjack = 21
     
     public struct Option: OptionSet {
         public init(rawValue: Int) {
@@ -35,18 +24,20 @@ public struct Hand: Comparable {
         }
     }
     public var highValue: Int {
-        return cards.reduce(0) { (result, card) -> Int in
-            if card.rank == .ace && result + 11 <= 21  {
-                    return result + 11
+        return cards.sorted(by: >).reduce(0) { (result, card) -> Int in
+            if card.rank == .ace && result + card.highValue <= Hand.Blackjack  {
+                return result + card.highValue
             }
             return result + card.blackjackValue
         }
     }
     public var options: Option {
-        if outcome == .blackjack {
+        if  outcome == .blackjack ||
+            outcome == .stood(Hand.Blackjack) ||
+            outcome == .bust {
             return []
         }
-        
+    
         if cards.count > 2 {
             return  [.hit, .stand]
         }
@@ -60,8 +51,14 @@ public struct Hand: Comparable {
     }
     
     public var outcome: Outcome {
-        if cards.count == 2 && highValue == 21 {
-            return .blackjack
+        if highValue == Hand.Blackjack {
+            if cards.count == 2 {
+                return .blackjack
+            } else {
+                return .stood(Hand.Blackjack)
+            }
+        } else if highValue > Hand.Blackjack {
+            return .bust
         }
         return .playing
     }
@@ -75,6 +72,11 @@ public struct Hand: Comparable {
     }
 }
 
+extension Hand: Comparable {
+    public static func < (lhs: Hand, rhs: Hand) -> Bool {
+        return false
+    }
+}
 
 public class Dealer {
 //    var hand: Hand
