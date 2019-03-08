@@ -13,8 +13,8 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .package(url: "../PlayingCards", from: "0.0.1"),
-        .package(url: "../Shuffling", from: "0.0.1"),
+        .package(url: "https://github.com/paciej00/PlayingCards.git", from: "0.0.1"),
+        .package(url: "https://github.com/paciej00/Shuffling.git", from: "0.0.1"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
