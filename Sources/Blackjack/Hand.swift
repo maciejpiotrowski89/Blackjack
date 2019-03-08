@@ -1,5 +1,14 @@
 import PlayingCards
 
+extension Card {
+    var blackjackValue: Int {
+        switch rank {
+        case .jack, .queen, .king: return 10
+        default: return Int(rank.rawValue)
+        }
+    }
+}
+
 public struct Hand: Comparable {
     public static func < (lhs: Hand, rhs: Hand) -> Bool {
         return false
@@ -15,15 +24,47 @@ public struct Hand: Comparable {
         public static let double = Option(rawValue: 1 << 2)
         public static let split = Option(rawValue: 1 << 3)
     }
-    public enum Outcome {
+    public enum Outcome: Equatable {
         case blackjack, playing, bust, stood(Int), doubled(Int)
     }
     public private(set) var bet: Int
     public private(set) var cards: [Card]
-    public var value: Int { return 0 }
-    public var highValue: Int { return 0 }
-    public var options: Option { return  [.hit, .stand, .double, .split] }
-    public var outcome: Outcome { return .playing }
+    public var value: Int {
+        return cards.reduce(0) { (result, card) -> Int in
+            return result + card.blackjackValue
+        }
+    }
+    public var highValue: Int {
+        return cards.reduce(0) { (result, card) -> Int in
+            if card.rank == .ace && result + 11 <= 21  {
+                    return result + 11
+            }
+            return result + card.blackjackValue
+        }
+    }
+    public var options: Option {
+        if outcome == .blackjack {
+            return []
+        }
+        
+        if cards.count > 2 {
+            return  [.hit, .stand]
+        }
+        if cards.count == 2 {
+            if  cards[0].blackjackValue == cards[1].blackjackValue {
+                return [.hit, .stand, .split, .double]
+            }
+            return [.hit, .stand, .double]
+        }
+        return  []
+    }
+    
+    public var outcome: Outcome {
+        if cards.count == 2 && highValue == 21 {
+            return .blackjack
+        }
+        return .playing
+    }
     public mutating func add(card: Card) {
 //        cards.append(card)
     }
