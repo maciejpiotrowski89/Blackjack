@@ -13,16 +13,30 @@ public struct Hand {
         public static let double = Option(rawValue: 1 << 2)
         public static let split = Option(rawValue: 1 << 3)
     }
+    
     public enum Outcome: Equatable {
-        case blackjack, playing, bust, stood(Int), doubled(Int)
+        case blackjack, playing, doubled, bust, stood
     }
-    public private(set) var bet: Int
+    
+    private var initialBet: Int
+    public var bet: Int {
+        return doubled ? initialBet * 2 : initialBet
+    }
+    
     public private(set) var cards: [Card]
+    public init(bet: Int, cards: [Card] = []) {
+        self.initialBet = bet
+        self.cards = cards
+    }
+    
     public var value: Int {
-        return cards.reduce(0) { (result, card) -> Int in
-            return result + card.blackjackValue
+        return outcome == .stood ?
+            highValue :
+            cards.reduce(0) { (result, card) -> Int in
+                return result + card.blackjackValue
         }
     }
+    
     public var highValue: Int {
         return cards.sorted(by: >).reduce(0) { (result, card) -> Int in
             if card.rank == .ace && result + card.highValue <= Hand.Blackjack  {
@@ -31,10 +45,12 @@ public struct Hand {
             return result + card.blackjackValue
         }
     }
+    
     public var options: Option {
         if  outcome == .blackjack ||
-            outcome == .stood(Hand.Blackjack) ||
-            outcome == .bust {
+            outcome == .stood ||
+            outcome == .bust ||
+            outcome == .doubled {
             return []
         }
     
@@ -50,25 +66,40 @@ public struct Hand {
         return  []
     }
     
+    
     public var outcome: Outcome {
         if highValue == Hand.Blackjack {
             if cards.count == 2 {
                 return .blackjack
             } else {
-                return .stood(Hand.Blackjack)
+                return .stood
             }
         } else if highValue > Hand.Blackjack {
             return .bust
+        } else if stood {
+            return .stood
+        } else if doubled {
+            return .doubled
         }
         return .playing
     }
+    
     public mutating func add(card: Card) {
-//        cards.append(card)
+        guard !stood else { return }
+        cards.append(card)
+        guard outcome == .doubled else { return }
+        stand()
     }
     
-    public init(bet: Int, cards: [Card] = []) {
-        self.bet = bet
-        self.cards = cards
+    private var doubled = false
+    public mutating func doubleDown() {
+        guard cards.count == 2 else { return }
+        doubled = true
+    }
+
+    private var stood = false
+    public mutating func stand() {
+        stood = true
     }
 }
 

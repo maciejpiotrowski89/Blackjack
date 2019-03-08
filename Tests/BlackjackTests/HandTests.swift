@@ -3277,11 +3277,11 @@ class HandTests: XCTestCase {
         let sut = Hand(bet: bet, cards: cards)
         
         //Then
-        XCTAssertEqual(sut.value, 11)
+        XCTAssertEqual(sut.value, 21)
         XCTAssertEqual(sut.highValue, 21)
         XCTAssertEqual(sut.bet, bet)
         XCTAssertEqual(sut.options, [])
-        XCTAssertEqual(sut.outcome, .stood(21))
+        XCTAssertEqual(sut.outcome, .stood)
     }
     
     //MARK: Bust
@@ -3323,5 +3323,185 @@ class HandTests: XCTestCase {
         XCTAssertEqual(sut.bet, bet)
         XCTAssertEqual(sut.options, [])
         XCTAssertEqual(sut.outcome, .bust)
+    }
+    
+    //MARK: Standing
+    func testStand() {
+        //Given
+        let bet = 200
+        let cards = [
+            Card(suit: .clubs, rank: .five),
+            Card(suit: .clubs, rank: .six),
+            ]
+        var sut = Hand(bet: bet, cards: cards)
+        
+        //When
+        sut.stand()
+        
+        //Then
+        XCTAssertEqual(sut.outcome, .stood)
+    }
+    
+    //MARK: Adding a card
+    func testAddACard() {
+        //Given
+        let bet = 200
+        let cards = [
+            Card(suit: .clubs, rank: .five),
+            Card(suit: .clubs, rank: .six),
+            ]
+        var sut = Hand(bet: bet, cards: cards)
+        let next = Card(suit: .hearts, rank: .three)
+        
+        //When
+        sut.add(card: next)
+        sut.add(card: next)
+
+        //Then
+        XCTAssertEqual(sut.bet, bet)
+        XCTAssertEqual(sut.options, [.hit, .stand])
+        XCTAssertEqual(sut.cards.count, 4)
+    }
+    
+    func testCannotAddACardAfterStanding1() {
+        //Given
+        let bet = 200
+        let cards = [
+            Card(suit: .clubs, rank: .five),
+            Card(suit: .clubs, rank: .six),
+            ]
+        var sut = Hand(bet: bet, cards: cards)
+        let next = Card(suit: .hearts, rank: .three)
+        
+        //When
+        sut.stand()
+        sut.add(card: next)
+        
+        //Then
+        XCTAssertEqual(sut.bet, bet)
+        XCTAssertEqual(sut.options, [])
+        XCTAssertEqual(sut.cards.count, 2)
+    }
+    
+    func testCannotAddACardAfterStanding2() {
+        //Given
+        let bet = 200
+        let cards = [
+            Card(suit: .clubs, rank: .five),
+            Card(suit: .clubs, rank: .six),
+            ]
+        var sut = Hand(bet: bet, cards: cards)
+        let next = Card(suit: .hearts, rank: .three)
+        
+        //When
+        sut.add(card: next)
+        sut.stand()
+        sut.add(card: next)
+        
+        //Then
+        XCTAssertEqual(sut.bet, bet)
+        XCTAssertEqual(sut.options, [])
+        XCTAssertEqual(sut.cards.count, 3)
+    }
+    
+    func testStandReturnsHighValueAsValue() {
+        //Given
+        let bet = 200
+        let cards = [
+            Card(suit: .clubs, rank: .ace),
+            Card(suit: .clubs, rank: .ace),
+            Card(suit: .clubs, rank: .three),
+            ]
+        var sut = Hand(bet: bet, cards: cards)
+        
+        //When
+        sut.stand()
+        
+        //Then
+        XCTAssertEqual(sut.bet, bet)
+        XCTAssertEqual(sut.options, [])
+        XCTAssertEqual(sut.value, 15)
+        XCTAssertEqual(sut.highValue, 15)
+    }
+    
+    //MARK: Doubling the bet
+    func testDoubleDownDoublesTheBet() {
+        //Given
+        let bet = 200
+        let cards = [
+            Card(suit: .clubs, rank: .five),
+            Card(suit: .clubs, rank: .six),
+            ]
+        var sut = Hand(bet: bet, cards: cards)
+        
+        //When
+        sut.doubleDown()
+        
+        //Then
+        XCTAssertEqual(sut.bet, 2 * bet)
+        XCTAssertEqual(sut.options, [])
+        XCTAssertEqual(sut.outcome, .doubled)
+    }
+    
+    func testDoubleDownAllowsAddingOneCard() {
+        //Given
+        let bet = 200
+        let cards = [
+            Card(suit: .clubs, rank: .five),
+            Card(suit: .clubs, rank: .six),
+            ]
+        var sut = Hand(bet: bet, cards: cards)
+        let next = Card(suit: .hearts, rank: .three)
+        
+        //When
+        sut.doubleDown()
+        sut.add(card: next)
+        
+        //Then
+        XCTAssertEqual(sut.bet, 2 * bet)
+        XCTAssertEqual(sut.options, [])
+        XCTAssertEqual(sut.outcome, .stood)
+        XCTAssertEqual(sut.cards.count, 3)
+    }
+    
+    func testDoubleDownAllowsAddingOnlyOneCard() {
+        //Given
+        let bet = 200
+        let cards = [
+            Card(suit: .clubs, rank: .five),
+            Card(suit: .clubs, rank: .six),
+            ]
+        var sut = Hand(bet: bet, cards: cards)
+        let next = Card(suit: .hearts, rank: .three)
+
+        //When
+        sut.doubleDown()
+        sut.add(card: next)
+        sut.add(card: next)
+
+        //Then
+        XCTAssertEqual(sut.bet, 2 * bet)
+        XCTAssertEqual(sut.options, [])
+        XCTAssertEqual(sut.outcome, .stood)
+        XCTAssertEqual(sut.cards.count, 3)
+    }
+    
+    func testDoubleDownCanBeDoneOnlyOnAHandConsistingOfTwoCards() {
+        //Given
+        let bet = 200
+        let cards = [
+            Card(suit: .clubs, rank: .five),
+            Card(suit: .clubs, rank: .four),
+            Card(suit: .clubs, rank: .two),
+            ]
+        var sut = Hand(bet: bet, cards: cards)
+        
+        //When
+        sut.doubleDown()
+        
+        //Then
+        XCTAssertEqual(sut.bet, bet)
+        XCTAssertEqual(sut.options, [.hit, .stand])
+        XCTAssertEqual(sut.outcome, .playing)
     }
 }
