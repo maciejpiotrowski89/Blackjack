@@ -8,6 +8,6 @@
 import Foundation
 
 protocol BlackjackValue {
-    var blackjackValue: Int { get }
-    var highValue: Int { get }
+    var blackjackValue: UInt { get }
+    var highValue: UInt { get }
 }

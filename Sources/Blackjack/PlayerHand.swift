@@ -9,25 +9,25 @@ import PlayingCards
 
 public struct PlayerHand: Hand {
     
-    private var initialBet: Int
-    public var bet: Int {
+    private var initialBet: UInt
+    public var bet: UInt {
         return doubled ? initialBet * 2 : initialBet
     }
     
     public private(set) var cards: [Card]
-    public init(bet: Int, cards: [Card] = []) {
+    public init(bet: UInt, cards: [Card] = []) {
         self.initialBet = bet
         self.cards = cards
     }
     
-    public var value: Int {
+    public var value: UInt {
         return outcome == .stood ? highValue : cards.reduce(0) { $0 + $1.blackjackValue }
     }
     
-    public var highValue: Int {
+    public var highValue: UInt {
         return cards
             .sorted(by: >)
-            .reduce(0) { (result, card) -> Int in
+            .reduce(0) { (result, card) -> UInt in
                 var value = card.blackjackValue
                 if  card.rank == .ace &&
                     result + card.highValue <= Blackjack  {

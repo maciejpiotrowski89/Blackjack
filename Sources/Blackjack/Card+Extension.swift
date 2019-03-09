@@ -8,13 +8,13 @@
 import PlayingCards
 
 extension Card: BlackjackValue {
-    var blackjackValue: Int {
+    var blackjackValue: UInt {
         switch rank {
         case .jack, .queen, .king: return 10
-        default: return Int(rank.rawValue)
+        default: return rank.rawValue
         }
     }
-    var highValue: Int {
+    var highValue: UInt {
         return rank == .ace ? 11 : blackjackValue
     }
 }

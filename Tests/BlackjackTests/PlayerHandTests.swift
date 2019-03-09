@@ -14,7 +14,7 @@ class PlayerHandTests: XCTestCase {
     //MARK: Hand
     func testAnEmptyHand() {
         //Given:
-        let bet = 100
+        let bet: UInt = 100
         
         //When:
         let sut = PlayerHand(bet: bet)
@@ -28,7 +28,7 @@ class PlayerHandTests: XCTestCase {
     
     func testBetOfAHand() {
         //Given:
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .two),
@@ -43,7 +43,7 @@ class PlayerHandTests: XCTestCase {
     
     func testOptionsForHandWith1Card() {
         //Given:
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             ]
@@ -57,7 +57,7 @@ class PlayerHandTests: XCTestCase {
     
     func testOptionsForHandWithOnly2CardsOfDifferentValue() {
         //Given:
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .two),
@@ -72,7 +72,7 @@ class PlayerHandTests: XCTestCase {
     
     func testOptionsForHandWithOnly2CardsOfSameValue() {
         //Given:
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .hearts, rank: .jack),
@@ -87,7 +87,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWith3CardsCanHitOrStand() {
         //Given:
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .hearts, rank: .two),
@@ -103,7 +103,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithAnAce() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ace),
             ]
@@ -121,7 +121,7 @@ class PlayerHandTests: XCTestCase {
     //MARK: Ace with another card
     func testHandWithAceAce() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .ace),
@@ -139,7 +139,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithAceTwo() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .two),
@@ -157,7 +157,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithAceThree() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .three),
@@ -175,7 +175,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithAceFour() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .four),
@@ -193,7 +193,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithAceFive() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .five),
@@ -211,7 +211,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithAceSix() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .six),
@@ -229,7 +229,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithAceSeven() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .seven),
@@ -247,7 +247,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithAceEight() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .eight),
@@ -265,7 +265,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithAceNine() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .nine),
@@ -283,7 +283,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithAceTen() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .ten),
@@ -302,7 +302,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithAceJack() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .jack),
@@ -321,7 +321,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithAceQueen() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .queen),
@@ -340,7 +340,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithAceKing() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .king),
@@ -360,7 +360,7 @@ class PlayerHandTests: XCTestCase {
     //MARK: Two with another card
     func testHandWithTwoAce() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .ace),
@@ -378,7 +378,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithTwoTwo() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .two),
@@ -396,7 +396,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithTwoThree() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .three),
@@ -414,7 +414,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithTwoFour() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .four),
@@ -432,7 +432,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithTwoFive() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .five),
@@ -450,7 +450,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithTwoSix() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .six),
@@ -468,7 +468,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithTwoSeven() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .seven),
@@ -486,7 +486,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithTwoEight() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .eight),
@@ -504,7 +504,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithTwoNine() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .nine),
@@ -522,7 +522,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithTwoTen() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .ten),
@@ -540,7 +540,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithTwoJack() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .jack),
@@ -558,7 +558,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithTwoQueen() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .queen),
@@ -576,7 +576,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithTwoKing() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .king),
@@ -595,7 +595,7 @@ class PlayerHandTests: XCTestCase {
     //MARK: Three with another card
     func testHandWithThreeAce() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .ace),
@@ -613,7 +613,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithThreeTwo() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .two),
@@ -631,7 +631,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithThreeThree() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .three),
@@ -649,7 +649,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithThreeFour() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .four),
@@ -667,7 +667,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithThreeFive() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .five),
@@ -685,7 +685,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithThreeSix() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .six),
@@ -703,7 +703,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithThreeSeven() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .seven),
@@ -721,7 +721,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithThreeEight() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .eight),
@@ -739,7 +739,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithThreeNine() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .nine),
@@ -757,7 +757,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithThreeTen() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .ten),
@@ -775,7 +775,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithThreeJack() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .jack),
@@ -793,7 +793,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithThreeQueen() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .queen),
@@ -811,7 +811,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithThreeKing() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .king),
@@ -830,7 +830,7 @@ class PlayerHandTests: XCTestCase {
     //MARK: Four with another card
     func testHandWithFourAce() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .ace),
@@ -848,7 +848,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithFourTwo() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .two),
@@ -866,7 +866,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithFourThree() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .three),
@@ -884,7 +884,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithFourFour() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .four),
@@ -902,7 +902,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithFourFive() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .five),
@@ -920,7 +920,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithFourSix() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .six),
@@ -938,7 +938,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithFourSeven() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .seven),
@@ -956,7 +956,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithFourEight() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .eight),
@@ -974,7 +974,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithFourNine() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .nine),
@@ -992,7 +992,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithFourTen() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .ten),
@@ -1010,7 +1010,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithFourJack() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .jack),
@@ -1028,7 +1028,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithFourQueen() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .queen),
@@ -1046,7 +1046,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithFourKing() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .king),
@@ -1065,7 +1065,7 @@ class PlayerHandTests: XCTestCase {
     //MARK: Five with another card
     func testHandWithFiveAce() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .ace),
@@ -1083,7 +1083,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithFiveTwo() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .two),
@@ -1101,7 +1101,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithFiveThree() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .three),
@@ -1119,7 +1119,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithFiveFour() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .four),
@@ -1137,7 +1137,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithFiveFive() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .five),
@@ -1155,7 +1155,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithFiveSix() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .six),
@@ -1173,7 +1173,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithFiveSeven() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .seven),
@@ -1191,7 +1191,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithFiveEight() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .eight),
@@ -1209,7 +1209,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithFiveNine() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .nine),
@@ -1227,7 +1227,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithFiveTen() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .ten),
@@ -1245,7 +1245,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithFiveJack() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .jack),
@@ -1263,7 +1263,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithFiveQueen() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .queen),
@@ -1281,7 +1281,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithFiveKing() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .king),
@@ -1300,7 +1300,7 @@ class PlayerHandTests: XCTestCase {
     //MARK: Six with another card
     func testHandWithSixAce() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .ace),
@@ -1318,7 +1318,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithSixTwo() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .two),
@@ -1336,7 +1336,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithSixThree() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .three),
@@ -1354,7 +1354,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithSixFour() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .four),
@@ -1372,7 +1372,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithSixFive() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .five),
@@ -1390,7 +1390,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithSixSix() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .six),
@@ -1408,7 +1408,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithSixSeven() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .seven),
@@ -1426,7 +1426,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithSixEight() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .eight),
@@ -1444,7 +1444,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithSixNine() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .nine),
@@ -1462,7 +1462,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithSixTen() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .ten),
@@ -1480,7 +1480,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithSixJack() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .jack),
@@ -1498,7 +1498,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithSixQueen() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .queen),
@@ -1516,7 +1516,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithSixKing() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .king),
@@ -1535,7 +1535,7 @@ class PlayerHandTests: XCTestCase {
     //MARK: Seven with another card
     func testHandWithSevenAce() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .ace),
@@ -1553,7 +1553,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithSevenTwo() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .two),
@@ -1571,7 +1571,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithSevenThree() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .three),
@@ -1589,7 +1589,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithSevenFour() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .four),
@@ -1607,7 +1607,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithSevenFive() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .five),
@@ -1625,7 +1625,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithSevenSix() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .six),
@@ -1643,7 +1643,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithSevenSeven() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .seven),
@@ -1661,7 +1661,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithSevenEight() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .eight),
@@ -1679,7 +1679,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithSevenNine() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .nine),
@@ -1697,7 +1697,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithSevenTen() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .ten),
@@ -1715,7 +1715,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithSevenJack() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .jack),
@@ -1733,7 +1733,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithSevenQueen() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .queen),
@@ -1751,7 +1751,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithSevenKing() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .king),
@@ -1770,7 +1770,7 @@ class PlayerHandTests: XCTestCase {
     //MARK: Eight with another card
     func testHandWithEightAce() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .ace),
@@ -1788,7 +1788,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithEightTwo() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .two),
@@ -1806,7 +1806,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithEightThree() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .three),
@@ -1824,7 +1824,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithEightFour() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .four),
@@ -1842,7 +1842,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithEightFive() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .five),
@@ -1860,7 +1860,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithEightSix() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .six),
@@ -1878,7 +1878,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithEightSeven() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .seven),
@@ -1896,7 +1896,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithEightEight() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .eight),
@@ -1914,7 +1914,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithEightNine() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .nine),
@@ -1932,7 +1932,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithEightTen() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .ten),
@@ -1950,7 +1950,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithEightJack() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .jack),
@@ -1968,7 +1968,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithEightQueen() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .queen),
@@ -1986,7 +1986,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithEightKing() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .king),
@@ -2005,7 +2005,7 @@ class PlayerHandTests: XCTestCase {
     //MARK: Nine with another card
     func testHandWithNineAce() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .ace),
@@ -2023,7 +2023,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithNineTwo() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .two),
@@ -2041,7 +2041,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithNineThree() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .three),
@@ -2059,7 +2059,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithNineFour() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .four),
@@ -2077,7 +2077,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithNineFive() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .five),
@@ -2095,7 +2095,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithNineSix() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .six),
@@ -2113,7 +2113,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithNineSeven() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .seven),
@@ -2131,7 +2131,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithNineEight() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .eight),
@@ -2149,7 +2149,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithNineNine() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .nine),
@@ -2167,7 +2167,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithNineTen() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .ten),
@@ -2185,7 +2185,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithNineJack() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .jack),
@@ -2203,7 +2203,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithNineQueen() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .queen),
@@ -2221,7 +2221,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithNineKing() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .king),
@@ -2240,7 +2240,7 @@ class PlayerHandTests: XCTestCase {
     //MARK: Ten with another card
     func testHandWithTenAce() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .ace),
@@ -2259,7 +2259,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithTenTwo() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .two),
@@ -2277,7 +2277,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithTenThree() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .three),
@@ -2295,7 +2295,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithTenFour() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .four),
@@ -2313,7 +2313,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithTenFive() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .five),
@@ -2331,7 +2331,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithTenSix() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .six),
@@ -2349,7 +2349,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithTenSeven() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .seven),
@@ -2367,7 +2367,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithTenEight() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .eight),
@@ -2385,7 +2385,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithTenNine() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .nine),
@@ -2403,7 +2403,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithTenTen() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .ten),
@@ -2421,7 +2421,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithTenJack() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .jack),
@@ -2439,7 +2439,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithTenQueen() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .queen),
@@ -2457,7 +2457,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithTenKing() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .king),
@@ -2476,7 +2476,7 @@ class PlayerHandTests: XCTestCase {
     //MARK: Jack with another card
     func testHandWithJackAce() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .ace),
@@ -2495,7 +2495,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithJackTwo() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .two),
@@ -2513,7 +2513,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithJackThree() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .three),
@@ -2531,7 +2531,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithJackFour() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .four),
@@ -2549,7 +2549,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithJackFive() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .five),
@@ -2567,7 +2567,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithJackSix() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .six),
@@ -2585,7 +2585,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithJackSeven() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .seven),
@@ -2603,7 +2603,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithJackEight() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .eight),
@@ -2621,7 +2621,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithJackNine() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .nine),
@@ -2639,7 +2639,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithJackTen() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .ten),
@@ -2657,7 +2657,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithJackJack() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .jack),
@@ -2675,7 +2675,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithJackQueen() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .queen),
@@ -2693,7 +2693,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithJackKing() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .king),
@@ -2712,7 +2712,7 @@ class PlayerHandTests: XCTestCase {
     //MARK: Queen with another card
     func testHandWithQueenAce() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .ace),
@@ -2731,7 +2731,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithQueenTwo() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .two),
@@ -2749,7 +2749,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithQueenThree() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .three),
@@ -2767,7 +2767,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithQueenFour() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .four),
@@ -2785,7 +2785,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithQueenFive() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .five),
@@ -2803,7 +2803,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithQueenSix() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .six),
@@ -2821,7 +2821,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithQueenSeven() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .seven),
@@ -2839,7 +2839,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithQueenEight() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .eight),
@@ -2857,7 +2857,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithQueenNine() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .nine),
@@ -2875,7 +2875,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithQueenTen() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .ten),
@@ -2893,7 +2893,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithQueenJack() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .jack),
@@ -2911,7 +2911,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithQueenQueen() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .queen),
@@ -2929,7 +2929,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithQueenKing() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .king),
@@ -2948,7 +2948,7 @@ class PlayerHandTests: XCTestCase {
     //MARK: King with another card
     func testHandWithKingAce() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .ace),
@@ -2967,7 +2967,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithKingTwo() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .two),
@@ -2985,7 +2985,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithKingThree() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .three),
@@ -3003,7 +3003,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithKingFour() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .four),
@@ -3021,7 +3021,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithKingFive() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .five),
@@ -3039,7 +3039,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithKingSix() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .six),
@@ -3057,7 +3057,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithKingSeven() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .seven),
@@ -3075,7 +3075,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithKingEight() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .eight),
@@ -3093,7 +3093,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithKingNine() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .nine),
@@ -3111,7 +3111,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithKingTen() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .ten),
@@ -3129,7 +3129,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithKingJack() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .jack),
@@ -3147,7 +3147,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithKingQueen() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .queen),
@@ -3165,7 +3165,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithKingKing() {
         //Given
-        let bet = 100
+        let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .king),
@@ -3185,7 +3185,7 @@ class PlayerHandTests: XCTestCase {
     //MARK: Values of more than 2 cards
     func testHandWith3Cards() {
         //Given
-        let bet = 200
+        let bet: UInt = 200
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .three),
@@ -3204,7 +3204,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWith4Cardss() {
         //Given
-        let bet = 200
+        let bet: UInt = 200
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .ace),
@@ -3224,7 +3224,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWith5CardssWith2Aces() {
         //Given
-        let bet = 200
+        let bet: UInt = 200
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .king),
@@ -3245,7 +3245,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWith4CardsIncludingAce() {
         //Given
-        let bet = 200
+        let bet: UInt = 200
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .ace),
@@ -3265,7 +3265,7 @@ class PlayerHandTests: XCTestCase {
     
     func testHandWithValueOf21() {
         //Given
-        let bet = 200
+        let bet: UInt = 200
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .ace),
@@ -3287,7 +3287,7 @@ class PlayerHandTests: XCTestCase {
     //MARK: Bust
     func testBust1() {
         //Given
-        let bet = 200
+        let bet: UInt = 200
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .queen),
@@ -3307,7 +3307,7 @@ class PlayerHandTests: XCTestCase {
     
     func testBust2() {
         //Given
-        let bet = 200
+        let bet: UInt = 200
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .diamonds, rank: .queen),
@@ -3328,7 +3328,7 @@ class PlayerHandTests: XCTestCase {
     //MARK: Standing
     func testStand() {
         //Given
-        let bet = 200
+        let bet: UInt = 200
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .six),
@@ -3345,7 +3345,7 @@ class PlayerHandTests: XCTestCase {
     //MARK: Adding a card
     func testAddACard() {
         //Given
-        let bet = 200
+        let bet: UInt = 200
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .six),
@@ -3365,7 +3365,7 @@ class PlayerHandTests: XCTestCase {
     
     func testCannotAddACardAfterStanding1() {
         //Given
-        let bet = 200
+        let bet: UInt = 200
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .six),
@@ -3385,7 +3385,7 @@ class PlayerHandTests: XCTestCase {
     
     func testCannotAddACardAfterStanding2() {
         //Given
-        let bet = 200
+        let bet: UInt = 200
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .six),
@@ -3406,7 +3406,7 @@ class PlayerHandTests: XCTestCase {
     
     func testStandReturnsHighValueAsValue() {
         //Given
-        let bet = 200
+        let bet: UInt = 200
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .ace),
@@ -3427,7 +3427,7 @@ class PlayerHandTests: XCTestCase {
     //MARK: Doubling the bet
     func testDoubleDownDoublesTheBet() {
         //Given
-        let bet = 200
+        let bet: UInt = 200
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .six),
@@ -3445,7 +3445,7 @@ class PlayerHandTests: XCTestCase {
     
     func testDoubleDownAllowsAddingOneCard() {
         //Given
-        let bet = 200
+        let bet: UInt = 200
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .six),
@@ -3466,7 +3466,7 @@ class PlayerHandTests: XCTestCase {
     
     func testDoubleDownAllowsAddingOnlyOneCard() {
         //Given
-        let bet = 200
+        let bet: UInt = 200
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .six),
@@ -3488,7 +3488,7 @@ class PlayerHandTests: XCTestCase {
     
     func testDoubleDownCanBeDoneOnlyOnAHandConsistingOfTwoCards() {
         //Given
-        let bet = 200
+        let bet: UInt = 200
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .four),

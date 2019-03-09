@@ -8,8 +8,8 @@
 import PlayingCards
 
 public protocol Hand {
-    var bet: Int { get }
-    var value: Int { get }
+    var bet: UInt { get }
+    var value: UInt { get }
     var cards: [Card] { get }
     var options: PlayOption { get }
     var outcome: PlayOutcome { get }
@@ -19,9 +19,9 @@ public protocol Hand {
 }
 
 extension Hand {
-    public var bet: Int { return 0 }
+    public var bet: UInt { return 0 }
     public var options: PlayOption { return .standard }
-    public var value: Int { return cards.reduce(0) { $0 + $1.blackjackValue } }
+    public var value: UInt { return cards.reduce(0) { $0 + $1.blackjackValue } }
     public mutating func doubleBet() {}
 }
 
