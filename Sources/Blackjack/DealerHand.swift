@@ -8,10 +8,19 @@
 import PlayingCards
 
 public struct DealerHand: Hand {
+    public var options: PlayOption { return [] }
+    
     
     public private(set) var cards: [Card]
+    public var faceUpCard: Card! {
+        return cards.first
+    }
     
     public var outcome: PlayOutcome { return .playing }
+    
+    public init(cards: [Card] = []) {
+        self.cards = cards
+    }
     
     public func add(card: Card) {
         

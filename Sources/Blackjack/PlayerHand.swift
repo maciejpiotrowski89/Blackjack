@@ -15,7 +15,12 @@ public struct PlayerHand: Hand {
     }
     
     public private(set) var cards: [Card]
-    public init(bet: UInt, cards: [Card] = []) {
+    public init(bet: UInt, first: Card, second: Card) {
+        self.initialBet = bet
+        self.cards = [first, second]
+    }
+    public init?(bet: UInt, cards: [Card]) {
+        guard cards.count >= 2 else { return nil }
         self.initialBet = bet
         self.cards = cards
     }
