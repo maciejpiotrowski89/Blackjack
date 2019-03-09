@@ -1,5 +1,5 @@
 //
-//  HandTests.swift
+//  PlayerHandTests.swift
 //  BlackjackTests
 //
 //  Created by Maciej Piotrowski on 4/3/19.
@@ -9,7 +9,7 @@ import XCTest
 @testable import Blackjack
 import PlayingCards
 
-class HandTests: XCTestCase {
+class PlayerHandTests: XCTestCase {
     
     //MARK: Hand
     func testAnEmptyHand() {
@@ -17,7 +17,7 @@ class HandTests: XCTestCase {
         let bet = 100
         
         //When:
-        let sut = Hand(bet: bet)
+        let sut = PlayerHand(bet: bet)
 
         //Then:
         XCTAssertEqual(sut.value, 0)
@@ -35,7 +35,7 @@ class HandTests: XCTestCase {
             ]
         
         //When:
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then:
         XCTAssertEqual(sut.bet, bet)
@@ -49,7 +49,7 @@ class HandTests: XCTestCase {
             ]
         
         //When:
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
 
         //Then:
         XCTAssertEqual(sut.options, [])
@@ -64,7 +64,7 @@ class HandTests: XCTestCase {
             ]
         
         //When:
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then:
         XCTAssertEqual(sut.options, [.hit, .stand, .double])
@@ -79,7 +79,7 @@ class HandTests: XCTestCase {
             ]
         
         //When:
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then:
         XCTAssertEqual(sut.options, [.hit, .stand, .double, .split])
@@ -95,7 +95,7 @@ class HandTests: XCTestCase {
             ]
         
         //When:
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then:
         XCTAssertEqual(sut.options, [.hit, .stand])
@@ -109,7 +109,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
 
         //Then
         XCTAssertEqual(sut.value, 1)
@@ -128,7 +128,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 2)
@@ -146,7 +146,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 3)
@@ -164,7 +164,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 4)
@@ -182,7 +182,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 5)
@@ -200,7 +200,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 6)
@@ -218,7 +218,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 7)
@@ -236,7 +236,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 8)
@@ -254,7 +254,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 9)
@@ -272,7 +272,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 10)
@@ -290,7 +290,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 11)
@@ -309,7 +309,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 11)
@@ -328,7 +328,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 11)
@@ -347,7 +347,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 11)
@@ -367,7 +367,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 3)
@@ -385,7 +385,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 4)
@@ -403,7 +403,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 5)
@@ -421,7 +421,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 6)
@@ -439,7 +439,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 7)
@@ -457,7 +457,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 8)
@@ -475,7 +475,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 9)
@@ -493,7 +493,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 10)
@@ -511,7 +511,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 11)
@@ -529,7 +529,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 12)
@@ -547,7 +547,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 12)
@@ -565,7 +565,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 12)
@@ -583,7 +583,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 12)
@@ -602,7 +602,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 4)
@@ -620,7 +620,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 5)
@@ -638,7 +638,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 6)
@@ -656,7 +656,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 7)
@@ -674,7 +674,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 8)
@@ -692,7 +692,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 9)
@@ -710,7 +710,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 10)
@@ -728,7 +728,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 11)
@@ -746,7 +746,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 12)
@@ -764,7 +764,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 13)
@@ -782,7 +782,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 13)
@@ -800,7 +800,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 13)
@@ -818,7 +818,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 13)
@@ -837,7 +837,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 5)
@@ -855,7 +855,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 6)
@@ -873,7 +873,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 7)
@@ -891,7 +891,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 8)
@@ -909,7 +909,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 9)
@@ -927,7 +927,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 10)
@@ -945,7 +945,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 11)
@@ -963,7 +963,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 12)
@@ -981,7 +981,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 13)
@@ -999,7 +999,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 14)
@@ -1017,7 +1017,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 14)
@@ -1035,7 +1035,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 14)
@@ -1053,7 +1053,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 14)
@@ -1072,7 +1072,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 6)
@@ -1090,7 +1090,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 7)
@@ -1108,7 +1108,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 8)
@@ -1126,7 +1126,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 9)
@@ -1144,7 +1144,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 10)
@@ -1162,7 +1162,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 11)
@@ -1180,7 +1180,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 12)
@@ -1198,7 +1198,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 13)
@@ -1216,7 +1216,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 14)
@@ -1234,7 +1234,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 15)
@@ -1252,7 +1252,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 15)
@@ -1270,7 +1270,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 15)
@@ -1288,7 +1288,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 15)
@@ -1307,7 +1307,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 7)
@@ -1325,7 +1325,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 8)
@@ -1343,7 +1343,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 9)
@@ -1361,7 +1361,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 10)
@@ -1379,7 +1379,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 11)
@@ -1397,7 +1397,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 12)
@@ -1415,7 +1415,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 13)
@@ -1433,7 +1433,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 14)
@@ -1451,7 +1451,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 15)
@@ -1469,7 +1469,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 16)
@@ -1487,7 +1487,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 16)
@@ -1505,7 +1505,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 16)
@@ -1523,7 +1523,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 16)
@@ -1542,7 +1542,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 8)
@@ -1560,7 +1560,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 9)
@@ -1578,7 +1578,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 10)
@@ -1596,7 +1596,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 11)
@@ -1614,7 +1614,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 12)
@@ -1632,7 +1632,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 13)
@@ -1650,7 +1650,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 14)
@@ -1668,7 +1668,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 15)
@@ -1686,7 +1686,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 16)
@@ -1704,7 +1704,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 17)
@@ -1722,7 +1722,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 17)
@@ -1740,7 +1740,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 17)
@@ -1758,7 +1758,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 17)
@@ -1777,7 +1777,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 9)
@@ -1795,7 +1795,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 10)
@@ -1813,7 +1813,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 11)
@@ -1831,7 +1831,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 12)
@@ -1849,7 +1849,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 13)
@@ -1867,7 +1867,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 14)
@@ -1885,7 +1885,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 15)
@@ -1903,7 +1903,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 16)
@@ -1921,7 +1921,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 17)
@@ -1939,7 +1939,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 18)
@@ -1957,7 +1957,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 18)
@@ -1975,7 +1975,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 18)
@@ -1993,7 +1993,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 18)
@@ -2012,7 +2012,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 10)
@@ -2030,7 +2030,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 11)
@@ -2048,7 +2048,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 12)
@@ -2066,7 +2066,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 13)
@@ -2084,7 +2084,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 14)
@@ -2102,7 +2102,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 15)
@@ -2120,7 +2120,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 16)
@@ -2138,7 +2138,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 17)
@@ -2156,7 +2156,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 18)
@@ -2174,7 +2174,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 19)
@@ -2192,7 +2192,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 19)
@@ -2210,7 +2210,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 19)
@@ -2228,7 +2228,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 19)
@@ -2247,7 +2247,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 11)
@@ -2266,7 +2266,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 12)
@@ -2284,7 +2284,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 13)
@@ -2302,7 +2302,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 14)
@@ -2320,7 +2320,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 15)
@@ -2338,7 +2338,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 16)
@@ -2356,7 +2356,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 17)
@@ -2374,7 +2374,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 18)
@@ -2392,7 +2392,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 19)
@@ -2410,7 +2410,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 20)
@@ -2428,7 +2428,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 20)
@@ -2446,7 +2446,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 20)
@@ -2464,7 +2464,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 20)
@@ -2483,7 +2483,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 11)
@@ -2502,7 +2502,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 12)
@@ -2520,7 +2520,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 13)
@@ -2538,7 +2538,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 14)
@@ -2556,7 +2556,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 15)
@@ -2574,7 +2574,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 16)
@@ -2592,7 +2592,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 17)
@@ -2610,7 +2610,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 18)
@@ -2628,7 +2628,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 19)
@@ -2646,7 +2646,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 20)
@@ -2664,7 +2664,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 20)
@@ -2682,7 +2682,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 20)
@@ -2700,7 +2700,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 20)
@@ -2719,7 +2719,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 11)
@@ -2738,7 +2738,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 12)
@@ -2756,7 +2756,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 13)
@@ -2774,7 +2774,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 14)
@@ -2792,7 +2792,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 15)
@@ -2810,7 +2810,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 16)
@@ -2828,7 +2828,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 17)
@@ -2846,7 +2846,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 18)
@@ -2864,7 +2864,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 19)
@@ -2882,7 +2882,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 20)
@@ -2900,7 +2900,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 20)
@@ -2918,7 +2918,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 20)
@@ -2936,7 +2936,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 20)
@@ -2955,7 +2955,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 11)
@@ -2974,7 +2974,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 12)
@@ -2992,7 +2992,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 13)
@@ -3010,7 +3010,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 14)
@@ -3028,7 +3028,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 15)
@@ -3046,7 +3046,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 16)
@@ -3064,7 +3064,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 17)
@@ -3082,7 +3082,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 18)
@@ -3100,7 +3100,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 19)
@@ -3118,7 +3118,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 20)
@@ -3136,7 +3136,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 20)
@@ -3154,7 +3154,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 20)
@@ -3172,7 +3172,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 20)
@@ -3193,7 +3193,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 15)
@@ -3213,7 +3213,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 18)
@@ -3234,7 +3234,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 19)
@@ -3254,7 +3254,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 10)
@@ -3274,7 +3274,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 21)
@@ -3295,7 +3295,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 22)
@@ -3315,7 +3315,7 @@ class HandTests: XCTestCase {
             ]
         
         //When
-        let sut = Hand(bet: bet, cards: cards)
+        let sut = PlayerHand(bet: bet, cards: cards)
         
         //Then
         XCTAssertEqual(sut.value, 30)
@@ -3333,7 +3333,7 @@ class HandTests: XCTestCase {
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .six),
             ]
-        var sut = Hand(bet: bet, cards: cards)
+        var sut = PlayerHand(bet: bet, cards: cards)
         
         //When
         sut.stand()
@@ -3350,7 +3350,7 @@ class HandTests: XCTestCase {
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .six),
             ]
-        var sut = Hand(bet: bet, cards: cards)
+        var sut = PlayerHand(bet: bet, cards: cards)
         let next = Card(suit: .hearts, rank: .three)
         
         //When
@@ -3370,7 +3370,7 @@ class HandTests: XCTestCase {
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .six),
             ]
-        var sut = Hand(bet: bet, cards: cards)
+        var sut = PlayerHand(bet: bet, cards: cards)
         let next = Card(suit: .hearts, rank: .three)
         
         //When
@@ -3390,7 +3390,7 @@ class HandTests: XCTestCase {
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .six),
             ]
-        var sut = Hand(bet: bet, cards: cards)
+        var sut = PlayerHand(bet: bet, cards: cards)
         let next = Card(suit: .hearts, rank: .three)
         
         //When
@@ -3412,7 +3412,7 @@ class HandTests: XCTestCase {
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .three),
             ]
-        var sut = Hand(bet: bet, cards: cards)
+        var sut = PlayerHand(bet: bet, cards: cards)
         
         //When
         sut.stand()
@@ -3432,10 +3432,10 @@ class HandTests: XCTestCase {
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .six),
             ]
-        var sut = Hand(bet: bet, cards: cards)
+        var sut = PlayerHand(bet: bet, cards: cards)
         
         //When
-        sut.doubleDown()
+        sut.doubleBet()
         
         //Then
         XCTAssertEqual(sut.bet, 2 * bet)
@@ -3450,11 +3450,11 @@ class HandTests: XCTestCase {
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .six),
             ]
-        var sut = Hand(bet: bet, cards: cards)
+        var sut = PlayerHand(bet: bet, cards: cards)
         let next = Card(suit: .hearts, rank: .three)
         
         //When
-        sut.doubleDown()
+        sut.doubleBet()
         sut.add(card: next)
         
         //Then
@@ -3471,11 +3471,11 @@ class HandTests: XCTestCase {
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .six),
             ]
-        var sut = Hand(bet: bet, cards: cards)
+        var sut = PlayerHand(bet: bet, cards: cards)
         let next = Card(suit: .hearts, rank: .three)
 
         //When
-        sut.doubleDown()
+        sut.doubleBet()
         sut.add(card: next)
         sut.add(card: next)
 
@@ -3494,14 +3494,148 @@ class HandTests: XCTestCase {
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .two),
             ]
-        var sut = Hand(bet: bet, cards: cards)
+        var sut = PlayerHand(bet: bet, cards: cards)
         
         //When
-        sut.doubleDown()
+        sut.doubleBet()
         
         //Then
         XCTAssertEqual(sut.bet, bet)
         XCTAssertEqual(sut.options, [.hit, .stand])
         XCTAssertEqual(sut.outcome, .playing)
+    }
+    
+    //MARK: Comparing 2 hands
+    func testHandGreaterThanAnotherHand() {
+        //Given
+        let hand1 = PlayerHand(bet: 100, cards: [
+            Card(suit: .clubs, rank: .five),
+            Card(suit: .clubs, rank: .four),
+            Card(suit: .clubs, rank: .two),
+            ])
+        let hand2 = PlayerHand(bet: 100, cards: [
+            Card(suit: .clubs, rank: .five),
+            Card(suit: .clubs, rank: .two),
+            ])
+        
+        //When
+        let greater = hand1 > hand2
+        let less = hand1 < hand2
+
+        //Then
+        XCTAssertTrue(greater)
+        XCTAssertFalse(less)
+    }
+    
+    func testEqualHands1() {
+        //Given
+        let hand1 = PlayerHand(bet: 100, cards: [
+            Card(suit: .clubs, rank: .five),
+            Card(suit: .clubs, rank: .two),
+            ])
+        let hand2 = PlayerHand(bet: 100, cards: [
+            Card(suit: .clubs, rank: .five),
+            Card(suit: .clubs, rank: .two),
+            ])
+        
+        //When
+        let equal = hand1 == hand2
+        
+        //Then
+        XCTAssertTrue(equal)
+    }
+    
+    func testEqualHands2() {
+        //Given
+        let hand1 = PlayerHand(bet: 100, cards: [
+            Card(suit: .clubs, rank: .five),
+            Card(suit: .clubs, rank: .two),
+            ])
+        let hand2 = PlayerHand(bet: 100, cards: [
+            Card(suit: .clubs, rank: .five),
+            Card(suit: .clubs, rank: .two),
+            ])
+        
+        //When
+        let equal = hand2 == hand1
+        
+        //Then
+        XCTAssertTrue(equal)
+    }
+    
+    func testHandsAreNotEqual1() {
+        //Given
+        let hand1 = PlayerHand(bet: 100, cards: [
+            Card(suit: .clubs, rank: .five),
+            Card(suit: .clubs, rank: .four),
+            Card(suit: .clubs, rank: .two),
+            ])
+        let hand2 = PlayerHand(bet: 100, cards: [
+            Card(suit: .clubs, rank: .five),
+            Card(suit: .clubs, rank: .two),
+            ])
+        
+        //When
+        let equal = hand1 == hand2
+        
+        //Then
+        XCTAssertFalse(equal)
+    }
+    
+    func testHandsAreNotEqual2() {
+        //Given
+        let hand1 = PlayerHand(bet: 100, cards: [
+            Card(suit: .clubs, rank: .five),
+            Card(suit: .clubs, rank: .four),
+            Card(suit: .clubs, rank: .two),
+            ])
+        let hand2 = PlayerHand(bet: 100, cards: [
+            Card(suit: .clubs, rank: .five),
+            Card(suit: .clubs, rank: .two),
+            ])
+        
+        //When
+        let equal = hand2 == hand1
+        
+        //Then
+        XCTAssertFalse(equal)
+    }
+    
+    func testHandsAreNotEqual3() {
+        //Given
+        let hand1 = PlayerHand(bet: 100, cards: [
+            Card(suit: .clubs, rank: .five),
+            Card(suit: .clubs, rank: .four),
+            Card(suit: .clubs, rank: .two),
+            ])
+        let hand2 = PlayerHand(bet: 100, cards: [
+            Card(suit: .clubs, rank: .five),
+            Card(suit: .clubs, rank: .two),
+            ])
+        
+        //When
+        let equal = hand1 != hand2
+        
+        //Then
+        XCTAssertTrue(equal)
+    }
+    
+    func testHandsAreNotEqual4() {
+        //Given
+        let hand1 = PlayerHand(bet: 100, cards: [
+            Card(suit: .clubs, rank: .five),
+            Card(suit: .clubs, rank: .four),
+            Card(suit: .clubs, rank: .two),
+            ])
+        let hand2 = PlayerHand(bet: 100, cards: [
+            Card(suit: .clubs, rank: .five),
+            Card(suit: .clubs, rank: .two),
+            ])
+        
+        //When
+        let equal = hand2 != hand1
+        
+        //Then
+        XCTAssertTrue(equal)
     }
 }
