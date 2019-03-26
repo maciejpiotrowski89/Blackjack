@@ -2,3 +2,5 @@
 /.build
 /Packages
 /*.xcodeproj
+/fastlane/report.xml
+/fastlane/test_output
