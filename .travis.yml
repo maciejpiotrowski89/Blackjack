@@ -4,5 +4,5 @@ install:
   - bundle install
 script:
   - swift package update
-  - swift build
-  - fastlane tests
+  - swift test
+  #- fastlane tests
