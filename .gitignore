@@ -1,6 +1,6 @@
 .DS_Store
 /.build
 /Packages
-/*.xcodeproj
 /fastlane/report.xml
 /fastlane/test_output
+xcuserdata/

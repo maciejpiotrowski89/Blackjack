@@ -1,0 +1,935 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		"Blackjack::BlackjackPackageTests::ProductTarget" /* BlackjackPackageTests */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = OBJ_55 /* Build configuration list for PBXAggregateTarget "BlackjackPackageTests" */;
+			buildPhases = (
+			);
+			dependencies = (
+				OBJ_58 /* PBXTargetDependency */,
+			);
+			name = BlackjackPackageTests;
+			productName = BlackjackPackageTests;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		793874352232F93E00F7EFAF /* BlackjackValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793874342232F93E00F7EFAF /* BlackjackValue.swift */; };
+		793874372232F95800F7EFAF /* Card+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793874362232F95800F7EFAF /* Card+Extension.swift */; };
+		79F942BA2233C20A0009A402 /* Blackjack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F942B92233C20A0009A402 /* Blackjack.swift */; };
+		79F942BC2233C5E90009A402 /* Hand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F942BB2233C5E90009A402 /* Hand.swift */; };
+		79F942BE2233C65B0009A402 /* DealerHand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F942BD2233C65B0009A402 /* DealerHand.swift */; };
+		79F942C02233CA6B0009A402 /* PlayOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F942BF2233CA6B0009A402 /* PlayOption.swift */; };
+		79F942C22233CA810009A402 /* PlayOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F942C12233CA810009A402 /* PlayOutcome.swift */; };
+		79F942C42233CF640009A402 /* DealerHandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F942C32233CF640009A402 /* DealerHandTests.swift */; };
+		79FA7DC3222D5DCF00D700D5 /* ContinuousCardShuffler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FA7DC2222D5DCF00D700D5 /* ContinuousCardShuffler.swift */; };
+		79FA7DC6222D5DF800D700D5 /* ContinuousCardShufflerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FA7DC5222D5DF800D700D5 /* ContinuousCardShufflerTests.swift */; };
+		79FA7DC8222D61AA00D700D5 /* AutomaticCardShufflerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FA7DC7222D61AA00D700D5 /* AutomaticCardShufflerTests.swift */; };
+		79FA7DCA222D61BE00D700D5 /* AutomaticCardShuffler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FA7DC9222D61BE00D700D5 /* AutomaticCardShuffler.swift */; };
+		79FA7DCC222D62F500D700D5 /* ShufflerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FA7DCB222D62F500D700D5 /* ShufflerSpy.swift */; };
+		79FA7DCE222DB76F00D700D5 /* PlayerHandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FA7DCD222DB76E00D700D5 /* PlayerHandTests.swift */; };
+		OBJ_101 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* Package.swift */; };
+		OBJ_39 /* PlayerHand.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* PlayerHand.swift */; };
+		OBJ_40 /* CardShoe.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* CardShoe.swift */; };
+		OBJ_42 /* Shuffling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Shuffling::Shuffling::Product" /* Shuffling.framework */; };
+		OBJ_43 /* PlayingCards.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "PlayingCards::PlayingCards::Product" /* PlayingCards.framework */; };
+		OBJ_53 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
+		OBJ_65 /* CardShoeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* CardShoeTests.swift */; };
+		OBJ_68 /* Blackjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Blackjack::Blackjack::Product" /* Blackjack.framework */; };
+		OBJ_69 /* Shuffling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Shuffling::Shuffling::Product" /* Shuffling.framework */; };
+		OBJ_70 /* PlayingCards.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "PlayingCards::PlayingCards::Product" /* PlayingCards.framework */; };
+		OBJ_78 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* Card.swift */; };
+		OBJ_79 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* Deck.swift */; };
+		OBJ_80 /* Rank.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* Rank.swift */; };
+		OBJ_81 /* Suit.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* Suit.swift */; };
+		OBJ_88 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_28 /* Package.swift */; };
+		OBJ_93 /* Shuffler.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* Shuffler.swift */; };
+		OBJ_94 /* StandardRandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* StandardRandomNumberGenerator.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		79FA7DBD222D5D8900D700D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Shuffling::Shuffling";
+			remoteInfo = Shuffling;
+		};
+		79FA7DBE222D5D8900D700D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "PlayingCards::PlayingCards";
+			remoteInfo = PlayingCards;
+		};
+		79FA7DBF222D5D8900D700D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Blackjack::Blackjack";
+			remoteInfo = Blackjack;
+		};
+		79FA7DC0222D5D8900D700D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Shuffling::Shuffling";
+			remoteInfo = Shuffling;
+		};
+		79FA7DC1222D5D8900D700D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "PlayingCards::PlayingCards";
+			remoteInfo = PlayingCards;
+		};
+		79FA7DC4222D5DD000D700D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Blackjack::BlackjackTests";
+			remoteInfo = BlackjackTests;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		793874342232F93E00F7EFAF /* BlackjackValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackjackValue.swift; sourceTree = "<group>"; };
+		793874362232F95800F7EFAF /* Card+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+Extension.swift"; sourceTree = "<group>"; };
+		79F942B92233C20A0009A402 /* Blackjack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blackjack.swift; sourceTree = "<group>"; };
+		79F942BB2233C5E90009A402 /* Hand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hand.swift; sourceTree = "<group>"; };
+		79F942BD2233C65B0009A402 /* DealerHand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealerHand.swift; sourceTree = "<group>"; };
+		79F942BF2233CA6B0009A402 /* PlayOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayOption.swift; sourceTree = "<group>"; };
+		79F942C12233CA810009A402 /* PlayOutcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayOutcome.swift; sourceTree = "<group>"; };
+		79F942C32233CF640009A402 /* DealerHandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealerHandTests.swift; sourceTree = "<group>"; };
+		79FA7DC2222D5DCF00D700D5 /* ContinuousCardShuffler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinuousCardShuffler.swift; sourceTree = "<group>"; };
+		79FA7DC5222D5DF800D700D5 /* ContinuousCardShufflerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinuousCardShufflerTests.swift; sourceTree = "<group>"; };
+		79FA7DC7222D61AA00D700D5 /* AutomaticCardShufflerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AutomaticCardShufflerTests.swift; path = Tests/BlackjackTests/AutomaticCardShufflerTests.swift; sourceTree = SOURCE_ROOT; };
+		79FA7DC9222D61BE00D700D5 /* AutomaticCardShuffler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomaticCardShuffler.swift; sourceTree = "<group>"; };
+		79FA7DCB222D62F500D700D5 /* ShufflerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShufflerSpy.swift; sourceTree = "<group>"; };
+		79FA7DCD222DB76E00D700D5 /* PlayerHandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerHandTests.swift; sourceTree = "<group>"; };
+		"Blackjack::Blackjack::Product" /* Blackjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Blackjack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Blackjack::BlackjackTests::Product" /* BlackjackTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = BlackjackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_10 /* CardShoe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardShoe.swift; sourceTree = "<group>"; };
+		OBJ_14 /* CardShoeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardShoeTests.swift; sourceTree = "<group>"; };
+		OBJ_19 /* Shuffler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shuffler.swift; sourceTree = "<group>"; };
+		OBJ_20 /* StandardRandomNumberGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardRandomNumberGenerator.swift; sourceTree = "<group>"; };
+		OBJ_21 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = "/Users/maciejpiotrowski/Developer/Blackjack/Blackjack/.build/checkouts/Shuffling--5384330763018988739/Package.swift"; sourceTree = "<group>"; };
+		OBJ_24 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		OBJ_25 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
+		OBJ_26 /* Rank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rank.swift; sourceTree = "<group>"; };
+		OBJ_27 /* Suit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suit.swift; sourceTree = "<group>"; };
+		OBJ_28 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = "/Users/maciejpiotrowski/Developer/Blackjack/Blackjack/.build/checkouts/PlayingCards-3315737037915160662/Package.swift"; sourceTree = "<group>"; };
+		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		OBJ_9 /* PlayerHand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerHand.swift; sourceTree = "<group>"; };
+		"PlayingCards::PlayingCards::Product" /* PlayingCards.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlayingCards.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Shuffling::Shuffling::Product" /* Shuffling.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Shuffling.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		OBJ_41 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_42 /* Shuffling.framework in Frameworks */,
+				OBJ_43 /* PlayingCards.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_67 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_68 /* Blackjack.framework in Frameworks */,
+				OBJ_69 /* Shuffling.framework in Frameworks */,
+				OBJ_70 /* PlayingCards.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_82 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_95 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		OBJ_11 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_12 /* BlackjackTests */,
+			);
+			name = Tests;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_12 /* BlackjackTests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_14 /* CardShoeTests.swift */,
+				79FA7DC5222D5DF800D700D5 /* ContinuousCardShufflerTests.swift */,
+				79FA7DC7222D61AA00D700D5 /* AutomaticCardShufflerTests.swift */,
+				79FA7DCB222D62F500D700D5 /* ShufflerSpy.swift */,
+				79FA7DCD222DB76E00D700D5 /* PlayerHandTests.swift */,
+				79F942C32233CF640009A402 /* DealerHandTests.swift */,
+			);
+			name = BlackjackTests;
+			path = Tests/BlackjackTests;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_16 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_17 /* Shuffling 0.0.3 */,
+				OBJ_22 /* PlayingCards 0.0.6 */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		OBJ_17 /* Shuffling 0.0.3 */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_18 /* Shuffling */,
+				OBJ_21 /* Package.swift */,
+			);
+			name = "Shuffling 0.0.3";
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_18 /* Shuffling */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_19 /* Shuffler.swift */,
+				OBJ_20 /* StandardRandomNumberGenerator.swift */,
+			);
+			name = Shuffling;
+			path = ".build/checkouts/Shuffling--5384330763018988739/Sources/Shuffling";
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_22 /* PlayingCards 0.0.6 */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_23 /* PlayingCards */,
+				OBJ_28 /* Package.swift */,
+			);
+			name = "PlayingCards 0.0.6";
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_23 /* PlayingCards */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_24 /* Card.swift */,
+				OBJ_25 /* Deck.swift */,
+				OBJ_26 /* Rank.swift */,
+				OBJ_27 /* Suit.swift */,
+			);
+			name = PlayingCards;
+			path = ".build/checkouts/PlayingCards-3315737037915160662/Sources/PlayingCards";
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_29 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				"Blackjack::Blackjack::Product" /* Blackjack.framework */,
+				"Blackjack::BlackjackTests::Product" /* BlackjackTests.xctest */,
+				"PlayingCards::PlayingCards::Product" /* PlayingCards.framework */,
+				"Shuffling::Shuffling::Product" /* Shuffling.framework */,
+			);
+			name = Products;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		OBJ_5 = {
+			isa = PBXGroup;
+			children = (
+				OBJ_6 /* Package.swift */,
+				OBJ_7 /* Sources */,
+				OBJ_11 /* Tests */,
+				OBJ_16 /* Dependencies */,
+				OBJ_29 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		OBJ_7 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_8 /* Blackjack */,
+			);
+			name = Sources;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_8 /* Blackjack */ = {
+			isa = PBXGroup;
+			children = (
+				79F942B92233C20A0009A402 /* Blackjack.swift */,
+				79F942BB2233C5E90009A402 /* Hand.swift */,
+				79F942BF2233CA6B0009A402 /* PlayOption.swift */,
+				79F942C12233CA810009A402 /* PlayOutcome.swift */,
+				OBJ_9 /* PlayerHand.swift */,
+				79F942BD2233C65B0009A402 /* DealerHand.swift */,
+				OBJ_10 /* CardShoe.swift */,
+				79FA7DC2222D5DCF00D700D5 /* ContinuousCardShuffler.swift */,
+				79FA7DC9222D61BE00D700D5 /* AutomaticCardShuffler.swift */,
+				793874342232F93E00F7EFAF /* BlackjackValue.swift */,
+				793874362232F95800F7EFAF /* Card+Extension.swift */,
+			);
+			name = Blackjack;
+			path = Sources/Blackjack;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		"Blackjack::Blackjack" /* Blackjack */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_35 /* Build configuration list for PBXNativeTarget "Blackjack" */;
+			buildPhases = (
+				OBJ_38 /* Sources */,
+				OBJ_41 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_44 /* PBXTargetDependency */,
+				OBJ_46 /* PBXTargetDependency */,
+			);
+			name = Blackjack;
+			productName = Blackjack;
+			productReference = "Blackjack::Blackjack::Product" /* Blackjack.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"Blackjack::BlackjackTests" /* BlackjackTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_60 /* Build configuration list for PBXNativeTarget "BlackjackTests" */;
+			buildPhases = (
+				OBJ_63 /* Sources */,
+				OBJ_67 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_71 /* PBXTargetDependency */,
+				OBJ_72 /* PBXTargetDependency */,
+				OBJ_73 /* PBXTargetDependency */,
+			);
+			name = BlackjackTests;
+			productName = BlackjackTests;
+			productReference = "Blackjack::BlackjackTests::Product" /* BlackjackTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		"Blackjack::SwiftPMPackageDescription" /* BlackjackPackageDescription */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_49 /* Build configuration list for PBXNativeTarget "BlackjackPackageDescription" */;
+			buildPhases = (
+				OBJ_52 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BlackjackPackageDescription;
+			productName = BlackjackPackageDescription;
+			productType = "com.apple.product-type.framework";
+		};
+		"PlayingCards::PlayingCards" /* PlayingCards */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_74 /* Build configuration list for PBXNativeTarget "PlayingCards" */;
+			buildPhases = (
+				OBJ_77 /* Sources */,
+				OBJ_82 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PlayingCards;
+			productName = PlayingCards;
+			productReference = "PlayingCards::PlayingCards::Product" /* PlayingCards.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"PlayingCards::SwiftPMPackageDescription" /* PlayingCardsPackageDescription */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_84 /* Build configuration list for PBXNativeTarget "PlayingCardsPackageDescription" */;
+			buildPhases = (
+				OBJ_87 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PlayingCardsPackageDescription;
+			productName = PlayingCardsPackageDescription;
+			productType = "com.apple.product-type.framework";
+		};
+		"Shuffling::Shuffling" /* Shuffling */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_89 /* Build configuration list for PBXNativeTarget "Shuffling" */;
+			buildPhases = (
+				OBJ_92 /* Sources */,
+				OBJ_95 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Shuffling;
+			productName = Shuffling;
+			productReference = "Shuffling::Shuffling::Product" /* Shuffling.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"Shuffling::SwiftPMPackageDescription" /* ShufflingPackageDescription */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_97 /* Build configuration list for PBXNativeTarget "ShufflingPackageDescription" */;
+			buildPhases = (
+				OBJ_100 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShufflingPackageDescription;
+			productName = ShufflingPackageDescription;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		OBJ_1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 9999;
+			};
+			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "Blackjack" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = OBJ_5;
+			productRefGroup = OBJ_29 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				"Blackjack::Blackjack" /* Blackjack */,
+				"Blackjack::SwiftPMPackageDescription" /* BlackjackPackageDescription */,
+				"Blackjack::BlackjackPackageTests::ProductTarget" /* BlackjackPackageTests */,
+				"Blackjack::BlackjackTests" /* BlackjackTests */,
+				"PlayingCards::PlayingCards" /* PlayingCards */,
+				"PlayingCards::SwiftPMPackageDescription" /* PlayingCardsPackageDescription */,
+				"Shuffling::Shuffling" /* Shuffling */,
+				"Shuffling::SwiftPMPackageDescription" /* ShufflingPackageDescription */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		OBJ_100 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_101 /* Package.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_38 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				79F942BC2233C5E90009A402 /* Hand.swift in Sources */,
+				79F942BE2233C65B0009A402 /* DealerHand.swift in Sources */,
+				79F942C02233CA6B0009A402 /* PlayOption.swift in Sources */,
+				79F942C22233CA810009A402 /* PlayOutcome.swift in Sources */,
+				79F942BA2233C20A0009A402 /* Blackjack.swift in Sources */,
+				OBJ_39 /* PlayerHand.swift in Sources */,
+				79FA7DC3222D5DCF00D700D5 /* ContinuousCardShuffler.swift in Sources */,
+				79FA7DCA222D61BE00D700D5 /* AutomaticCardShuffler.swift in Sources */,
+				793874352232F93E00F7EFAF /* BlackjackValue.swift in Sources */,
+				OBJ_40 /* CardShoe.swift in Sources */,
+				793874372232F95800F7EFAF /* Card+Extension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_52 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_53 /* Package.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_63 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				79FA7DCE222DB76F00D700D5 /* PlayerHandTests.swift in Sources */,
+				79FA7DCC222D62F500D700D5 /* ShufflerSpy.swift in Sources */,
+				79FA7DC8222D61AA00D700D5 /* AutomaticCardShufflerTests.swift in Sources */,
+				79F942C42233CF640009A402 /* DealerHandTests.swift in Sources */,
+				79FA7DC6222D5DF800D700D5 /* ContinuousCardShufflerTests.swift in Sources */,
+				OBJ_65 /* CardShoeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_77 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_78 /* Card.swift in Sources */,
+				OBJ_79 /* Deck.swift in Sources */,
+				OBJ_80 /* Rank.swift in Sources */,
+				OBJ_81 /* Suit.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_87 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_88 /* Package.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_92 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_93 /* Shuffler.swift in Sources */,
+				OBJ_94 /* StandardRandomNumberGenerator.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		OBJ_44 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Shuffling::Shuffling" /* Shuffling */;
+			targetProxy = 79FA7DBD222D5D8900D700D5 /* PBXContainerItemProxy */;
+		};
+		OBJ_46 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "PlayingCards::PlayingCards" /* PlayingCards */;
+			targetProxy = 79FA7DBE222D5D8900D700D5 /* PBXContainerItemProxy */;
+		};
+		OBJ_58 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Blackjack::BlackjackTests" /* BlackjackTests */;
+			targetProxy = 79FA7DC4222D5DD000D700D5 /* PBXContainerItemProxy */;
+		};
+		OBJ_71 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Blackjack::Blackjack" /* Blackjack */;
+			targetProxy = 79FA7DBF222D5D8900D700D5 /* PBXContainerItemProxy */;
+		};
+		OBJ_72 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Shuffling::Shuffling" /* Shuffling */;
+			targetProxy = 79FA7DC0222D5D8900D700D5 /* PBXContainerItemProxy */;
+		};
+		OBJ_73 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "PlayingCards::PlayingCards" /* PlayingCards */;
+			targetProxy = 79FA7DC1222D5D8900D700D5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		OBJ_3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_NS_ASSERTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "SWIFT_PACKAGE DEBUG";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				USE_HEADERMAP = NO;
+			};
+			name = Debug;
+		};
+		OBJ_36 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Blackjack.xcodeproj/Blackjack_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Blackjack;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = Blackjack;
+			};
+			name = Debug;
+		};
+		OBJ_37 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Blackjack.xcodeproj/Blackjack_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Blackjack;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = Blackjack;
+			};
+			name = Release;
+		};
+		OBJ_4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_OPTIMIZATION_LEVEL = s;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SWIFT_PACKAGE;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				USE_HEADERMAP = NO;
+			};
+			name = Release;
+		};
+		OBJ_50 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4.2 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		OBJ_51 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4.2 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+		OBJ_56 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		OBJ_57 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		OBJ_61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Blackjack.xcodeproj/BlackjackTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = BlackjackTests;
+			};
+			name = Debug;
+		};
+		OBJ_62 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Blackjack.xcodeproj/BlackjackTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = BlackjackTests;
+			};
+			name = Release;
+		};
+		OBJ_75 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Blackjack.xcodeproj/PlayingCards_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = PlayingCards;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = PlayingCards;
+			};
+			name = Debug;
+		};
+		OBJ_76 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Blackjack.xcodeproj/PlayingCards_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = PlayingCards;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = PlayingCards;
+			};
+			name = Release;
+		};
+		OBJ_85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4.2 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		OBJ_86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4.2 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+		OBJ_90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Blackjack.xcodeproj/Shuffling_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Shuffling;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = Shuffling;
+			};
+			name = Debug;
+		};
+		OBJ_91 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Blackjack.xcodeproj/Shuffling_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Shuffling;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = Shuffling;
+			};
+			name = Release;
+		};
+		OBJ_98 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4.2 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		OBJ_99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4.2 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		OBJ_2 /* Build configuration list for PBXProject "Blackjack" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_3 /* Debug */,
+				OBJ_4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_35 /* Build configuration list for PBXNativeTarget "Blackjack" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_36 /* Debug */,
+				OBJ_37 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_49 /* Build configuration list for PBXNativeTarget "BlackjackPackageDescription" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_50 /* Debug */,
+				OBJ_51 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_55 /* Build configuration list for PBXAggregateTarget "BlackjackPackageTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_56 /* Debug */,
+				OBJ_57 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_60 /* Build configuration list for PBXNativeTarget "BlackjackTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_61 /* Debug */,
+				OBJ_62 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_74 /* Build configuration list for PBXNativeTarget "PlayingCards" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_75 /* Debug */,
+				OBJ_76 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_84 /* Build configuration list for PBXNativeTarget "PlayingCardsPackageDescription" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_85 /* Debug */,
+				OBJ_86 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_89 /* Build configuration list for PBXNativeTarget "Shuffling" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_90 /* Debug */,
+				OBJ_91 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_97 /* Build configuration list for PBXNativeTarget "ShufflingPackageDescription" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_98 /* Debug */,
+				OBJ_99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = OBJ_1 /* Project object */;
+}
