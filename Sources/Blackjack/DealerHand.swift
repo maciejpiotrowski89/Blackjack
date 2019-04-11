@@ -17,7 +17,7 @@ public struct DealerHand: Hand {
         self.cards = [faceUp, faceDown]
     }
 
-    public var options: PlayOption {
+    public var options: HandOption {
         switch outcome {
         case .playing: return .standard
         case .blackjack, .bust, .stood: return []
@@ -25,7 +25,7 @@ public struct DealerHand: Hand {
         }
     }
     
-    public var outcome: PlayOutcome {
+    public var outcome: HandOutcome {
         if highValue == Blackjack && cards.count == 2 {
             return .blackjack
         } else if highValue > Blackjack {

@@ -24,7 +24,7 @@ public struct PlayerHand: BettingHand {
         self.cards = cards
     }
     
-    public var options: PlayOption {
+    public var options: HandOption {
         if  outcome != .playing {
             return []
         }
@@ -40,7 +40,7 @@ public struct PlayerHand: BettingHand {
         return  []
     }
     
-    public var outcome: PlayOutcome {
+    public var outcome: HandOutcome {
         if highValue == Blackjack {
             return cards.count == 2 ? .blackjack : .stood
         } else if highValue > Blackjack {

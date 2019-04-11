@@ -37,8 +37,8 @@
 		OBJ_60 /* ContinuousCardShuffler.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* ContinuousCardShuffler.swift */; };
 		OBJ_61 /* DealerHand.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* DealerHand.swift */; };
 		OBJ_62 /* Hand.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* Hand.swift */; };
-		OBJ_63 /* PlayOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* PlayOption.swift */; };
-		OBJ_64 /* PlayOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* PlayOutcome.swift */; };
+		OBJ_63 /* HandOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* HandOption.swift */; };
+		OBJ_64 /* HandOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* HandOutcome.swift */; };
 		OBJ_65 /* PlayerHand.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* PlayerHand.swift */; };
 		OBJ_67 /* Shuffling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Shuffling::Shuffling::Product" /* Shuffling.framework */; };
 		OBJ_68 /* PlayingCards.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "PlayingCards::PlayingCards::Product" /* PlayingCards.framework */; };
@@ -109,8 +109,8 @@
 		OBJ_14 /* ContinuousCardShuffler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinuousCardShuffler.swift; sourceTree = "<group>"; };
 		OBJ_15 /* DealerHand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealerHand.swift; sourceTree = "<group>"; };
 		OBJ_16 /* Hand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hand.swift; sourceTree = "<group>"; };
-		OBJ_17 /* PlayOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayOption.swift; sourceTree = "<group>"; };
-		OBJ_18 /* PlayOutcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayOutcome.swift; sourceTree = "<group>"; };
+		OBJ_17 /* HandOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandOption.swift; sourceTree = "<group>"; };
+		OBJ_18 /* HandOutcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandOutcome.swift; sourceTree = "<group>"; };
 		OBJ_19 /* PlayerHand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerHand.swift; sourceTree = "<group>"; };
 		OBJ_22 /* AutomaticCardShufflerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomaticCardShufflerTests.swift; sourceTree = "<group>"; };
 		OBJ_23 /* CardShoeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardShoeTests.swift; sourceTree = "<group>"; };
@@ -287,8 +287,8 @@
 				OBJ_11 /* BlackjackValue.swift */,
 				OBJ_12 /* Card+Extension.swift */,
 				OBJ_13 /* CardShoe.swift */,
-				OBJ_17 /* PlayOption.swift */,
-				OBJ_18 /* PlayOutcome.swift */,
+				OBJ_17 /* HandOption.swift */,
+				OBJ_18 /* HandOutcome.swift */,
 				OBJ_16 /* Hand.swift */,
 				OBJ_19 /* PlayerHand.swift */,
 				OBJ_15 /* DealerHand.swift */,
@@ -494,8 +494,8 @@
 				OBJ_60 /* ContinuousCardShuffler.swift in Sources */,
 				OBJ_61 /* DealerHand.swift in Sources */,
 				OBJ_62 /* Hand.swift in Sources */,
-				OBJ_63 /* PlayOption.swift in Sources */,
-				OBJ_64 /* PlayOutcome.swift in Sources */,
+				OBJ_63 /* HandOption.swift in Sources */,
+				OBJ_64 /* HandOutcome.swift in Sources */,
 				OBJ_65 /* PlayerHand.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

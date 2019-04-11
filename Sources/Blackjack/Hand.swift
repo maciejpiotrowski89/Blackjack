@@ -11,8 +11,8 @@ public protocol Hand {
     var value: UInt { get }
     var highValue: UInt { get }
     var cards: [Card] { get }
-    var options: PlayOption { get }
-    var outcome: PlayOutcome { get }
+    var options: HandOption { get }
+    var outcome: HandOutcome { get }
     mutating func add(card: Card)
 }
 
