@@ -7,13 +7,12 @@
 
 import PlayingCards
 
-public struct PlayerHand: Hand {
+public struct PlayerHand: BettingHand {
     
     private var initialBet: UInt
     public var bet: UInt {
         return doubled ? initialBet * 2 : initialBet
     }
-    
     public private(set) var cards: [Card]
     public init(bet: UInt, first: Card, second: Card) {
         self.initialBet = bet
@@ -23,23 +22,6 @@ public struct PlayerHand: Hand {
         guard cards.count >= 2 else { return nil }
         self.initialBet = bet
         self.cards = cards
-    }
-    
-    public var value: UInt {
-        return outcome == .stood ? highValue : cards.reduce(0) { $0 + $1.blackjackValue }
-    }
-    
-    public var highValue: UInt {
-        return cards
-            .sorted(by: >)
-            .reduce(0) { (result, card) -> UInt in
-                var value = card.blackjackValue
-                if  card.rank == .ace &&
-                    result + card.highValue <= Blackjack  {
-                    value = card.highValue
-                }
-                return result + value
-        }
     }
     
     public var options: PlayOption {
@@ -57,7 +39,6 @@ public struct PlayerHand: Hand {
         
         return  []
     }
-    
     
     public var outcome: PlayOutcome {
         if highValue == Blackjack {

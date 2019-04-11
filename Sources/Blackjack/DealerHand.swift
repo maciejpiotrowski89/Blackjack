@@ -9,23 +9,42 @@ import PlayingCards
 
 public struct DealerHand: Hand {
     
-    
     public private(set) var cards: [Card]
     public var faceUpCard: Card! {
         return cards.first
     }
-    public var options: PlayOption { return .standard }
-    public var outcome: PlayOutcome { return .playing }
-    
     public init(faceUp: Card, faceDown: Card) {
         self.cards = [faceUp, faceDown]
     }
-    
-    public func add(card: Card) {
-        
+
+    public var options: PlayOption {
+        switch outcome {
+        case .playing: return .standard
+        case .blackjack, .bust, .stood: return []
+        case .doubled: fatalError("Impossible outcome for Dealer's Hand")
+        }
     }
     
-    public func stand() {
-        
+    public var outcome: PlayOutcome {
+        if highValue == Blackjack && cards.count == 2 {
+            return .blackjack
+        } else if highValue > Blackjack {
+            return .bust
+        } else if highValue >= 17 {
+            return .stood
+        }
+        return .playing
+    }
+    
+    public mutating func add(card: Card) {
+        guard outcome == .playing else { return }
+        cards.append(card)
+    }
+}
+
+extension DealerHand {
+    init(cards: [Card]) {
+        assert(cards.count >= 2)
+        self.cards = cards
     }
 }

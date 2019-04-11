@@ -3,7 +3,7 @@
     "pins": [
       {
         "package": "PlayingCards",
-        "repositoryURL": "/Users/maciejpiotrowski/Developer/Blackjack/PlayingCards",
+        "repositoryURL": "https://github.com/paciej00/PlayingCards.git",
         "state": {
           "branch": null,
           "revision": "6b2fe01c2695f83b53f559841c5e42ed1c567966",
@@ -12,7 +12,7 @@
       },
       {
         "package": "Shuffling",
-        "repositoryURL": "/Users/maciejpiotrowski/Developer/Blackjack/Shuffling",
+        "repositoryURL": "https://github.com/paciej00/Shuffling.git",
         "state": {
           "branch": null,
           "revision": "b9742069dc2442987bf143c7b58b1a8297aa1aa1",

@@ -99,7 +99,7 @@ final class CardShoeTests: XCTestCase {
     func testDealCardDoesNotReturnACardIfItIsEmpty() {
         //Given
         XCTAssertFalse(sut.cards.isEmpty)
-        _ = sut.removeAllCards(from: \.cards)
+        _ = sut.removeAllCards(from: \CardShoe.cards as! ReferenceWritableKeyPath<CardShoe, [Card]>)
         XCTAssertTrue(sut.cards.isEmpty)
 
         //When
