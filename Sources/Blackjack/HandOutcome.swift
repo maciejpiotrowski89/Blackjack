@@ -7,6 +7,6 @@
 
 import Foundation
 
-public enum HandOutcome: Equatable {
+public enum HandOutcome: String, Equatable {
     case blackjack, playing, doubled, bust, stood
 }

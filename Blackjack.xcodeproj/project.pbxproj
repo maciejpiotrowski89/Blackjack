@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		795A26412264E8BD00C00886 /* HandComparisonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795A26402264E8BD00C00886 /* HandComparisonTests.swift */; };
 		OBJ_106 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_36 /* Card.swift */; };
 		OBJ_107 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_37 /* Deck.swift */; };
 		OBJ_108 /* Rank.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_38 /* Rank.swift */; };
@@ -100,6 +101,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		795A26402264E8BD00C00886 /* HandComparisonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandComparisonTests.swift; sourceTree = "<group>"; };
 		"Blackjack::Blackjack::Product" /* Blackjack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Blackjack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Blackjack::BlackjackTests::Product" /* BlackjackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = BlackjackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_10 /* Blackjack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blackjack.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				OBJ_25 /* DealerHandTests.swift */,
 				OBJ_26 /* PlayerHandTests.swift */,
 				OBJ_27 /* ShufflerSpy.swift */,
+				795A26402264E8BD00C00886 /* HandComparisonTests.swift */,
 			);
 			name = BlackjackTests;
 			path = Tests/BlackjackTests;
@@ -515,6 +518,7 @@
 				OBJ_89 /* AutomaticCardShufflerTests.swift in Sources */,
 				OBJ_90 /* CardShoeTests.swift in Sources */,
 				OBJ_91 /* ContinuousCardShufflerTests.swift in Sources */,
+				795A26412264E8BD00C00886 /* HandComparisonTests.swift in Sources */,
 				OBJ_92 /* DealerHandTests.swift in Sources */,
 				OBJ_93 /* PlayerHandTests.swift in Sources */,
 				OBJ_94 /* ShufflerSpy.swift in Sources */,

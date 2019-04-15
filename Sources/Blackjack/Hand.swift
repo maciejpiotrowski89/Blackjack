@@ -42,17 +42,32 @@ extension Hand {
 }
 
 public func < (lhs: Hand, rhs: Hand) -> Bool {
-    return lhs.value < rhs.value
+    if lhs == rhs { return false }
+    if lhs.outcome == .bust { return true }
+    if rhs.outcome == .bust { return false }
+    if lhs.outcome == .blackjack && rhs.outcome != .blackjack { return false }
+    if lhs.outcome != .blackjack && rhs.outcome == .blackjack { return true }
+    return lhs.highValue < rhs.highValue
 }
 
-public func  > (lhs: Hand, rhs: Hand) -> Bool {
-    return lhs.value > rhs.value
+public func > (lhs: Hand, rhs: Hand) -> Bool {
+    return !(lhs < rhs) && lhs != rhs
 }
 
 public func == (lhs: Hand, rhs: Hand) -> Bool {
-    return lhs.value == rhs.value
+    if lhs.outcome == .bust && rhs.outcome == .bust { return true }
+    if ([lhs, rhs].filter { $0.outcome == .blackjack }).count == 1 { return false}
+    return lhs.highValue == rhs.highValue
 }
 
 public func != (lhs: Hand, rhs: Hand) -> Bool {
     return !(lhs == rhs)
+}
+
+extension String.StringInterpolation {
+    mutating func appendInterpolation(_ value: Hand) {
+        let intetrpolation = value.outcome == .blackjack ?
+            value.outcome.rawValue.capitalized : "\(value.highValue)"
+        appendInterpolation(intetrpolation)
+    }
 }

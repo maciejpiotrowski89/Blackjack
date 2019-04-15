@@ -12,18 +12,6 @@ import PlayingCards
 class PlayerHandTests: XCTestCase {
     
     //MARK: Hand
-    func testAnEmptyHand() {
-        //Given:
-        let bet: UInt = 100
-        let cards: [Card] = []
-
-        //When:
-        let sut = PlayerHand(bet: bet, cards: cards)
-
-        //Then:
-        XCTAssertNil(sut)
-    }
-    
     func testBetOfAHand() {
         //Given:
         let bet: UInt = 100
@@ -37,20 +25,6 @@ class PlayerHandTests: XCTestCase {
         
         //Then:
         XCTAssertEqual(sut.bet, bet)
-    }
-    
-    func testOptionsForHandWith1Card() {
-        //Given:
-        let bet: UInt = 100
-        let cards = [
-            Card(suit: .clubs, rank: .king),
-            ]
-        
-        //When:
-        let sut = PlayerHand(bet: bet, cards: cards)
-
-        //Then:
-        XCTAssertNil(sut)
     }
     
     func testOptionsForHandWithOnly2CardsOfDifferentValue() {

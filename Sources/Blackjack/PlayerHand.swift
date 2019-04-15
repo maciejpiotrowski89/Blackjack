@@ -18,11 +18,6 @@ public struct PlayerHand: BettingHand {
         self.initialBet = bet
         self.cards = [first, second]
     }
-    public init?(bet: UInt, cards: [Card]) {
-        guard cards.count >= 2 else { return nil }
-        self.initialBet = bet
-        self.cards = cards
-    }
     
     public var options: HandOption {
         if  outcome != .playing {
@@ -71,3 +66,12 @@ public struct PlayerHand: BettingHand {
         stood = true
     }
 }
+
+extension PlayerHand {
+    init?(bet: UInt, cards: [Card]) { //WARN: get rid of ?
+        precondition(cards.count >= 2)
+        self.initialBet = bet
+        self.cards = cards
+    }
+}
+

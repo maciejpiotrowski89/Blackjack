@@ -44,7 +44,7 @@ public struct DealerHand: Hand {
 
 extension DealerHand {
     init(cards: [Card]) {
-        assert(cards.count >= 2)
+        precondition(cards.count >= 2)
         self.cards = cards
     }
 }
