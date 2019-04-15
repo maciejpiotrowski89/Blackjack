@@ -23,7 +23,7 @@ class HandComparisonTests: XCTestCase {
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .two),
         ]
-        let player = PlayerHand(bet: bet, cards: playerCards)!
+        let player = PlayerHand(bet: bet, cards: playerCards)
         let dealer = DealerHand(cards: dealerCards)
         
         //When
@@ -51,7 +51,7 @@ class HandComparisonTests: XCTestCase {
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .two),
         ]
-        let player = PlayerHand(bet: bet, cards: playerCards)!
+        let player = PlayerHand(bet: bet, cards: playerCards)
         let dealer = DealerHand(cards: dealerCards)
         
         //When
@@ -79,7 +79,7 @@ class HandComparisonTests: XCTestCase {
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .two),
         ]
-        let player = PlayerHand(bet: bet, cards: playerCards)!
+        let player = PlayerHand(bet: bet, cards: playerCards)
         let dealer = DealerHand(cards: dealerCards)
         
         //When
@@ -107,7 +107,7 @@ class HandComparisonTests: XCTestCase {
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .two),
         ]
-        let player = PlayerHand(bet: bet, cards: playerCards)!
+        let player = PlayerHand(bet: bet, cards: playerCards)
         let dealer = DealerHand(cards: dealerCards)
         
         //When
@@ -132,7 +132,7 @@ class HandComparisonTests: XCTestCase {
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .ace),
         ]
-        let player = PlayerHand(bet: bet, cards: cards)!
+        let player = PlayerHand(bet: bet, cards: cards)
         let dealer = DealerHand(cards: cards)
         
         //When
@@ -156,7 +156,7 @@ class HandComparisonTests: XCTestCase {
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .ace),
         ]
-        let player = PlayerHand(bet: bet, cards: cards)!
+        let player = PlayerHand(bet: bet, cards: cards)
         let dealer = DealerHand(cards: cards)
         
         //When
@@ -186,7 +186,7 @@ class HandComparisonTests: XCTestCase {
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .two),
         ]
-        let player = PlayerHand(bet: bet, cards: playerCards)!
+        let player = PlayerHand(bet: bet, cards: playerCards)
         let dealer = DealerHand(cards: dealerCards)
         
         //When
@@ -215,7 +215,7 @@ class HandComparisonTests: XCTestCase {
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .two),
         ]
-        let player = PlayerHand(bet: bet, cards: playerCards)!
+        let player = PlayerHand(bet: bet, cards: playerCards)
         let dealer = DealerHand(cards: dealerCards)
         
         //When
@@ -244,7 +244,7 @@ class HandComparisonTests: XCTestCase {
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .ten),
         ]
-        let player = PlayerHand(bet: bet, cards: playerCards)!
+        let player = PlayerHand(bet: bet, cards: playerCards)
         let dealer = DealerHand(cards: dealerCards)
         
         //When
@@ -273,7 +273,7 @@ class HandComparisonTests: XCTestCase {
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .ten),
         ]
-        let player = PlayerHand(bet: bet, cards: playerCards)!
+        let player = PlayerHand(bet: bet, cards: playerCards)
         let dealer = DealerHand(cards: dealerCards)
         
         //When
@@ -303,7 +303,7 @@ class HandComparisonTests: XCTestCase {
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .ten),
         ]
-        let player = PlayerHand(bet: bet, cards: playerCards)!
+        let player = PlayerHand(bet: bet, cards: playerCards)
         let dealer = DealerHand(cards: dealerCards)
         
         //When
@@ -333,7 +333,7 @@ class HandComparisonTests: XCTestCase {
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .ten),
         ]
-        let player = PlayerHand(bet: bet, cards: playerCards)!
+        let player = PlayerHand(bet: bet, cards: playerCards)
         let dealer = DealerHand(cards: dealerCards)
         
         //When
@@ -362,7 +362,7 @@ class HandComparisonTests: XCTestCase {
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .king),
         ]
-        let player = PlayerHand(bet: bet, cards: playerCards)!
+        let player = PlayerHand(bet: bet, cards: playerCards)
         let dealer = DealerHand(cards: dealerCards)
         
         //When
@@ -389,7 +389,7 @@ class HandComparisonTests: XCTestCase {
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .king),
         ]
-        let player = PlayerHand(bet: bet, cards: playerCards)!
+        let player = PlayerHand(bet: bet, cards: playerCards)
         let dealer = DealerHand(cards: dealerCards)
         
         //When
@@ -417,7 +417,7 @@ class HandComparisonTests: XCTestCase {
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .queen),
         ]
-        let player = PlayerHand(bet: bet, cards: playerCards)!
+        let player = PlayerHand(bet: bet, cards: playerCards)
         let dealer = DealerHand(cards: dealerCards)
         
         //When
@@ -445,7 +445,7 @@ class HandComparisonTests: XCTestCase {
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .queen),
         ]
-        let player = PlayerHand(bet: bet, cards: playerCards)!
+        let player = PlayerHand(bet: bet, cards: playerCards)
         let dealer = DealerHand(cards: dealerCards)
         
         //When
@@ -473,7 +473,7 @@ class HandComparisonTests: XCTestCase {
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .ace),
         ]
-        let player = PlayerHand(bet: bet, cards: playerCards)!
+        let player = PlayerHand(bet: bet, cards: playerCards)
         let dealer = DealerHand(cards: dealerCards)
         
         //When
@@ -501,7 +501,7 @@ class HandComparisonTests: XCTestCase {
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .ace),
         ]
-        let player = PlayerHand(bet: bet, cards: playerCards)!
+        let player = PlayerHand(bet: bet, cards: playerCards)
         let dealer = DealerHand(cards: dealerCards)
         
         //When

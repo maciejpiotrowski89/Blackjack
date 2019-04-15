@@ -68,7 +68,7 @@ public struct PlayerHand: BettingHand {
 }
 
 extension PlayerHand {
-    init?(bet: UInt, cards: [Card]) { //WARN: get rid of ?
+    init(bet: UInt, cards: [Card]) {
         precondition(cards.count >= 2)
         self.initialBet = bet
         self.cards = cards
