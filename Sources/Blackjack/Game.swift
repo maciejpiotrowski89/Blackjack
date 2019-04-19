@@ -7,6 +7,13 @@
 
 import PlayingCards
 
+public enum GameError: Error {
+    case cardShoeIsEmpty,
+    roundInProgress,
+    unknownStateNavigation,
+    impossibleStateTransition
+}
+
 public protocol CardDealer: class {
     func dealCard() -> Card
 }
@@ -14,23 +21,14 @@ public protocol CardDealer: class {
 public protocol PlayerRoundDelegate: class {
     func bet(_ chip: Chip) //adds chips
     func reset() //gives chips back to player
-    func play() //only if there is a bet & state = .readyToPlay
+    func play() throws
     func finishTurn() //finishes player's turn
-}
-
-public enum GameState {
-    case readyToPlay, playersTurn, dealersTurn, managingBets, cardShoeIsEmpty
 }
 
 public protocol Game: CardDealer, PlayerRoundDelegate {
     var dealerHand: Hand? { get }
     var playerHand: Hand? { get }
     var bet: UInt { get }
-    var state: GameState { get }
-}
-
-public protocol GameStateNavigator {
-    func navigate(to state: GameState)
     var state: GameState { get }
 }
 
@@ -63,16 +61,13 @@ public final class GameImpl: Game {
         bet = 0
     }
     
-    public func play() {
+    public func play() throws {
         guard bet > 0 else { return }
-        guard state == .readyToPlay else { return }
+        guard state == .readyToPlay else { throw GameError.roundInProgress }
         var playerCards: [Card] = []
         var dealerCards: [Card] = []
         for i in 1...4 {
-            guard let card = shoe.deal() else {
-                gameState.navigate(to: .cardShoeIsEmpty)
-                return
-            }
+            guard let card = shoe.deal() else { throw GameError.cardShoeIsEmpty }
             if i.isMultiple(of: 2) {
                 dealerCards.append(card)
             } else {
@@ -81,7 +76,7 @@ public final class GameImpl: Game {
         }
         try! player.playHand(with: playerCards)
         dealerHand = DealerHand(cards: dealerCards)
-        gameState.navigate(to: .playersTurn)
+        try! gameState.navigate(to: .playersTurn)
     }
     
     public func dealCard() -> Card {

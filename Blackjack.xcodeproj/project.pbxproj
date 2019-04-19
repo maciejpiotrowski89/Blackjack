@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		7911D378226A5B7B00922AA7 /* GameStateNavigatorImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7911D377226A5B7B00922AA7 /* GameStateNavigatorImplTests.swift */; };
+		7911D37A226A66FF00922AA7 /* GameStateNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7911D379226A66FF00922AA7 /* GameStateNavigator.swift */; };
 		795A26412264E8BD00C00886 /* HandComparisonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795A26402264E8BD00C00886 /* HandComparisonTests.swift */; };
 		79BF5A9D22662FF60027FEED /* Chip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF5A9C22662FF60027FEED /* Chip.swift */; };
 		79BF5A9F226634450027FEED /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF5A9E226634450027FEED /* Player.swift */; };
@@ -109,6 +111,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7911D377226A5B7B00922AA7 /* GameStateNavigatorImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateNavigatorImplTests.swift; sourceTree = "<group>"; };
+		7911D379226A66FF00922AA7 /* GameStateNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateNavigator.swift; sourceTree = "<group>"; };
 		795A26402264E8BD00C00886 /* HandComparisonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandComparisonTests.swift; sourceTree = "<group>"; };
 		79BF5A9C22662FF60027FEED /* Chip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chip.swift; sourceTree = "<group>"; };
 		79BF5A9E226634450027FEED /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
@@ -242,6 +246,7 @@
 				OBJ_27 /* ShufflerSpy.swift */,
 				795A26402264E8BD00C00886 /* HandComparisonTests.swift */,
 				79BF5AA52268A0A10027FEED /* GameImplTests.swift */,
+				7911D377226A5B7B00922AA7 /* GameStateNavigatorImplTests.swift */,
 				79BF5AA7226A3F8D0027FEED /* CardShoeSpy.swift */,
 				79BF5AA9226A3F9C0027FEED /* PlayerSpy.swift */,
 				79BF5AAB226A3FB10027FEED /* GameStateNavigatorSpy.swift */,
@@ -339,6 +344,7 @@
 			children = (
 				OBJ_10 /* Blackjack.swift */,
 				79BF5AA02266348F0027FEED /* Game.swift */,
+				7911D379226A66FF00922AA7 /* GameStateNavigator.swift */,
 				79BF5A9E226634450027FEED /* Player.swift */,
 				79BF5AA2226639770027FEED /* Card Shoe */,
 				79BF5AA32266399E0027FEED /* Game Elements */,
@@ -547,6 +553,7 @@
 				OBJ_60 /* ContinuousCardShuffler.swift in Sources */,
 				OBJ_61 /* DealerHand.swift in Sources */,
 				79BF5AA12266348F0027FEED /* Game.swift in Sources */,
+				7911D37A226A66FF00922AA7 /* GameStateNavigator.swift in Sources */,
 				OBJ_62 /* Hand.swift in Sources */,
 				OBJ_63 /* HandOption.swift in Sources */,
 				OBJ_64 /* HandOutcome.swift in Sources */,
@@ -575,6 +582,7 @@
 				OBJ_92 /* DealerHandTests.swift in Sources */,
 				79BF5AA62268A0A10027FEED /* GameImplTests.swift in Sources */,
 				79BF5AA8226A3F8D0027FEED /* CardShoeSpy.swift in Sources */,
+				7911D378226A5B7B00922AA7 /* GameStateNavigatorImplTests.swift in Sources */,
 				OBJ_93 /* PlayerHandTests.swift in Sources */,
 				OBJ_94 /* ShufflerSpy.swift in Sources */,
 				79BF5AAA226A3F9C0027FEED /* PlayerSpy.swift in Sources */,

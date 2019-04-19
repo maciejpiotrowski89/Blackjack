@@ -112,7 +112,7 @@ final class GameImplTests: XCTestCase {
         //no betting
         
         //When
-        sut.play()
+        try! sut.play()
         
         //Then
         XCTAssertNil(stateNavigator.navigatedToState)
@@ -125,7 +125,7 @@ final class GameImplTests: XCTestCase {
         sut.bet(.ten)
         
         //When
-        sut.play()
+        try! sut.play()
         
         //Then
         XCTAssertEqual(stateNavigator.navigatedToState, .playersTurn)
@@ -137,7 +137,7 @@ final class GameImplTests: XCTestCase {
         sut.bet(.ten)
         
         //When
-        sut.play()
+        try! sut.play()
         
         //Then
         XCTAssertEqual(shoe.dealCount, 4)
@@ -147,11 +147,11 @@ final class GameImplTests: XCTestCase {
         //Given
         shoe.prepareCards()
         sut.bet(.ten)
-        sut.play()
+        try! sut.play()
         stateNavigator.state = .playersTurn
         
         //When
-        sut.play()
+        XCTAssertThrowsError(try self.sut.play(), "Should throw GameError.roundInProgress error")
 
         //Then
         XCTAssertEqual(shoe.dealCount, 4)
@@ -164,7 +164,7 @@ final class GameImplTests: XCTestCase {
         sut.bet(.ten)
         
         //When
-        sut.play()
+        try! sut.play()
         
         //Then
         XCTAssertNotNil(player.playedHandWithCards)
@@ -177,7 +177,7 @@ final class GameImplTests: XCTestCase {
         sut.bet(.ten)
         
         //When
-        sut.play()
+        try! sut.play()
         
         //Then
         XCTAssertEqual(player.playedHandWithCards?.count, 2)
@@ -195,12 +195,10 @@ final class GameImplTests: XCTestCase {
         sut.bet(.ten)
 
         //When
-        sut.play()
+        XCTAssertThrowsError(try sut.play(), "Should throw GameError.cardShoeEmpty error")
 
         //Then
-        XCTAssertEqual(stateNavigator.navigatedToState, .cardShoeIsEmpty)
         XCTAssertNil(player.playedHandWithCards)
         XCTAssertNil(sut.dealerHand)
-
     }
 }
