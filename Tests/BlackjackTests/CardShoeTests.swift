@@ -6,8 +6,8 @@
 //
 
 import XCTest
-@testable import Blackjack
 import PlayingCards
+@testable import Blackjack
 
 final class CardShoeTests: XCTestCase {
     

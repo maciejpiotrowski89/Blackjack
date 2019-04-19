@@ -6,10 +6,10 @@
 //
 
 import XCTest
-@testable import Blackjack
 import PlayingCards
+@testable import Blackjack
 
-class DealerHandTests: XCTestCase {
+final class DealerHandTests: XCTestCase {
     
     //MARK: Hand
     func testHand() {

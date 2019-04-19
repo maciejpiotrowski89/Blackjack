@@ -22,6 +22,14 @@
 
 /* Begin PBXBuildFile section */
 		795A26412264E8BD00C00886 /* HandComparisonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795A26402264E8BD00C00886 /* HandComparisonTests.swift */; };
+		79BF5A9D22662FF60027FEED /* Chip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF5A9C22662FF60027FEED /* Chip.swift */; };
+		79BF5A9F226634450027FEED /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF5A9E226634450027FEED /* Player.swift */; };
+		79BF5AA12266348F0027FEED /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF5AA02266348F0027FEED /* Game.swift */; };
+		79BF5AA62268A0A10027FEED /* GameImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF5AA52268A0A10027FEED /* GameImplTests.swift */; };
+		79BF5AA8226A3F8D0027FEED /* CardShoeSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF5AA7226A3F8D0027FEED /* CardShoeSpy.swift */; };
+		79BF5AAA226A3F9C0027FEED /* PlayerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF5AA9226A3F9C0027FEED /* PlayerSpy.swift */; };
+		79BF5AAC226A3FB10027FEED /* GameStateNavigatorSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF5AAB226A3FB10027FEED /* GameStateNavigatorSpy.swift */; };
+		79BF5AAE226A3FFF0027FEED /* Card+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF5AAD226A3FFF0027FEED /* Card+Extension.swift */; };
 		OBJ_106 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_36 /* Card.swift */; };
 		OBJ_107 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_37 /* Deck.swift */; };
 		OBJ_108 /* Rank.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_38 /* Rank.swift */; };
@@ -102,6 +110,14 @@
 
 /* Begin PBXFileReference section */
 		795A26402264E8BD00C00886 /* HandComparisonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandComparisonTests.swift; sourceTree = "<group>"; };
+		79BF5A9C22662FF60027FEED /* Chip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chip.swift; sourceTree = "<group>"; };
+		79BF5A9E226634450027FEED /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		79BF5AA02266348F0027FEED /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		79BF5AA52268A0A10027FEED /* GameImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameImplTests.swift; sourceTree = "<group>"; };
+		79BF5AA7226A3F8D0027FEED /* CardShoeSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardShoeSpy.swift; sourceTree = "<group>"; };
+		79BF5AA9226A3F9C0027FEED /* PlayerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSpy.swift; sourceTree = "<group>"; };
+		79BF5AAB226A3FB10027FEED /* GameStateNavigatorSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateNavigatorSpy.swift; sourceTree = "<group>"; };
+		79BF5AAD226A3FFF0027FEED /* Card+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+Extension.swift"; sourceTree = "<group>"; };
 		"Blackjack::Blackjack::Product" /* Blackjack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Blackjack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Blackjack::BlackjackTests::Product" /* BlackjackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = BlackjackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_10 /* Blackjack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blackjack.swift; sourceTree = "<group>"; };
@@ -175,6 +191,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		79BF5AA2226639770027FEED /* Card Shoe */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_13 /* CardShoe.swift */,
+				OBJ_9 /* AutomaticCardShuffler.swift */,
+				OBJ_14 /* ContinuousCardShuffler.swift */,
+			);
+			name = "Card Shoe";
+			sourceTree = "<group>";
+		};
+		79BF5AA32266399E0027FEED /* Game Elements */ = {
+			isa = PBXGroup;
+			children = (
+				79BF5A9C22662FF60027FEED /* Chip.swift */,
+				OBJ_11 /* BlackjackValue.swift */,
+				OBJ_12 /* Card+Extension.swift */,
+				OBJ_17 /* HandOption.swift */,
+				OBJ_18 /* HandOutcome.swift */,
+			);
+			name = "Game Elements";
+			sourceTree = "<group>";
+		};
+		79BF5AA4226639AA0027FEED /* Hand */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_16 /* Hand.swift */,
+				OBJ_19 /* PlayerHand.swift */,
+				OBJ_15 /* DealerHand.swift */,
+			);
+			name = Hand;
+			sourceTree = "<group>";
+		};
 		OBJ_20 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +241,11 @@
 				OBJ_26 /* PlayerHandTests.swift */,
 				OBJ_27 /* ShufflerSpy.swift */,
 				795A26402264E8BD00C00886 /* HandComparisonTests.swift */,
+				79BF5AA52268A0A10027FEED /* GameImplTests.swift */,
+				79BF5AA7226A3F8D0027FEED /* CardShoeSpy.swift */,
+				79BF5AA9226A3F9C0027FEED /* PlayerSpy.swift */,
+				79BF5AAB226A3FB10027FEED /* GameStateNavigatorSpy.swift */,
+				79BF5AAD226A3FFF0027FEED /* Card+Extension.swift */,
 			);
 			name = BlackjackTests;
 			path = Tests/BlackjackTests;
@@ -284,17 +337,12 @@
 		OBJ_8 /* Blackjack */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_9 /* AutomaticCardShuffler.swift */,
-				OBJ_14 /* ContinuousCardShuffler.swift */,
 				OBJ_10 /* Blackjack.swift */,
-				OBJ_11 /* BlackjackValue.swift */,
-				OBJ_12 /* Card+Extension.swift */,
-				OBJ_13 /* CardShoe.swift */,
-				OBJ_17 /* HandOption.swift */,
-				OBJ_18 /* HandOutcome.swift */,
-				OBJ_16 /* Hand.swift */,
-				OBJ_19 /* PlayerHand.swift */,
-				OBJ_15 /* DealerHand.swift */,
+				79BF5AA02266348F0027FEED /* Game.swift */,
+				79BF5A9E226634450027FEED /* Player.swift */,
+				79BF5AA2226639770027FEED /* Card Shoe */,
+				79BF5AA32266399E0027FEED /* Game Elements */,
+				79BF5AA4226639AA0027FEED /* Hand */,
 			);
 			name = Blackjack;
 			path = Sources/Blackjack;
@@ -490,12 +538,15 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_55 /* AutomaticCardShuffler.swift in Sources */,
+				79BF5A9D22662FF60027FEED /* Chip.swift in Sources */,
 				OBJ_56 /* Blackjack.swift in Sources */,
 				OBJ_57 /* BlackjackValue.swift in Sources */,
 				OBJ_58 /* Card+Extension.swift in Sources */,
+				79BF5A9F226634450027FEED /* Player.swift in Sources */,
 				OBJ_59 /* CardShoe.swift in Sources */,
 				OBJ_60 /* ContinuousCardShuffler.swift in Sources */,
 				OBJ_61 /* DealerHand.swift in Sources */,
+				79BF5AA12266348F0027FEED /* Game.swift in Sources */,
 				OBJ_62 /* Hand.swift in Sources */,
 				OBJ_63 /* HandOption.swift in Sources */,
 				OBJ_64 /* HandOutcome.swift in Sources */,
@@ -518,10 +569,15 @@
 				OBJ_89 /* AutomaticCardShufflerTests.swift in Sources */,
 				OBJ_90 /* CardShoeTests.swift in Sources */,
 				OBJ_91 /* ContinuousCardShufflerTests.swift in Sources */,
+				79BF5AAC226A3FB10027FEED /* GameStateNavigatorSpy.swift in Sources */,
 				795A26412264E8BD00C00886 /* HandComparisonTests.swift in Sources */,
+				79BF5AAE226A3FFF0027FEED /* Card+Extension.swift in Sources */,
 				OBJ_92 /* DealerHandTests.swift in Sources */,
+				79BF5AA62268A0A10027FEED /* GameImplTests.swift in Sources */,
+				79BF5AA8226A3F8D0027FEED /* CardShoeSpy.swift in Sources */,
 				OBJ_93 /* PlayerHandTests.swift in Sources */,
 				OBJ_94 /* ShufflerSpy.swift in Sources */,
+				79BF5AAA226A3F9C0027FEED /* PlayerSpy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

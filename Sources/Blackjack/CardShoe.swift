@@ -21,7 +21,9 @@ public protocol CardShuffling {
     func shuffleCards()
 }
 
-public class CardShoe: CardDealing, CardShuffling {
+public typealias PlayingCardShoe = CardDealing & CardShuffling
+
+public class CardShoe: PlayingCardShoe {
     private(set) var cards: [Card]
     private(set) var discardBox: [Card] = []
     public var isEmpty: Bool { return cards.isEmpty }

@@ -13,13 +13,20 @@ public protocol Hand {
     var cards: [Card] { get }
     var options: HandOption { get }
     var outcome: HandOutcome { get }
+}
+
+public protocol MutableHand: Hand {
     mutating func add(card: Card)
 }
 
-public protocol BettingHand: Hand {
+public protocol BettingHand: MutableHand {
     var bet: UInt { get }
     mutating func doubleBet()
     mutating func stand()
+}
+
+public protocol SplitHand: Hand {
+    mutating func split()
 }
 
 extension Hand {

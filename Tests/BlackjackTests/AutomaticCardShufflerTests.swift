@@ -6,11 +6,11 @@
 //
 
 import XCTest
-@testable import Blackjack
 import PlayingCards
+@testable import Blackjack
 
 
-class AutomaticCardShufflerTests: XCTestCase {
+final class AutomaticCardShufflerTests: XCTestCase {
     
     var sut: AutomaticCardShuffler!
     var shuffler: ShufflerSpy!

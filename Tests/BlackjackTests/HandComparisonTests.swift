@@ -6,10 +6,10 @@
 //
 
 import XCTest
-@testable import Blackjack
 import PlayingCards
+@testable import Blackjack
 
-class HandComparisonTests: XCTestCase {
+final class HandComparisonTests: XCTestCase {
 
     func testPlayerLowerDealerGreater_1() {
         //Given
