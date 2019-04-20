@@ -15,4 +15,8 @@ extension Card {
                 Card(suit: .hearts, rank: .two),
         ]
     }
+    
+    static func sampleCard() -> Card {
+        return Card(suit: .clubs, rank: .queen)
+    }
 }

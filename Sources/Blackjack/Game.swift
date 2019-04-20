@@ -8,21 +8,23 @@
 import PlayingCards
 
 public enum GameError: Error {
-    case cardShoeIsEmpty,
+    case unknown,
+    cardShoeIsEmpty,
     roundInProgress,
+    cannotDealWhenRoundIsNotInProgress,
     unknownStateNavigation,
     impossibleStateTransition
 }
 
 public protocol CardDealer: class {
-    func dealCard() -> Card
+    func dealCard() throws -> Card
 }
 
 public protocol PlayerRoundDelegate: class {
-    func bet(_ chip: Chip) //adds chips
-    func reset() //gives chips back to player
+    func bet(_ chip: Chip)
+    func reset()
     func play() throws
-    func finishTurn() //finishes player's turn
+    func finishTurn()
 }
 
 public protocol Game: CardDealer, PlayerRoundDelegate {
@@ -38,7 +40,7 @@ public final class GameImpl: Game {
     private let gameState: GameStateNavigator
     private(set) var player: Player
     public var state: GameState { return gameState.state }
-    public var dealerHand: Hand?
+    public private(set) var dealerHand: Hand?
     public var playerHand: Hand? { return player.hand }
     public private(set) var bet: UInt = 0
     
@@ -74,15 +76,20 @@ public final class GameImpl: Game {
                 playerCards.append(card)
             }
         }
-        try! player.playHand(with: playerCards)
+        try player.playHand(with: playerCards)
         dealerHand = DealerHand(cards: dealerCards)
-        try! gameState.navigate(to: .playersTurn)
+        try gameState.navigate(to: .playersTurn)
     }
     
-    public func dealCard() -> Card {
-        fatalError("Not implemented")
+    public func dealCard() throws -> Card {
+        guard state == .playersTurn || state == .dealersTurn else { throw GameError.cannotDealWhenRoundIsNotInProgress }
+        guard let card = shoe.deal() else { throw GameError.cardShoeIsEmpty }
+        return card
     }
 
     public func finishTurn() {
+    }
+    
+    private func playDealersTurn() {
     }
 }

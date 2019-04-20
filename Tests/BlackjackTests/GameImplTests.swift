@@ -201,4 +201,104 @@ final class GameImplTests: XCTestCase {
         XCTAssertNil(player.playedHandWithCards)
         XCTAssertNil(sut.dealerHand)
     }
+    
+    //MARK: Dealing cards
+    func testDealCardIsPossibleWhenStateIsPlayersTurn() {
+        //Given
+        stateNavigator.state = .playersTurn
+        let expectedCard = Card.sampleCard()
+        shoe.prepareCards([expectedCard])
+        
+        //When
+        let card = try! sut.dealCard()
+        
+        //Then
+        XCTAssertEqual(card, expectedCard)
+    }
+
+    func testDealCardDoesntThrowAnErrorWhenStateIsPlayersTurn() {
+        //Given
+        stateNavigator.state = .playersTurn
+        shoe.prepareCards()
+        
+        //When
+        XCTAssertNoThrow(try sut.dealCard())
+        
+        //Then
+        //Doesn't throw an error
+    }
+    
+    func testDealCardThrowsWhenShoeIsEmptyAndStateIsPlayersTurn() {
+        //Given
+        stateNavigator.state = .playersTurn
+        shoe.prepareCards([])
+        
+        //When
+        XCTAssertThrowsError(try sut.dealCard())
+        
+        //Then
+        //Throws an error
+    }
+    
+    func testDealCardDoesntThrowAnErrorWhenStateIsDealersTurn() {
+        //Given
+        stateNavigator.state = .dealersTurn
+        let expectedCard = Card.sampleCard()
+        shoe.prepareCards([expectedCard])
+        
+        //When
+        let card = try! sut.dealCard()
+        
+        //Then
+        XCTAssertEqual(card, expectedCard)
+    }
+    
+    func testDealCardIsPossibleWhenStateIsDealersTurn() {
+        //Given
+        stateNavigator.state = .dealersTurn
+        shoe.prepareCards()
+        
+        //When
+        XCTAssertNoThrow(try sut.dealCard())
+        
+        //Then
+        //Doesn't throw an error
+    }
+    
+    func testDealCardThrowsWhenShoeIsEmptyAndStateIsDealersTurn() {
+        //Given
+        stateNavigator.state = .dealersTurn
+        shoe.prepareCards([])
+        
+        //When
+        XCTAssertThrowsError(try sut.dealCard())
+        
+        //Then
+        //Throws an error
+    }
+    
+    func testDealCardThrowsWhenPlayIsNotInProgress_readyToPlay() {
+        //Given
+        stateNavigator.state = .readyToPlay
+        shoe.prepareCards()
+
+        //When
+        XCTAssertThrowsError(try sut.dealCard())
+        
+        //Then
+        //Error is thrown
+    }
+    
+    func testDealCardThrowsWhenPlayIsNotInProgress_managingBets() {
+        //Given
+        stateNavigator.state = .managingBets
+        shoe.prepareCards()
+
+        //When
+        XCTAssertThrowsError(try sut.dealCard())
+        
+        //Then
+        //Error is thrown
+    }
+    
 }
