@@ -9,14 +9,6 @@ import XCTest
 import PlayingCards
 @testable import Blackjack
 
-final class DealerSpy: Dealer {
-    var hand: Hand?
-    var createdHandWithCards: [Card]?
-    func createHand(with cards: [Card]) throws { createdHandWithCards = cards }
-    var playHandCalled: Bool = false
-    func playHand() throws { playHandCalled = true }
-}
-
 final class GameImplTests: XCTestCase {
     
     var sut: GameImpl!
@@ -353,40 +345,40 @@ final class GameImplTests: XCTestCase {
         stateNavigator.state = .playersTurn
         
         //When
-        try? sut.finishPlayersTurn()
+        XCTAssertNoThrow(try sut.finishPlayersTurn())
         
         //Then
         XCTAssertEqual(stateNavigator.navigatedToState, .dealersTurn)
     }
     
-    func testFinishPlayerTurnDoesNothingWhenStateIs_ReadyToPlay() {
+    func testFinishPlayerTurnThrowsWhenStateIs_ReadyToPlay() {
         //Given
         stateNavigator.state = .readyToPlay
         
         //When
-        try? sut.finishPlayersTurn()
+        XCTAssertThrowsError(try sut.finishPlayersTurn())
         
         //Then
         XCTAssertNil(stateNavigator.navigatedToState)
     }
     
-    func testFinishPlayerTurnDoesNothingWhenStateIs_DealersTurn() {
+    func testFinishPlayerTurnThrowsWhenStateIs_DealersTurn() {
         //Given
         stateNavigator.state = .dealersTurn
         
         //When
-        try? sut.finishPlayersTurn()
+        XCTAssertThrowsError(try sut.finishPlayersTurn())
         
         //Then
         XCTAssertNil(stateNavigator.navigatedToState)
     }
     
-    func testFinishPlayerTurnDoesNothingWhenStateIs_managingBets() {
+    func testFinishPlayerTurnThrowsWhenStateIs_managingBets() {
         //Given
         stateNavigator.state = .managingBets
         
         //When
-        try? sut.finishPlayersTurn()
+        XCTAssertThrowsError(try sut.finishPlayersTurn())
         
         //Then
         XCTAssertNil(stateNavigator.navigatedToState)
@@ -402,4 +394,131 @@ final class GameImplTests: XCTestCase {
         //Then
         XCTAssertTrue(dealer.playHandCalled)
     }
+    
+    //MARK: Finishing Dealer's Turn
+    func testFinishDealersTurn_DoesNotThrow_AndDiscardsCardsWhenBothHandsExist() {
+        //Given
+        stateNavigator.state = .dealersTurn
+        let playerHand = PlayerHand.sampleHand()
+        let dealerHand = DealerHand.sampleHand()
+        player.hand = playerHand
+        dealer.hand = dealerHand
+        
+        //When
+        XCTAssertNoThrow(try sut.finishDealersTurn())
+        
+        //Then
+        let expectedCardsCount = playerHand.cards.count + dealerHand.cards.count
+        XCTAssertEqual(shoe.discardedCards.count, expectedCardsCount)
+    }
+    
+    func testFinishDealersTurnThrowsWhenStateIs_PlayersTurn() {
+        //Given
+        stateNavigator.state = .playersTurn
+        
+        //When
+        XCTAssertThrowsError(try sut.finishDealersTurn())
+        
+        //Then
+        XCTAssertNil(stateNavigator.navigatedToState)
+    }
+    
+    func testFinishDealersTurnThrowsWhenStateIs_ReadyToPlay() {
+        //Given
+        stateNavigator.state = .readyToPlay
+        
+        //When
+        XCTAssertThrowsError(try sut.finishDealersTurn())
+        
+        //Then
+        XCTAssertNil(stateNavigator.navigatedToState)
+    }
+    
+    func testFinishDealersTurnThrowsWhenStateIs_ManagingBets() {
+        //Given
+        stateNavigator.state = .managingBets
+        
+        //When
+        XCTAssertThrowsError(try sut.finishDealersTurn())
+        
+        //Then
+        XCTAssertNil(stateNavigator.navigatedToState)
+    }
+    
+    //MARK: Comparing Hands & Managing Bets
+    func testFinishDealersTurn_ThrowsWhenThereIsNoDealersHand() {
+        //Given
+        stateNavigator.state = .dealersTurn
+        player.hand = PlayerHand.sampleHand()
+        dealer.hand = nil
+        
+        //When
+        XCTAssertThrowsError(try sut.finishDealersTurn())
+
+        //Then
+        //It throws an error
+    }
+    
+    func testFinishDealersTurn_ThrowsWhenThereIsNoPlayersHand() {
+        //Given
+        stateNavigator.state = .dealersTurn
+        player.hand = nil
+        dealer.hand = DealerHand.sampleHand()
+        
+        //When
+        XCTAssertThrowsError(try sut.finishDealersTurn())
+        
+        //Then
+        //It throws an error
+    }
+    
+    func testFinishDealersTurn_ThrowsWhenThereAreNoHands() {
+        //Given
+        stateNavigator.state = .dealersTurn
+        player.hand = nil
+        dealer.hand = nil
+        
+        //When
+        XCTAssertThrowsError(try sut.finishDealersTurn())
+        
+        //Then
+        //It throws an error
+    }
+    
+    func testFinishDealersTurn_AsksToDiscardHands() {
+        //Given
+        stateNavigator.state = .dealersTurn
+        player.hand = PlayerHand.sampleHand()
+        dealer.hand = DealerHand.sampleHand()
+
+        //When
+        try? sut.finishDealersTurn()
+
+        //Then
+        XCTAssertTrue(player.discardHandCalled)
+        XCTAssertTrue(dealer.discardHandCalled)
+    }
+    
+    //MARK: Draw
+    // P       |    D
+    //blackjack     blackjack
+    //21            21
+    //17            17
+    //18            18
+    
+    
+    //MARK: Player wins
+    // P        |   D
+    //blackjack     21
+    //blackjack     17
+    //19            18
+    
+    
+    //MARK: Dealer wins
+    // P        |   D
+    //21            blackjack
+    //18            blackjack
+    //17            18
+    
+    
 }

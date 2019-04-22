@@ -12,8 +12,9 @@ public enum GameError: Error {
     cardShoeIsEmpty,
     roundInProgress,
     cannotDealWhenRoundIsNotInProgress,
-    unknownStateNavigation,
-    impossibleStateTransition
+    impossibleStateTransition(from: GameState, to: GameState),
+    noPlayersHand(in: GameState),
+    noDealersHand(in: GameState)
 }
 
 public protocol CardDealer: class {
@@ -87,11 +88,13 @@ public final class GameImpl: Game {
     }
 
     public func finishPlayersTurn() throws {
-        guard state == .playersTurn else { return }
+        guard state == .playersTurn else { throw GameError.impossibleStateTransition(from: state, to: .dealersTurn) }
         try playDealersTurn()
     }
     
     public func finishDealersTurn() throws {
+        guard state == .dealersTurn else { throw GameError.impossibleStateTransition(from: state, to: .managingBets) }
+        try settleRound()
     }
 }
 
@@ -122,5 +125,13 @@ extension GameImpl {
     }
     
     private func settleRound() throws {
+        try gameState.navigate(to: .managingBets)
+        guard let playerHand = playerHand else { throw GameError.noPlayersHand(in: self.state) }
+        guard let dealerHand = dealerHand else { throw GameError.noDealersHand(in: self.state) }
+        
+        shoe.discard(playerHand.cards)
+        shoe.discard(dealerHand.cards)
+        player.discardHand()
+        dealer.discardHand()
     }
 }

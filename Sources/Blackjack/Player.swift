@@ -10,6 +10,7 @@ import PlayingCards
 public protocol HandPlaying {
     mutating func createHand(with cards: [Card]) throws
     func playHand() throws
+    func discardHand()
 }
 
 public protocol Player: ChipsManaging, HandPlaying {

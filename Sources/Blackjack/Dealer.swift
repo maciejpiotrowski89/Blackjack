@@ -14,7 +14,12 @@ public protocol Dealer: HandPlaying {
 public final class DealerImpl: Dealer {
     public var hand: Hand?
     public func createHand(with cards: [Card]) throws {
+        
     }
     public func playHand() throws {
     }
+    public func discardHand() {
+
+    }
+    
 }

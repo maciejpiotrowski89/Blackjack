@@ -19,14 +19,23 @@ public final class GameStateNavigatorImpl: GameStateNavigator {
     public func navigate(to state: GameState) throws {
         switch self.state {
         case .readyToPlay:
-            guard state == .playersTurn else { throw GameError.impossibleStateTransition }
+            try assertState(state, expected: .playersTurn)
         case .playersTurn:
-            guard state == .dealersTurn else { throw GameError.impossibleStateTransition }
+            try assertState(state, expected: .dealersTurn)
         case .dealersTurn:
-            guard state == .managingBets else { throw GameError.impossibleStateTransition }
+            try assertState(state, expected: .managingBets)
         case .managingBets:
-            guard state == .readyToPlay else { throw GameError.impossibleStateTransition }
+            try assertState(state, expected: .readyToPlay)
         }
         self.state = state
+    }
+    
+    private func assertState(_ state: GameState,
+                             expected expectedState: GameState) throws {
+        typealias Error = GameError
+        guard state == expectedState else {
+            throw Error.impossibleStateTransition(from: self.state, to: state)
+            
+        }
     }
 }

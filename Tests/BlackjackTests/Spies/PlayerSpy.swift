@@ -21,4 +21,8 @@ final class PlayerSpy: Player {
     var chipsValue: UInt = 0
     var receivedChips: UInt?
     func receive(chips: UInt) { receivedChips = chips }
+    var discardHandCalled: Bool = false
+    func discardHand() {
+        discardHandCalled = true
+    }
 }

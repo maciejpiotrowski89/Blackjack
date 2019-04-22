@@ -26,6 +26,9 @@
 		795A26412264E8BD00C00886 /* HandComparisonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795A26402264E8BD00C00886 /* HandComparisonTests.swift */; };
 		7967A21C226DE41800861EDF /* Hand+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7967A21A226DE41300861EDF /* Hand+Extension.swift */; };
 		7967A21E226DE88B00861EDF /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7967A21D226DE88B00861EDF /* Dealer.swift */; };
+		7967A220226E2EC700861EDF /* DealerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7967A21F226E2EC700861EDF /* DealerSpy.swift */; };
+		7967A222226E59C300861EDF /* DealerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7967A221226E59C300861EDF /* DealerTests.swift */; };
+		7967A224226E59D200861EDF /* PlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7967A223226E59D200861EDF /* PlayerTests.swift */; };
 		79BF5A9D22662FF60027FEED /* Chip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF5A9C22662FF60027FEED /* Chip.swift */; };
 		79BF5A9F226634450027FEED /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF5A9E226634450027FEED /* Player.swift */; };
 		79BF5AA12266348F0027FEED /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF5AA02266348F0027FEED /* Game.swift */; };
@@ -118,6 +121,9 @@
 		795A26402264E8BD00C00886 /* HandComparisonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandComparisonTests.swift; sourceTree = "<group>"; };
 		7967A21A226DE41300861EDF /* Hand+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hand+Extension.swift"; sourceTree = "<group>"; };
 		7967A21D226DE88B00861EDF /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
+		7967A21F226E2EC700861EDF /* DealerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealerSpy.swift; sourceTree = "<group>"; };
+		7967A221226E59C300861EDF /* DealerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealerTests.swift; sourceTree = "<group>"; };
+		7967A223226E59D200861EDF /* PlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTests.swift; sourceTree = "<group>"; };
 		79BF5A9C22662FF60027FEED /* Chip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chip.swift; sourceTree = "<group>"; };
 		79BF5A9E226634450027FEED /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		79BF5AA02266348F0027FEED /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -199,6 +205,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7967A225226E5A5A00861EDF /* Spies */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_27 /* ShufflerSpy.swift */,
+				79BF5AA7226A3F8D0027FEED /* CardShoeSpy.swift */,
+				79BF5AA9226A3F9C0027FEED /* PlayerSpy.swift */,
+				7967A21F226E2EC700861EDF /* DealerSpy.swift */,
+				79BF5AAB226A3FB10027FEED /* GameStateNavigatorSpy.swift */,
+			);
+			path = Spies;
+			sourceTree = "<group>";
+		};
 		79BF5AA2226639770027FEED /* Card Shoe */ = {
 			isa = PBXGroup;
 			children = (
@@ -247,13 +265,12 @@
 				OBJ_24 /* ContinuousCardShufflerTests.swift */,
 				OBJ_25 /* DealerHandTests.swift */,
 				OBJ_26 /* PlayerHandTests.swift */,
-				OBJ_27 /* ShufflerSpy.swift */,
+				7967A221226E59C300861EDF /* DealerTests.swift */,
+				7967A223226E59D200861EDF /* PlayerTests.swift */,
 				795A26402264E8BD00C00886 /* HandComparisonTests.swift */,
 				79BF5AA52268A0A10027FEED /* GameImplTests.swift */,
 				7911D377226A5B7B00922AA7 /* GameStateNavigatorImplTests.swift */,
-				79BF5AA7226A3F8D0027FEED /* CardShoeSpy.swift */,
-				79BF5AA9226A3F9C0027FEED /* PlayerSpy.swift */,
-				79BF5AAB226A3FB10027FEED /* GameStateNavigatorSpy.swift */,
+				7967A225226E5A5A00861EDF /* Spies */,
 				79BF5AAD226A3FFF0027FEED /* Card+Extension.swift */,
 				7967A21A226DE41300861EDF /* Hand+Extension.swift */,
 			);
@@ -587,11 +604,14 @@
 				795A26412264E8BD00C00886 /* HandComparisonTests.swift in Sources */,
 				79BF5AAE226A3FFF0027FEED /* Card+Extension.swift in Sources */,
 				OBJ_92 /* DealerHandTests.swift in Sources */,
+				7967A220226E2EC700861EDF /* DealerSpy.swift in Sources */,
 				79BF5AA62268A0A10027FEED /* GameImplTests.swift in Sources */,
 				79BF5AA8226A3F8D0027FEED /* CardShoeSpy.swift in Sources */,
 				7967A21C226DE41800861EDF /* Hand+Extension.swift in Sources */,
 				7911D378226A5B7B00922AA7 /* GameStateNavigatorImplTests.swift in Sources */,
+				7967A222226E59C300861EDF /* DealerTests.swift in Sources */,
 				OBJ_93 /* PlayerHandTests.swift in Sources */,
+				7967A224226E59D200861EDF /* PlayerTests.swift in Sources */,
 				OBJ_94 /* ShufflerSpy.swift in Sources */,
 				79BF5AAA226A3F9C0027FEED /* PlayerSpy.swift in Sources */,
 			);

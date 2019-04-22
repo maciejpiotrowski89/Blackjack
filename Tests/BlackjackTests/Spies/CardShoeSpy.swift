@@ -21,8 +21,9 @@ final class CardShoeSpy: PlayingCardShoe {
         dealCount += 1;
         return card
     }
-    func discard(_ card: Card)  {}
-    func discard(_ cards: [Card]) {}
+    var discardedCards: [Card] = []
+    func discard(_ card: Card)  { discardedCards.append(card) }
+    func discard(_ cards: [Card]) { discardedCards += cards }
     func emptyDiscardBox() -> [Card] { return [] }
     func fillFromDiscardBox() {}
     func shuffleCards() {}
