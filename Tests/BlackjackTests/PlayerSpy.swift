@@ -14,8 +14,10 @@ final class PlayerSpy: Player {
     func hit() {}
     func doubleDown() {}
     func stand() {}
-    var playedHandWithCards: [Card]?
-    func playHand(with cards: [Card]) throws { playedHandWithCards = cards }
+    var createdHandWithCards: [Card]?
+    func createHand(with cards: [Card]) throws { createdHandWithCards = cards }
+    var playHandCalled: Bool = false
+    func playHand() throws { playHandCalled = true }
     var chipsValue: UInt = 0
     var receivedChips: UInt?
     func receive(chips: UInt) { receivedChips = chips }

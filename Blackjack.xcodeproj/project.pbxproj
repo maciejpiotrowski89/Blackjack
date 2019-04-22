@@ -24,6 +24,8 @@
 		7911D378226A5B7B00922AA7 /* GameStateNavigatorImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7911D377226A5B7B00922AA7 /* GameStateNavigatorImplTests.swift */; };
 		7911D37A226A66FF00922AA7 /* GameStateNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7911D379226A66FF00922AA7 /* GameStateNavigator.swift */; };
 		795A26412264E8BD00C00886 /* HandComparisonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795A26402264E8BD00C00886 /* HandComparisonTests.swift */; };
+		7967A21C226DE41800861EDF /* Hand+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7967A21A226DE41300861EDF /* Hand+Extension.swift */; };
+		7967A21E226DE88B00861EDF /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7967A21D226DE88B00861EDF /* Dealer.swift */; };
 		79BF5A9D22662FF60027FEED /* Chip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF5A9C22662FF60027FEED /* Chip.swift */; };
 		79BF5A9F226634450027FEED /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF5A9E226634450027FEED /* Player.swift */; };
 		79BF5AA12266348F0027FEED /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF5AA02266348F0027FEED /* Game.swift */; };
@@ -114,6 +116,8 @@
 		7911D377226A5B7B00922AA7 /* GameStateNavigatorImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateNavigatorImplTests.swift; sourceTree = "<group>"; };
 		7911D379226A66FF00922AA7 /* GameStateNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateNavigator.swift; sourceTree = "<group>"; };
 		795A26402264E8BD00C00886 /* HandComparisonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandComparisonTests.swift; sourceTree = "<group>"; };
+		7967A21A226DE41300861EDF /* Hand+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hand+Extension.swift"; sourceTree = "<group>"; };
+		7967A21D226DE88B00861EDF /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
 		79BF5A9C22662FF60027FEED /* Chip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chip.swift; sourceTree = "<group>"; };
 		79BF5A9E226634450027FEED /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		79BF5AA02266348F0027FEED /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -251,6 +255,7 @@
 				79BF5AA9226A3F9C0027FEED /* PlayerSpy.swift */,
 				79BF5AAB226A3FB10027FEED /* GameStateNavigatorSpy.swift */,
 				79BF5AAD226A3FFF0027FEED /* Card+Extension.swift */,
+				7967A21A226DE41300861EDF /* Hand+Extension.swift */,
 			);
 			name = BlackjackTests;
 			path = Tests/BlackjackTests;
@@ -346,6 +351,7 @@
 				79BF5AA02266348F0027FEED /* Game.swift */,
 				7911D379226A66FF00922AA7 /* GameStateNavigator.swift */,
 				79BF5A9E226634450027FEED /* Player.swift */,
+				7967A21D226DE88B00861EDF /* Dealer.swift */,
 				79BF5AA2226639770027FEED /* Card Shoe */,
 				79BF5AA32266399E0027FEED /* Game Elements */,
 				79BF5AA4226639AA0027FEED /* Hand */,
@@ -547,6 +553,7 @@
 				79BF5A9D22662FF60027FEED /* Chip.swift in Sources */,
 				OBJ_56 /* Blackjack.swift in Sources */,
 				OBJ_57 /* BlackjackValue.swift in Sources */,
+				7967A21E226DE88B00861EDF /* Dealer.swift in Sources */,
 				OBJ_58 /* Card+Extension.swift in Sources */,
 				79BF5A9F226634450027FEED /* Player.swift in Sources */,
 				OBJ_59 /* CardShoe.swift in Sources */,
@@ -582,6 +589,7 @@
 				OBJ_92 /* DealerHandTests.swift in Sources */,
 				79BF5AA62268A0A10027FEED /* GameImplTests.swift in Sources */,
 				79BF5AA8226A3F8D0027FEED /* CardShoeSpy.swift in Sources */,
+				7967A21C226DE41800861EDF /* Hand+Extension.swift in Sources */,
 				7911D378226A5B7B00922AA7 /* GameStateNavigatorImplTests.swift in Sources */,
 				OBJ_93 /* PlayerHandTests.swift in Sources */,
 				OBJ_94 /* ShufflerSpy.swift in Sources */,
