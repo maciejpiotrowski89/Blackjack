@@ -18,4 +18,8 @@ final class DealerSpy: Dealer {
     func discardHand() {
         discardHandCalled = true
     }
+    var collectedBet: UInt?
+    public func collect(bet: UInt) {
+        collectedBet = bet
+    }
 }

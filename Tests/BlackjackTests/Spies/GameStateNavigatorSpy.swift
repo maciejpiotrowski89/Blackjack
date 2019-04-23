@@ -16,5 +16,6 @@ final class GameStateNavigatorSpy: GameStateNavigator {
     func navigate(to state: GameState) {
         navigatedToStateCount += 1
         navigatedToState = state
+        self.state = state
     }
 }

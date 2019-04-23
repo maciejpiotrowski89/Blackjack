@@ -135,6 +135,22 @@ extension PlayerHand {
             ])
     }
     
+    static func sample19_2card_Hand(with bet: UInt = 10) -> PlayerHand {
+        return PlayerHand(bet: bet, cards:
+            [
+                Card(suit: .hearts, rank: .nine),
+                Card(suit: .hearts, rank: .king),
+            ])
+    }
+    
+    static func sample20_2card_Hand(with bet: UInt = 10) -> PlayerHand {
+        return PlayerHand(bet: bet, cards:
+            [
+                Card(suit: .hearts, rank: .ten),
+                Card(suit: .hearts, rank: .king),
+            ])
+    }
+    
     static func sampleBustHand(with bet: UInt = 10) -> PlayerHand {
         return PlayerHand(bet: bet, cards:
             [

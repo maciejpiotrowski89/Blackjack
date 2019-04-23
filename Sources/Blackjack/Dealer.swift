@@ -9,6 +9,8 @@ import PlayingCards
 
 public protocol Dealer: HandPlaying {
     var hand: Hand? { get }
+    mutating func createHand(with cards: [Card]) throws
+    mutating func collect(bet: UInt)
 }
 
 public final class DealerImpl: Dealer {
@@ -22,4 +24,8 @@ public final class DealerImpl: Dealer {
 
     }
     
+    public func collect(bet: UInt) {
+        
+    }
+
 }

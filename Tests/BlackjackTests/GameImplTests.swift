@@ -33,6 +33,7 @@ final class GameImplTests: XCTestCase {
         sut = nil
         shoe = nil
         player = nil
+        dealer = nil
         stateNavigator = nil
         super.tearDown()
     }
@@ -68,14 +69,28 @@ final class GameImplTests: XCTestCase {
     
     func testBettingIsImpossibleDuringTheRound() {
         //Given
-        sut.bet(.ten)
         stateNavigator.state = .playersTurn
         
         //When
         sut.bet(.fifty)
         
         //Then
-        XCTAssertEqual(sut.bet, 10)
+        XCTAssertEqual(sut.bet, 0)
+        XCTAssertEqual(sut.state, .playersTurn)
+        XCTAssertNil(player.receivedChips)
+    }
+    
+    func testBetIsEqualToPlayersHandBetDuringTheRound() {
+        //Given
+        let bet: UInt = 300
+        player.hand = PlayerHand.sampleHand(with: bet)
+        stateNavigator.state = .playersTurn
+        
+        //When
+        sut.bet(.fifty)
+        
+        //Then
+        XCTAssertEqual(sut.bet, bet)
         XCTAssertEqual(sut.state, .playersTurn)
         XCTAssertNil(player.receivedChips)
     }
@@ -97,14 +112,15 @@ final class GameImplTests: XCTestCase {
     
     func testResettingIsImpossibleDuringTheRound() {
         //Given
-        sut.bet(.ten)
+        let bet: UInt = 300
+        player.hand = PlayerHand.sampleHand(with: bet)
         stateNavigator.state = .playersTurn
 
         //When
         sut.reset()
         
         //Then
-        XCTAssertEqual(sut.bet, 10)
+        XCTAssertEqual(sut.bet, bet)
         XCTAssertEqual(sut.state, .playersTurn)
         XCTAssertNil(player.receivedChips)
     }
@@ -138,7 +154,7 @@ final class GameImplTests: XCTestCase {
         //no betting
         
         //When
-        try! sut.play()
+        XCTAssertNoThrow(try sut.play())
         
         //Then
         XCTAssertNil(stateNavigator.navigatedToState)
@@ -151,8 +167,8 @@ final class GameImplTests: XCTestCase {
         sut.bet(.ten)
         
         //When
-        try! sut.play()
-        
+        XCTAssertNoThrow(try sut.play())
+
         //Then
         XCTAssertEqual(stateNavigator.navigatedToState, .playersTurn)
     }
@@ -163,37 +179,36 @@ final class GameImplTests: XCTestCase {
         sut.bet(.ten)
         
         //When
-        try! sut.play()
-        
+        XCTAssertNoThrow(try sut.play())
+
         //Then
         XCTAssertEqual(shoe.dealCount, 4)
     }
     
     func testPlayCannotBeStartedMultipleTimes() {
         //Given
-        shoe.prepareCards()
-        sut.bet(.ten)
-        try! sut.play()
         stateNavigator.state = .playersTurn
         
         //When
         XCTAssertThrowsError(try self.sut.play(), "Should throw GameError.roundInProgress error")
 
         //Then
-        XCTAssertEqual(shoe.dealCount, 4)
-        XCTAssertEqual(stateNavigator.navigatedToStateCount, 1)
+        XCTAssertEqual(shoe.dealCount, 0)
+        XCTAssertEqual(stateNavigator.navigatedToStateCount, 0)
     }
     
     func testPlayCreatesPlayersAndDealersHands() {
         //Given
         shoe.prepareCards()
-        sut.bet(.ten)
+        sut.bet(.fiveHundered)
+        let bet = sut.bet
         
         //When
-        try! sut.play()
-        
+        XCTAssertNoThrow(try sut.play())
+
         //Then
         XCTAssertNotNil(player.createdHandWithCards)
+        XCTAssertEqual(player.createdHandWithBet, bet)
         XCTAssertNotNil(dealer.createdHandWithCards)
     }
     
@@ -203,8 +218,8 @@ final class GameImplTests: XCTestCase {
         sut.bet(.ten)
         
         //When
-        try! sut.play()
-        
+        XCTAssertNoThrow(try sut.play())
+
         //Then
         XCTAssertEqual(player.createdHandWithCards?.count, 2)
         XCTAssertEqual(dealer.createdHandWithCards?.count, 2)
@@ -221,8 +236,8 @@ final class GameImplTests: XCTestCase {
         sut.bet(.ten)
         
         //When
-        try! sut.play()
-        
+        XCTAssertNoThrow(try sut.play())
+
         //Then
         XCTAssertTrue(player.playHandCalled)
     }
@@ -500,25 +515,239 @@ final class GameImplTests: XCTestCase {
     }
     
     //MARK: Draw
-    // P       |    D
-    //blackjack     blackjack
-    //21            21
-    //17            17
-    //18            18
+    func testFinishDealersTurnLeadsToADraw_1() {
+        //Given
+        let bet: UInt = 100
+        stateNavigator.state = .dealersTurn
+        player.hand = PlayerHand.sampleBlackjackHand(with: bet)
+        dealer.hand = DealerHand.sampleBlackjackHand()
+        let payout = bet
+
+        //When
+        try? sut.finishDealersTurn()
+        
+        //Then
+        XCTAssertEqual(player.receivedChips, payout)
+        XCTAssertEqual(sut.bet, 0)
+    }
     
+    func testFinishDealersTurnLeadsToADraw_2() {
+        //Given
+        let bet: UInt = 100
+        stateNavigator.state = .dealersTurn
+        player.hand = PlayerHand.sample21Hand(with: bet)
+        dealer.hand = DealerHand.sample21Hand()
+        let payout = bet
+        
+        //When
+        try? sut.finishDealersTurn()
+        
+        //Then
+        XCTAssertEqual(player.receivedChips, payout)
+        XCTAssertEqual(sut.bet, 0)
+    }
+
+    func testFinishDealersTurnLeadsToADraw_3() {
+        //Given
+        let bet: UInt = 100
+        stateNavigator.state = .dealersTurn
+        player.hand = PlayerHand.sample17Hand(with: bet)
+        dealer.hand = DealerHand.sample17Hand()
+        let payout = bet
+        
+        //When
+        try? sut.finishDealersTurn()
+        
+        //Then
+        XCTAssertEqual(player.receivedChips, payout)
+        XCTAssertEqual(sut.bet, 0)
+    }
+    
+    func testFinishDealersTurnLeadsToADraw_4() {
+        //Given
+        let bet: UInt = 100
+        stateNavigator.state = .dealersTurn
+        player.hand = PlayerHand.sample18Hand(with: bet)
+        dealer.hand = DealerHand.sample18Hand()
+        let payout = bet
+        
+        //When
+        try? sut.finishDealersTurn()
+        
+        //Then
+        XCTAssertEqual(player.receivedChips, payout)
+        XCTAssertEqual(sut.bet, 0)
+    }
+    
+    func testFinishDealersTurnLeadsToADraw_5() {
+        //Given
+        let bet: UInt = 100
+        stateNavigator.state = .dealersTurn
+        player.hand = PlayerHand.sampleBlackjackHand(with: bet)
+        player.hand!.doubleBet()
+        XCTAssertEqual(player.hand?.bet, 200)
+        dealer.hand = DealerHand.sampleBlackjackHand()
+        let payout: UInt = 200
+        
+        //When
+        try? sut.finishDealersTurn()
+        
+        //Then
+        XCTAssertEqual(player.receivedChips, payout)
+        XCTAssertEqual(sut.bet, 0)
+    }
     
     //MARK: Player wins
-    // P        |   D
-    //blackjack     21
-    //blackjack     17
-    //19            18
+    func testFinishDealersTurnLeadsToPlayerWinning_1() {
+        //Given
+        let bet: UInt = 100
+        stateNavigator.state = .dealersTurn
+        player.hand = PlayerHand.sampleBlackjackHand(with: bet)
+        dealer.hand = DealerHand.sample21Hand()
+        let payout: UInt = 250
+        
+        //When
+        try? sut.finishDealersTurn()
+        
+        //Then
+        XCTAssertEqual(player.receivedChips, payout)
+        XCTAssertEqual(sut.bet, 0)
+    }
+    
+    func testFinishDealersTurnLeadsToPlayerWinning_2() {
+        //Given
+        let bet: UInt = 100
+        stateNavigator.state = .dealersTurn
+        player.hand = PlayerHand.sampleBlackjackHand(with: bet)
+        dealer.hand = DealerHand.sample17Hand()
+        let payout: UInt = 250
+
+        //When
+        try? sut.finishDealersTurn()
+        
+        //Then
+        XCTAssertEqual(player.receivedChips, payout)
+        XCTAssertEqual(sut.bet, 0)
+    }
+    
+    func testFinishDealersTurnLeadsToPlayerWinning_3() {
+        //Given
+        let bet: UInt = 100
+        stateNavigator.state = .dealersTurn
+        player.hand = PlayerHand.sample19Hand(with: bet)
+        dealer.hand = DealerHand.sample18Hand()
+        let payout: UInt = 200
+        
+        //When
+        try? sut.finishDealersTurn()
+        
+        //Then
+        XCTAssertEqual(player.receivedChips, payout)
+        XCTAssertEqual(sut.bet, 0)
+    }
+    
+    func testFinishDealersTurnLeadsToPlayerWinning_4() {
+        //Given
+        let bet: UInt = 100
+        stateNavigator.state = .dealersTurn
+        player.hand = PlayerHand.sample20_2card_Hand(with: bet)
+        player.hand!.doubleBet()
+        XCTAssertEqual(player.hand?.bet, 200)
+        dealer.hand = DealerHand.sample18Hand()
+        let payout: UInt = 400
+        
+        //When
+        try? sut.finishDealersTurn()
+        
+        //Then
+        XCTAssertEqual(player.receivedChips, payout)
+        XCTAssertEqual(sut.bet, 0)
+    }
+    
+    func testFinishDealersTurnLeadsToPlayerWinning_5() {
+        //Given
+        let bet: UInt = 100
+        stateNavigator.state = .dealersTurn
+        player.hand = PlayerHand.sampleBlackjackHand(with: bet)
+        player.hand!.doubleBet()
+        dealer.hand = DealerHand.sample18Hand()
+        let payout: UInt = 500
+        
+        //When
+        try? sut.finishDealersTurn()
+        
+        //Then
+        XCTAssertEqual(player.receivedChips, payout)
+        XCTAssertEqual(sut.bet, 0)
+    }
     
     
     //MARK: Dealer wins
-    // P        |   D
-    //21            blackjack
-    //18            blackjack
-    //17            18
+    func testFinishDealersTurnLeadsToDealerWinning_1() {
+        //Given
+        let bet: UInt = 100
+        stateNavigator.state = .dealersTurn
+        player.hand = PlayerHand.sample21Hand(with: bet)
+        dealer.hand = DealerHand.sampleBlackjackHand()
+        
+        //When
+        try? sut.finishDealersTurn()
+        
+        //Then
+        XCTAssertNil(player.receivedChips)
+        XCTAssertEqual(sut.bet, 0)
+        XCTAssertEqual(dealer.collectedBet, 100)
+    }
+    
+    func testFinishDealersTurnLeadsToDealerWinning_2() {
+        //Given
+        let bet: UInt = 100
+        stateNavigator.state = .dealersTurn
+        player.hand = PlayerHand.sample18Hand(with: bet)
+        dealer.hand = DealerHand.sampleBlackjackHand()
+        
+        //When
+        try? sut.finishDealersTurn()
+        
+        //Then
+        XCTAssertNil(player.receivedChips)
+        XCTAssertEqual(sut.bet, 0)
+        XCTAssertEqual(dealer.collectedBet, 100)
+    }
+    
+    func testFinishDealersTurnLeadsToDealerWinning_3() {
+        //Given
+        let bet: UInt = 100
+        stateNavigator.state = .dealersTurn
+        player.hand = PlayerHand.sample17Hand(with: bet)
+        dealer.hand = DealerHand.sample18Hand()
+        
+        //When
+        try? sut.finishDealersTurn()
+        
+        //Then
+        XCTAssertNil(player.receivedChips)
+        XCTAssertEqual(sut.bet, 0)
+        XCTAssertEqual(dealer.collectedBet, 100)
+    }
+    
+    
+    func testFinishDealersTurnLeadsToDealerWinning_4() {
+        //Given
+        let bet: UInt = 100
+        stateNavigator.state = .dealersTurn
+        player.hand = PlayerHand.sample19_2card_Hand(with: bet)
+        player.hand!.doubleBet()
+        dealer.hand = DealerHand.sampleBlackjackHand()
+        
+        //When
+        try? sut.finishDealersTurn()
+        
+        //Then
+        XCTAssertNil(player.receivedChips)
+        XCTAssertEqual(sut.bet, 0)
+        XCTAssertEqual(dealer.collectedBet, 200)
+    }
     
     
 }
