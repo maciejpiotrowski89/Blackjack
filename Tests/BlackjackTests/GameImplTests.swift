@@ -597,6 +597,22 @@ final class GameImplTests: XCTestCase {
         XCTAssertEqual(sut.bet, 0)
     }
     
+    func testFinishDealersTurnLeadsToADraw_Bust() {
+        //Given
+        let bet: UInt = 100
+        stateNavigator.state = .dealersTurn
+        player.hand = PlayerHand.sampleBustHand(with: bet)
+        dealer.hand = DealerHand.sampleBustHand()
+        let payout = bet
+        
+        //When
+        try? sut.finishDealersTurn()
+        
+        //Then
+        XCTAssertEqual(player.receivedChips, payout)
+        XCTAssertEqual(sut.bet, 0)
+    }
+    
     //MARK: Player wins
     func testFinishDealersTurnLeadsToPlayerWinning_1() {
         //Given
@@ -681,6 +697,21 @@ final class GameImplTests: XCTestCase {
         XCTAssertEqual(sut.bet, 0)
     }
     
+    func testFinishDealersTurnLeadsToPlayerWinning_Bust() {
+        //Given
+        let bet: UInt = 100
+        stateNavigator.state = .dealersTurn
+        player.hand = PlayerHand.sample19Hand(with: bet)
+        dealer.hand = DealerHand.sampleBustHand()
+        let payout: UInt = 200
+        
+        //When
+        try? sut.finishDealersTurn()
+        
+        //Then
+        XCTAssertEqual(player.receivedChips, payout)
+        XCTAssertEqual(sut.bet, 0)
+    }
     
     //MARK: Dealer wins
     func testFinishDealersTurnLeadsToDealerWinning_1() {
@@ -731,7 +762,6 @@ final class GameImplTests: XCTestCase {
         XCTAssertEqual(dealer.collectedBet, 100)
     }
     
-    
     func testFinishDealersTurnLeadsToDealerWinning_4() {
         //Given
         let bet: UInt = 100
@@ -749,5 +779,20 @@ final class GameImplTests: XCTestCase {
         XCTAssertEqual(dealer.collectedBet, 200)
     }
     
+    func testFinishDealersTurnLeadsToDealerWinning_Bust() {
+        //Given
+        let bet: UInt = 100
+        stateNavigator.state = .dealersTurn
+        player.hand = PlayerHand.sampleBustHand(with: bet)
+        dealer.hand = DealerHand.sampleBlackjackHand()
+        
+        //When
+        try? sut.finishDealersTurn()
+        
+        //Then
+        XCTAssertNil(player.receivedChips)
+        XCTAssertEqual(sut.bet, 0)
+        XCTAssertEqual(dealer.collectedBet, bet)
+    }
     
 }
