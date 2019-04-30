@@ -16,7 +16,8 @@ final class GameImplTests: XCTestCase {
     var player: PlayerSpy!
     var dealer: DealerSpy!
     var stateNavigator: GameStateNavigatorSpy!
-
+    var gameDelegate: GameOutcomeDelegateSpy!
+    
     override func setUp() {
         super.setUp()
         shoe = CardShoeSpy()
@@ -27,6 +28,8 @@ final class GameImplTests: XCTestCase {
                        player: player,
                        dealer: dealer,
                        stateNavigator: stateNavigator)
+        gameDelegate = GameOutcomeDelegateSpy()
+        sut.delegate = gameDelegate
     }
 
     override func tearDown() {
@@ -35,6 +38,7 @@ final class GameImplTests: XCTestCase {
         player = nil
         dealer = nil
         stateNavigator = nil
+        gameDelegate = nil
         super.tearDown()
     }
     
@@ -358,7 +362,8 @@ final class GameImplTests: XCTestCase {
     func testFinishPlayerTurnNavigatesToDealersTurn() {
         //Given
         stateNavigator.state = .playersTurn
-        
+        player.hand = PlayerHand.sampleHand()
+
         //When
         XCTAssertNoThrow(try sut.finishPlayersTurn())
         
@@ -399,9 +404,21 @@ final class GameImplTests: XCTestCase {
         XCTAssertNil(stateNavigator.navigatedToState)
     }
     
+    func testFinishPlayersTurnTellsDealerToPlayTheirHand_NoPlayerHand() {
+        //Given
+        stateNavigator.state = .playersTurn
+        
+        //When
+        XCTAssertThrowsError(try sut.finishPlayersTurn())
+        
+        //Then
+        XCTAssertNil(stateNavigator.navigatedToState)
+    }
+    
     func testFinishPlayersTurnTellsDealerToPlayTheirHand() {
         //Given
         stateNavigator.state = .playersTurn
+        player.hand = PlayerHand.sampleHand()
         
         //When
         try? sut.finishPlayersTurn()
@@ -795,4 +812,119 @@ final class GameImplTests: XCTestCase {
         XCTAssertEqual(dealer.collectedBet, bet)
     }
     
+    //MARK: Telling delegate about an outcome of a game
+    func testPlayerHasBlackjack() {
+        //Given
+        let bet: UInt = 100
+        stateNavigator.state = .dealersTurn
+        player.hand = PlayerHand.sampleBlackjackHand(with: bet)
+        dealer.hand = DealerHand.sample18Hand()
+        
+        //When
+        try? sut.finishDealersTurn()
+        
+        //Then
+        XCTAssertEqual(gameDelegate.gameOutcome, .playerHadBlackjack)
+    }
+    
+    func testPlayerWins() {
+        //Given
+        let bet: UInt = 100
+        stateNavigator.state = .dealersTurn
+        player.hand = PlayerHand.sample19Hand(with: bet)
+        dealer.hand = DealerHand.sample18Hand()
+        
+        //When
+        try? sut.finishDealersTurn()
+        
+        //Then
+        XCTAssertEqual(gameDelegate.gameOutcome, .playerWon)
+    }
+    
+    func testPlayerLooses() {
+        //Given
+        let bet: UInt = 100
+        stateNavigator.state = .dealersTurn
+        player.hand = PlayerHand.sample17Hand(with: bet)
+        dealer.hand = DealerHand.sample18Hand()
+        
+        //When
+        try? sut.finishDealersTurn()
+        
+        //Then
+        XCTAssertEqual(gameDelegate.gameOutcome, .playerLost)
+    }
+    
+    func testPlayerDraw() {
+        //Given
+        let bet: UInt = 100
+        stateNavigator.state = .dealersTurn
+        player.hand = PlayerHand.sample18Hand(with: bet)
+        dealer.hand = DealerHand.sample18Hand()
+        
+        //When
+        try? sut.finishDealersTurn()
+        
+        //Then
+        XCTAssertEqual(gameDelegate.gameOutcome, .draw)
+    }
+    
+    func testPlayerBusts() {
+        //Given
+        let bet: UInt = 100
+        stateNavigator.state = .dealersTurn
+        player.hand = PlayerHand.sampleBustHand(with: bet)
+        dealer.hand = DealerHand.sample18Hand()
+        
+        //When
+        try? sut.finishDealersTurn()
+        
+        //Then
+        XCTAssertEqual(gameDelegate.gameOutcome, .playerBusted)
+    }
+    
+    //MARK: Player that busts hands automatically starts managing bets round
+    func testWhenPlayerFinishesRoundWithABustChangesStateToManagingBets() {
+        //Given
+        let bet: UInt = 100
+        stateNavigator.state = .playersTurn
+        player.hand = PlayerHand.sampleBustHand(with: bet)
+        dealer.hand = DealerHand.sampleHand()
+        
+        //When
+        try? sut.finishPlayersTurn()
+        
+        //Then
+        XCTAssertEqual(stateNavigator.navigatedToState, .managingBets)
+    }
+    
+    func testWhenPlayerFinishesRoundWithABustSettlesBets() {
+        //Given
+        let bet: UInt = 100
+        stateNavigator.state = .playersTurn
+        player.hand = PlayerHand.sampleBustHand(with: bet)
+        dealer.hand = DealerHand.sampleHand()
+        
+        //When
+        try? sut.finishPlayersTurn()
+        
+        //Then
+        XCTAssertNil(player.receivedChips)
+        XCTAssertEqual(sut.bet, 0)
+        XCTAssertEqual(dealer.collectedBet, bet)
+    }
+    
+    func testWhenPlayerFinishesRoundWithABustTellsDelegateAboutTheOutcome() {
+        //Given
+        let bet: UInt = 100
+        stateNavigator.state = .playersTurn
+        player.hand = PlayerHand.sampleBustHand(with: bet)
+        dealer.hand = DealerHand.sampleHand()
+        
+        //When
+        try? sut.finishPlayersTurn()
+        
+        //Then
+        XCTAssertEqual(gameDelegate.gameOutcome, .playerBusted)
+    }
 }

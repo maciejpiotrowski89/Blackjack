@@ -32,15 +32,25 @@ public protocol DealersTurnDelegate: class {
     func finishDealersTurn() throws
 }
 
+public enum GameOutcome {
+    case playerHadBlackjack, playerWon, playerBusted, playerLost, draw
+}
+
+public protocol GameOutcomeDelegate: class {
+    func game(_ game: Game, didFinishWithOutcome outcome: GameOutcome)
+}
+
 public protocol Game: CardDealer, PlayersTurnDelegate, DealersTurnDelegate {
     var dealerHand: Hand? { get }
     var playerHand: BettingHand? { get }
     var bet: UInt { get }
     var state: GameState { get }
+    var delegate: GameOutcomeDelegate? { get set }
 }
 
 public final class GameImpl: Game {
-   
+    
+    public var delegate: GameOutcomeDelegate?
     private let shoe: PlayingCardShoe
     private let gameState: GameStateNavigator
     private(set) var player: Player
@@ -95,6 +105,11 @@ public final class GameImpl: Game {
 
     public func finishPlayersTurn() throws {
         guard state == .playersTurn else { throw GameError.impossibleStateTransition(from: state, to: .dealersTurn) }
+        guard let playerHand = playerHand else { throw GameError.noPlayersHand(in: state) }
+        guard playerHand.outcome != .bust else {
+            try settleRound()
+            return
+        }
         try playDealersTurn()
     }
     
@@ -130,39 +145,49 @@ extension GameImpl {
         try dealer.playHand()
     }
     
-    enum Winner {
-        case draw, player, dealer
-    }
-    
     private func settleRound() throws {
         try gameState.navigate(to: .managingBets)
         guard let playerHand = playerHand else { throw GameError.noPlayersHand(in: self.state) }
         guard let dealerHand = dealerHand else { throw GameError.noDealersHand(in: self.state) }
-        switch(winner(playerHand, dealerHand)) {
+        defer {
+            wager = 0
+            shoe.discard(playerHand.cards)
+            shoe.discard(dealerHand.cards)
+            player.discardHand()
+            dealer.discardHand()
+        }
+        
+        let gameOutcome: GameOutcome = outcome(from: playerHand, dealerHand)
+        
+        switch(gameOutcome) {
         case .draw:
             player.receive(chips: playerHand.bet)
-        case .player:
-            let multiplier: Double = playerHand.outcome == .blackjack ? 2.5 : 2.0
-            let payout: Double = (multiplier * Double(playerHand.bet)).rounded(FloatingPointRoundingRule.up)
-            player.receive(chips: UInt(payout))
-        case .dealer:
+        case .playerHadBlackjack:
+            pay(for: playerHand, withMultiplier: 2.5)
+        case .playerWon:
+            pay(for: playerHand, withMultiplier: 2.0)
+        case .playerLost, .playerBusted:
             dealer.collect(bet: playerHand.bet)
         }
-        wager = 0
-        shoe.discard(playerHand.cards)
-        shoe.discard(dealerHand.cards)
-        player.discardHand()
-        dealer.discardHand()
+        
+        delegate?.game(self, didFinishWithOutcome: gameOutcome)
     }
     
-    private func winner(_ playerHand: Hand,
-                        _ dealerHand: Hand) -> Winner {
-        var winner: Winner = .dealer
+    private func pay(for playerHand: BettingHand, withMultiplier multiplier: Double) {
+        let payout: Double = (multiplier * Double(playerHand.bet)).rounded(FloatingPointRoundingRule.up)
+        player.receive(chips: UInt(payout))
+    }
+    
+    private func outcome(from playerHand: Hand,
+                         _ dealerHand: Hand) -> GameOutcome {
+        let outcome: GameOutcome
         if playerHand == dealerHand {
-            winner = .draw
+            outcome = .draw
         } else if playerHand > dealerHand {
-            winner = .player
+            outcome = playerHand.outcome == .blackjack ? .playerHadBlackjack : .playerWon
+        } else {
+            outcome = playerHand.outcome == .bust ? .playerBusted : .playerLost
         }
-        return winner
+        return outcome
     }
 }

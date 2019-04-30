@@ -21,7 +21,7 @@ public final class GameStateNavigatorImpl: GameStateNavigator {
         case .readyToPlay:
             try assertState(state, expected: .playersTurn)
         case .playersTurn:
-            try assertState(state, expected: .dealersTurn)
+            try assertState(state, expected: [.dealersTurn, .managingBets])
         case .dealersTurn:
             try assertState(state, expected: .managingBets)
         case .managingBets:
@@ -32,10 +32,15 @@ public final class GameStateNavigatorImpl: GameStateNavigator {
     
     private func assertState(_ state: GameState,
                              expected expectedState: GameState) throws {
-        typealias Error = GameError
         guard state == expectedState else {
-            throw Error.impossibleStateTransition(from: self.state, to: state)
-            
+            throw GameError.impossibleStateTransition(from: self.state, to: state)
+        }
+    }
+    
+    private func assertState(_ state: GameState,
+                             expected expectedStates: [GameState]) throws {
+        guard expectedStates.contains(state) else {
+            throw GameError.impossibleStateTransition(from: self.state, to: state)
         }
     }
 }

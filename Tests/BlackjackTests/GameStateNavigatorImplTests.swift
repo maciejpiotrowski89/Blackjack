@@ -63,10 +63,10 @@ final class GameStateNavigatorImplTestsTests: XCTestCase {
         XCTAssertEqual(sut.state, .dealersTurn)
     }
     
-    func testNavigationFrom_PlayersTurn_To_ManagingBets_Impossible() {
+    func testNavigationFrom_PlayersTurn_To_ManagingBets_Possible() {
         try! sut.navigate(to: .playersTurn)
-        XCTAssertThrowsError(try sut.navigate(to: .managingBets))
-        XCTAssertEqual(sut.state, .playersTurn)
+        XCTAssertNoThrow(try sut.navigate(to: .managingBets))
+        XCTAssertEqual(sut.state, .managingBets)
     }
     
     //MARK: Transitions from Dealer's Turn state
