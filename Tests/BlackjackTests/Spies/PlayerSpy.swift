@@ -11,7 +11,7 @@ import PlayingCards
 final class PlayerSpy: Player {
     weak var delegate: Player.GameDelegate?
     var hand: BettingHand?
-    func bet(_ :UInt) {}
+    func bet(_: Chip) {}
     func hit() {}
     func doubleDown() {}
     func stand() {}
