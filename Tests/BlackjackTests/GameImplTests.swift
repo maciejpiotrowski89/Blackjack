@@ -42,6 +42,16 @@ final class GameImplTests: XCTestCase {
         super.tearDown()
     }
     
+    
+    //MARK: Init
+    func testIsPlayersGameDelegate() {
+        XCTAssertTrue(player.delegate === sut)
+    }
+    
+    func testIsDealersGameDelegate() {
+        XCTAssertTrue(dealer.delegate === sut)
+    }
+    
     //MARK: Betting & Reseting a bet
     func testBetChip() {
         //Given
@@ -440,8 +450,8 @@ final class GameImplTests: XCTestCase {
         XCTAssertNoThrow(try sut.finishDealersTurn())
         
         //Then
-        let expectedCardsCount = playerHand.cards.count + dealerHand.cards.count
-        XCTAssertEqual(shoe.discardedCards.count, expectedCardsCount)
+        let expected = playerHand.cards + dealerHand.cards
+        XCTAssertEqual(shoe.discardedCards, expected)
     }
     
     func testFinishDealersTurnThrowsWhenStateIs_PlayersTurn() {
@@ -927,4 +937,5 @@ final class GameImplTests: XCTestCase {
         //Then
         XCTAssertEqual(gameDelegate.gameOutcome, .playerBusted)
     }
+
 }

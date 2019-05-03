@@ -9,6 +9,7 @@ import PlayingCards
 @testable import Blackjack
 
 final class PlayerSpy: Player {
+    weak var delegate: Player.GameDelegate?
     var hand: BettingHand?
     func bet(_ :UInt) {}
     func hit() {}
@@ -26,7 +27,8 @@ final class PlayerSpy: Player {
     var receivedChips: UInt?
     func receive(chips: UInt) { receivedChips = chips }
     var discardHandCalled: Bool = false
-    func discardHand() {
+    func discardHand() throws -> [Card] {
         discardHandCalled = true
+        return hand?.cards ?? []
     }
 }

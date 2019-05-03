@@ -9,10 +9,12 @@ import PlayingCards
 
 public protocol HandPlaying {
     func playHand() throws
-    func discardHand()
+    func discardHand() throws -> [Card] 
 }
 
 public protocol Player: ChipsManaging, HandPlaying {
+    typealias GameDelegate = (CardDealer & PlayersTurnDelegate)
+    var delegate: GameDelegate? { get set }
     var hand: BettingHand? { get }
     mutating func createHand(with cards: [Card], bet: UInt) throws
     func bet(_ :UInt) //Ask delegate to bet a Chip
@@ -22,6 +24,5 @@ public protocol Player: ChipsManaging, HandPlaying {
 }
 
 public class PlayerImpl {
-    typealias GameDelegate = (CardDealer & PlayersTurnDelegate)
-    weak var delegate: GameDelegate?
+    weak var delegate: Player.GameDelegate?
 }

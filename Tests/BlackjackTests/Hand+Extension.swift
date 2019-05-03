@@ -10,6 +10,10 @@ import PlayingCards
 
 extension DealerHand {
     static func sampleHand() -> DealerHand {
+        return DealerHand.sample12Hand()
+    }
+    
+    static func sample12Hand() -> DealerHand {
         return DealerHand(cards:
             [
                 Card(suit: .clubs, rank: .queen),

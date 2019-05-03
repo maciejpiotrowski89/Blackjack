@@ -23,6 +23,7 @@
 /* Begin PBXBuildFile section */
 		7911D378226A5B7B00922AA7 /* GameStateNavigatorImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7911D377226A5B7B00922AA7 /* GameStateNavigatorImplTests.swift */; };
 		7911D37A226A66FF00922AA7 /* GameStateNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7911D379226A66FF00922AA7 /* GameStateNavigator.swift */; };
+		792DC9DA227CD65F006C81F9 /* DealerGameDelegateSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792DC9D9227CD65F006C81F9 /* DealerGameDelegateSpy.swift */; };
 		795A26412264E8BD00C00886 /* HandComparisonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795A26402264E8BD00C00886 /* HandComparisonTests.swift */; };
 		7967A21C226DE41800861EDF /* Hand+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7967A21A226DE41300861EDF /* Hand+Extension.swift */; };
 		7967A21E226DE88B00861EDF /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7967A21D226DE88B00861EDF /* Dealer.swift */; };
@@ -119,6 +120,7 @@
 /* Begin PBXFileReference section */
 		7911D377226A5B7B00922AA7 /* GameStateNavigatorImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateNavigatorImplTests.swift; sourceTree = "<group>"; };
 		7911D379226A66FF00922AA7 /* GameStateNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateNavigator.swift; sourceTree = "<group>"; };
+		792DC9D9227CD65F006C81F9 /* DealerGameDelegateSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealerGameDelegateSpy.swift; sourceTree = "<group>"; };
 		795A26402264E8BD00C00886 /* HandComparisonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandComparisonTests.swift; sourceTree = "<group>"; };
 		7967A21A226DE41300861EDF /* Hand+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hand+Extension.swift"; sourceTree = "<group>"; };
 		7967A21D226DE88B00861EDF /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				7967A21F226E2EC700861EDF /* DealerSpy.swift */,
 				79BF5AAB226A3FB10027FEED /* GameStateNavigatorSpy.swift */,
 				799E87CF2278DCEB000276A4 /* GameOutcomeDelegateSpy.swift */,
+				792DC9D9227CD65F006C81F9 /* DealerGameDelegateSpy.swift */,
 			);
 			path = Spies;
 			sourceTree = "<group>";
@@ -605,6 +608,7 @@
 				OBJ_91 /* ContinuousCardShufflerTests.swift in Sources */,
 				79BF5AAC226A3FB10027FEED /* GameStateNavigatorSpy.swift in Sources */,
 				795A26412264E8BD00C00886 /* HandComparisonTests.swift in Sources */,
+				792DC9DA227CD65F006C81F9 /* DealerGameDelegateSpy.swift in Sources */,
 				79BF5AAE226A3FFF0027FEED /* Card+Extension.swift in Sources */,
 				799E87D02278DCEB000276A4 /* GameOutcomeDelegateSpy.swift in Sources */,
 				OBJ_92 /* DealerHandTests.swift in Sources */,

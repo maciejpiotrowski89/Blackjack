@@ -14,7 +14,10 @@ public enum GameError: Error {
     cannotDealWhenRoundIsNotInProgress,
     impossibleStateTransition(from: GameState, to: GameState),
     noPlayersHand(in: GameState),
-    noDealersHand(in: GameState)
+    noDealersHand(in: GameState),
+    cannotCreateHandFromCards([Card]),
+    noHandToPlay,
+    noHandToDiscard
 }
 
 public protocol CardDealer: class {
@@ -74,6 +77,8 @@ public final class GameImpl: Game {
         self.player = player
         self.dealer = dealer
         self.gameState = stateNavigator
+        self.player.delegate = self
+        self.dealer.delegate = self
     }
     
     public func bet(_ chip: Chip) {
@@ -149,14 +154,7 @@ extension GameImpl {
         try gameState.navigate(to: .managingBets)
         guard let playerHand = playerHand else { throw GameError.noPlayersHand(in: self.state) }
         guard let dealerHand = dealerHand else { throw GameError.noDealersHand(in: self.state) }
-        defer {
-            wager = 0
-            shoe.discard(playerHand.cards)
-            shoe.discard(dealerHand.cards)
-            player.discardHand()
-            dealer.discardHand()
-        }
-        
+
         let gameOutcome: GameOutcome = outcome(from: playerHand, dealerHand)
         
         switch(gameOutcome) {
@@ -170,7 +168,23 @@ extension GameImpl {
             dealer.collect(bet: playerHand.bet)
         }
         
+        clearBet()
+        try discardCards()
+
         delegate?.game(self, didFinishWithOutcome: gameOutcome)
+    }
+    
+    private func clearBet() {
+        wager = 0
+    }
+    
+    private func discardCards() throws {
+        let discardable: [HandPlaying] = [player, dealer]
+        let cards: [Card] = try discardable
+            .compactMap { try $0.discardHand() }
+            .reduce([]) { $0 + $1 }
+        
+        shoe.discard(cards)
     }
     
     private func pay(for playerHand: BettingHand, withMultiplier multiplier: Double) {

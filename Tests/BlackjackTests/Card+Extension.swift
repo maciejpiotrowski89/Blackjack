@@ -17,6 +17,11 @@ extension Card {
     }
     
     static func sampleCard() -> Card {
-        return Card(suit: .clubs, rank: .queen)
+        return sample(.ten)
     }
+    
+    static func sample(_ rank: Rank = .two) -> Card {
+        return Card(suit: .clubs, rank: rank)
+    }
+    
 }
