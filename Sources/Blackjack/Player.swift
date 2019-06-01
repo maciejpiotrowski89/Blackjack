@@ -33,6 +33,9 @@ public class PlayerImpl: Player {
     public weak var delegate: Player.GameDelegate?
     
     public func createHand(with cards: [Card], bet: UInt) throws {
+        guard cards.count == 2 else { throw GameError.cannotCreateHandFromCards(cards)}
+        guard bet > 0 else { throw GameError.cannotBetZero }
+        playerHand = PlayerHand(bet: bet, cards: cards)
     }
     
     public func bet(_ chip: Chip) {

@@ -9,10 +9,18 @@ import PlayingCards
 
 extension Card {
     static func sample4() -> [Card] {
-        return [Card(suit: .clubs, rank: .queen),
-                Card(suit: .diamonds, rank: .ace),
-                Card(suit: .spades, rank: .four),
-                Card(suit: .hearts, rank: .two),
+        return [
+            Card(suit: .clubs, rank: .queen),
+            Card(suit: .diamonds, rank: .ace),
+            Card(suit: .spades, rank: .four),
+            Card(suit: .hearts, rank: .two),
+        ]
+    }
+    
+    static func sample2() -> [Card] {
+        return [
+            Card(suit: .clubs, rank: .queen),
+            Card(suit: .spades, rank: .four),
         ]
     }
     

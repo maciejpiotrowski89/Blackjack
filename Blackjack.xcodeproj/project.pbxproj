@@ -25,11 +25,14 @@
 		7911D37A226A66FF00922AA7 /* GameStateNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7911D379226A66FF00922AA7 /* GameStateNavigator.swift */; };
 		792DC9DA227CD65F006C81F9 /* DealerGameDelegateSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792DC9D9227CD65F006C81F9 /* DealerGameDelegateSpy.swift */; };
 		792DC9DC227CE09C006C81F9 /* GameImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792DC9DB227CE09C006C81F9 /* GameImpl.swift */; };
+		793B8E5122A3022D00588A98 /* AutomaticCardShufflerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* AutomaticCardShufflerTests.swift */; };
+		793B8E5322A3024D00588A98 /* DealerHandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* DealerHandTests.swift */; };
+		793B8E5522A3025C00588A98 /* DealerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7967A221226E59C300861EDF /* DealerTests.swift */; };
+		793B8E5722A3029700588A98 /* Card+Extension_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF5AAD226A3FFF0027FEED /* Card+Extension_Test.swift */; };
 		795A26412264E8BD00C00886 /* HandComparisonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795A26402264E8BD00C00886 /* HandComparisonTests.swift */; };
-		7967A21C226DE41800861EDF /* Hand+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7967A21A226DE41300861EDF /* Hand+Extension.swift */; };
+		7967A21C226DE41800861EDF /* Hand+Extension_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7967A21A226DE41300861EDF /* Hand+Extension_Test.swift */; };
 		7967A21E226DE88B00861EDF /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7967A21D226DE88B00861EDF /* Dealer.swift */; };
 		7967A220226E2EC700861EDF /* DealerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7967A21F226E2EC700861EDF /* DealerSpy.swift */; };
-		7967A222226E59C300861EDF /* DealerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7967A221226E59C300861EDF /* DealerTests.swift */; };
 		7967A224226E59D200861EDF /* PlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7967A223226E59D200861EDF /* PlayerTests.swift */; };
 		799E87D02278DCEB000276A4 /* GameOutcomeDelegateSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799E87CF2278DCEB000276A4 /* GameOutcomeDelegateSpy.swift */; };
 		79BF5A9D22662FF60027FEED /* Chip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF5A9C22662FF60027FEED /* Chip.swift */; };
@@ -39,7 +42,6 @@
 		79BF5AA8226A3F8D0027FEED /* CardShoeSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF5AA7226A3F8D0027FEED /* CardShoeSpy.swift */; };
 		79BF5AAA226A3F9C0027FEED /* PlayerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF5AA9226A3F9C0027FEED /* PlayerSpy.swift */; };
 		79BF5AAC226A3FB10027FEED /* GameStateNavigatorSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF5AAB226A3FB10027FEED /* GameStateNavigatorSpy.swift */; };
-		79BF5AAE226A3FFF0027FEED /* Card+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF5AAD226A3FFF0027FEED /* Card+Extension.swift */; };
 		OBJ_106 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_36 /* Card.swift */; };
 		OBJ_107 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_37 /* Deck.swift */; };
 		OBJ_108 /* Rank.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_38 /* Rank.swift */; };
@@ -62,10 +64,8 @@
 		OBJ_67 /* Shuffling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Shuffling::Shuffling::Product" /* Shuffling.framework */; };
 		OBJ_68 /* PlayingCards.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "PlayingCards::PlayingCards::Product" /* PlayingCards.framework */; };
 		OBJ_78 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
-		OBJ_89 /* AutomaticCardShufflerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* AutomaticCardShufflerTests.swift */; };
 		OBJ_90 /* CardShoeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* CardShoeTests.swift */; };
 		OBJ_91 /* ContinuousCardShufflerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* ContinuousCardShufflerTests.swift */; };
-		OBJ_92 /* DealerHandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* DealerHandTests.swift */; };
 		OBJ_93 /* PlayerHandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* PlayerHandTests.swift */; };
 		OBJ_94 /* ShufflerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* ShufflerSpy.swift */; };
 		OBJ_96 /* Blackjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Blackjack::Blackjack::Product" /* Blackjack.framework */; };
@@ -124,7 +124,7 @@
 		792DC9D9227CD65F006C81F9 /* DealerGameDelegateSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealerGameDelegateSpy.swift; sourceTree = "<group>"; };
 		792DC9DB227CE09C006C81F9 /* GameImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameImpl.swift; sourceTree = "<group>"; };
 		795A26402264E8BD00C00886 /* HandComparisonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandComparisonTests.swift; sourceTree = "<group>"; };
-		7967A21A226DE41300861EDF /* Hand+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hand+Extension.swift"; sourceTree = "<group>"; };
+		7967A21A226DE41300861EDF /* Hand+Extension_Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hand+Extension_Test.swift"; sourceTree = "<group>"; };
 		7967A21D226DE88B00861EDF /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
 		7967A21F226E2EC700861EDF /* DealerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealerSpy.swift; sourceTree = "<group>"; };
 		7967A221226E59C300861EDF /* DealerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealerTests.swift; sourceTree = "<group>"; };
@@ -137,7 +137,7 @@
 		79BF5AA7226A3F8D0027FEED /* CardShoeSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardShoeSpy.swift; sourceTree = "<group>"; };
 		79BF5AA9226A3F9C0027FEED /* PlayerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSpy.swift; sourceTree = "<group>"; };
 		79BF5AAB226A3FB10027FEED /* GameStateNavigatorSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateNavigatorSpy.swift; sourceTree = "<group>"; };
-		79BF5AAD226A3FFF0027FEED /* Card+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+Extension.swift"; sourceTree = "<group>"; };
+		79BF5AAD226A3FFF0027FEED /* Card+Extension_Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Card+Extension_Test.swift"; path = "../../Tests/BlackjackTests/Card+Extension_Test.swift"; sourceTree = "<group>"; };
 		"Blackjack::Blackjack::Product" /* Blackjack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Blackjack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Blackjack::BlackjackTests::Product" /* BlackjackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = BlackjackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_10 /* Blackjack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blackjack.swift; sourceTree = "<group>"; };
@@ -229,8 +229,11 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_13 /* CardShoe.swift */,
+				OBJ_23 /* CardShoeTests.swift */,
 				OBJ_9 /* AutomaticCardShuffler.swift */,
+				OBJ_22 /* AutomaticCardShufflerTests.swift */,
 				OBJ_14 /* ContinuousCardShuffler.swift */,
+				OBJ_24 /* ContinuousCardShufflerTests.swift */,
 			);
 			name = "Card Shoe";
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				79BF5A9C22662FF60027FEED /* Chip.swift */,
 				OBJ_11 /* BlackjackValue.swift */,
 				OBJ_12 /* Card+Extension.swift */,
+				79BF5AAD226A3FFF0027FEED /* Card+Extension_Test.swift */,
 				OBJ_17 /* HandOption.swift */,
 				OBJ_18 /* HandOutcome.swift */,
 			);
@@ -251,8 +255,12 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_16 /* Hand.swift */,
+				7967A21A226DE41300861EDF /* Hand+Extension_Test.swift */,
+				795A26402264E8BD00C00886 /* HandComparisonTests.swift */,
 				OBJ_19 /* PlayerHand.swift */,
+				OBJ_26 /* PlayerHandTests.swift */,
 				OBJ_15 /* DealerHand.swift */,
+				OBJ_25 /* DealerHandTests.swift */,
 			);
 			name = Hand;
 			sourceTree = "<group>";
@@ -260,30 +268,9 @@
 		OBJ_20 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_21 /* BlackjackTests */,
+				7967A225226E5A5A00861EDF /* Spies */,
 			);
 			name = Tests;
-			sourceTree = SOURCE_ROOT;
-		};
-		OBJ_21 /* BlackjackTests */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_22 /* AutomaticCardShufflerTests.swift */,
-				OBJ_23 /* CardShoeTests.swift */,
-				OBJ_24 /* ContinuousCardShufflerTests.swift */,
-				OBJ_25 /* DealerHandTests.swift */,
-				OBJ_26 /* PlayerHandTests.swift */,
-				7967A221226E59C300861EDF /* DealerTests.swift */,
-				7967A223226E59D200861EDF /* PlayerTests.swift */,
-				795A26402264E8BD00C00886 /* HandComparisonTests.swift */,
-				79BF5AA52268A0A10027FEED /* GameImplTests.swift */,
-				7911D377226A5B7B00922AA7 /* GameStateNavigatorImplTests.swift */,
-				7967A225226E5A5A00861EDF /* Spies */,
-				79BF5AAD226A3FFF0027FEED /* Card+Extension.swift */,
-				7967A21A226DE41300861EDF /* Hand+Extension.swift */,
-			);
-			name = BlackjackTests;
-			path = Tests/BlackjackTests;
 			sourceTree = SOURCE_ROOT;
 		};
 		OBJ_28 /* Dependencies */ = {
@@ -375,9 +362,13 @@
 				OBJ_10 /* Blackjack.swift */,
 				79BF5AA02266348F0027FEED /* Game.swift */,
 				792DC9DB227CE09C006C81F9 /* GameImpl.swift */,
+				79BF5AA52268A0A10027FEED /* GameImplTests.swift */,
 				7911D379226A66FF00922AA7 /* GameStateNavigator.swift */,
+				7911D377226A5B7B00922AA7 /* GameStateNavigatorImplTests.swift */,
 				79BF5A9E226634450027FEED /* Player.swift */,
+				7967A223226E59D200861EDF /* PlayerTests.swift */,
 				7967A21D226DE88B00861EDF /* Dealer.swift */,
+				7967A221226E59C300861EDF /* DealerTests.swift */,
 				79BF5AA2226639770027FEED /* Card Shoe */,
 				79BF5AA32266399E0027FEED /* Game Elements */,
 				79BF5AA4226639AA0027FEED /* Hand */,
@@ -607,25 +598,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_89 /* AutomaticCardShufflerTests.swift in Sources */,
 				OBJ_90 /* CardShoeTests.swift in Sources */,
 				OBJ_91 /* ContinuousCardShufflerTests.swift in Sources */,
 				79BF5AAC226A3FB10027FEED /* GameStateNavigatorSpy.swift in Sources */,
 				795A26412264E8BD00C00886 /* HandComparisonTests.swift in Sources */,
+				793B8E5722A3029700588A98 /* Card+Extension_Test.swift in Sources */,
 				792DC9DA227CD65F006C81F9 /* DealerGameDelegateSpy.swift in Sources */,
-				79BF5AAE226A3FFF0027FEED /* Card+Extension.swift in Sources */,
 				799E87D02278DCEB000276A4 /* GameOutcomeDelegateSpy.swift in Sources */,
-				OBJ_92 /* DealerHandTests.swift in Sources */,
 				7967A220226E2EC700861EDF /* DealerSpy.swift in Sources */,
 				79BF5AA62268A0A10027FEED /* GameImplTests.swift in Sources */,
 				79BF5AA8226A3F8D0027FEED /* CardShoeSpy.swift in Sources */,
-				7967A21C226DE41800861EDF /* Hand+Extension.swift in Sources */,
+				7967A21C226DE41800861EDF /* Hand+Extension_Test.swift in Sources */,
 				7911D378226A5B7B00922AA7 /* GameStateNavigatorImplTests.swift in Sources */,
-				7967A222226E59C300861EDF /* DealerTests.swift in Sources */,
 				OBJ_93 /* PlayerHandTests.swift in Sources */,
+				793B8E5122A3022D00588A98 /* AutomaticCardShufflerTests.swift in Sources */,
 				7967A224226E59D200861EDF /* PlayerTests.swift in Sources */,
+				793B8E5522A3025C00588A98 /* DealerTests.swift in Sources */,
 				OBJ_94 /* ShufflerSpy.swift in Sources */,
 				79BF5AAA226A3F9C0027FEED /* PlayerSpy.swift in Sources */,
+				793B8E5322A3024D00588A98 /* DealerHandTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

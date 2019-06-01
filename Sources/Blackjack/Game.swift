@@ -17,7 +17,8 @@ public enum GameError: Error {
     noDealersHand(in: GameState),
     cannotCreateHandFromCards([Card]),
     noHandToPlay,
-    noHandToDiscard
+    noHandToDiscard,
+    cannotBetZero
 }
 
 public protocol CardDealer: class {
