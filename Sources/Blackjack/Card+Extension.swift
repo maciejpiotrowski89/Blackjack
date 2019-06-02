@@ -14,6 +14,7 @@ extension Card: BlackjackValue {
         default: return rank.rawValue
         }
     }
+
     var highValue: UInt {
         return rank == .ace ? 11 : blackjackValue
     }

@@ -5,15 +5,14 @@
 //  Created by Maciej Piotrowski on 15/4/19.
 //
 
-import XCTest
-import PlayingCards
 @testable import Blackjack
+import PlayingCards
+import XCTest
 
-//swiftlint:disable type_body_length
+// swiftlint:disable type_body_length
 final class HandComparisonTests: XCTestCase {
-
     func testPlayerLowerDealerGreater_1() {
-        //Given
+        // Given
         let bet: UInt = 100
         let playerCards: [Card] = [
             Card(suit: .clubs, rank: .five),
@@ -27,13 +26,13 @@ final class HandComparisonTests: XCTestCase {
         let player = PlayerHand(bet: bet, cards: playerCards)
         let dealer = DealerHand(cards: dealerCards)
 
-        //When
+        // When
         let equal: Bool = player == dealer
         let notEqual: Bool = player != dealer
         let greater: Bool = player > dealer
         let lower: Bool = player < dealer
 
-        //Then
+        // Then
         XCTAssertFalse(equal, "Player: \(player), Dealer: \(dealer)")
         XCTAssertTrue(notEqual, "Player: \(player), Dealer: \(dealer)")
         XCTAssertFalse(greater, "Player: \(player), Dealer: \(dealer)")
@@ -41,7 +40,7 @@ final class HandComparisonTests: XCTestCase {
     }
 
     func testPlayerLowerDealerGreater_2() {
-        //Given
+        // Given
         let bet: UInt = 100
         let playerCards: [Card] = [
             Card(suit: .clubs, rank: .five),
@@ -55,13 +54,13 @@ final class HandComparisonTests: XCTestCase {
         let player = PlayerHand(bet: bet, cards: playerCards)
         let dealer = DealerHand(cards: dealerCards)
 
-        //When
+        // When
         let equal: Bool = dealer == player
         let notEqual: Bool = dealer != player
         let greater: Bool = dealer > player
         let lower: Bool = dealer < player
 
-        //Then
+        // Then
         XCTAssertFalse(equal, "Player: \(player), Dealer: \(dealer)")
         XCTAssertTrue(notEqual, "Player: \(player), Dealer: \(dealer)")
         XCTAssertTrue(greater, "Player: \(player), Dealer: \(dealer)")
@@ -69,7 +68,7 @@ final class HandComparisonTests: XCTestCase {
     }
 
     func testPlayerGreaterDealerLower_1() {
-        //Given
+        // Given
         let bet: UInt = 100
         let playerCards: [Card] = [
             Card(suit: .clubs, rank: .ace),
@@ -83,13 +82,13 @@ final class HandComparisonTests: XCTestCase {
         let player = PlayerHand(bet: bet, cards: playerCards)
         let dealer = DealerHand(cards: dealerCards)
 
-        //When
+        // When
         let equal: Bool = player == dealer
         let notEqual: Bool = player != dealer
         let greater: Bool = player > dealer
         let lower: Bool = player < dealer
 
-        //Then
+        // Then
         XCTAssertFalse(equal, "Player: \(player), Dealer: \(dealer)")
         XCTAssertTrue(notEqual, "Player: \(player), Dealer: \(dealer)")
         XCTAssertTrue(greater, "Player: \(player), Dealer: \(dealer)")
@@ -97,7 +96,7 @@ final class HandComparisonTests: XCTestCase {
     }
 
     func testPlayerGreaterDealerLower_2() {
-        //Given
+        // Given
         let bet: UInt = 100
         let playerCards: [Card] = [
             Card(suit: .clubs, rank: .ace),
@@ -111,13 +110,13 @@ final class HandComparisonTests: XCTestCase {
         let player = PlayerHand(bet: bet, cards: playerCards)
         let dealer = DealerHand(cards: dealerCards)
 
-        //When
+        // When
         let equal: Bool = dealer == player
         let notEqual: Bool = dealer != player
         let greater: Bool = dealer > player
         let lower: Bool = dealer < player
 
-        //Then
+        // Then
         XCTAssertFalse(equal, "Player: \(player), Dealer: \(dealer)")
         XCTAssertTrue(notEqual, "Player: \(player), Dealer: \(dealer)")
         XCTAssertFalse(greater, "Player: \(player), Dealer: \(dealer)")
@@ -125,7 +124,7 @@ final class HandComparisonTests: XCTestCase {
     }
 
     func testPlayerDealerEqual_1() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards: [Card] = [
             Card(suit: .clubs, rank: .ace),
@@ -135,13 +134,13 @@ final class HandComparisonTests: XCTestCase {
         let player = PlayerHand(bet: bet, cards: cards)
         let dealer = DealerHand(cards: cards)
 
-        //When
+        // When
         let equal: Bool = player == dealer
         let notEqual: Bool = player != dealer
         let greater: Bool = player > dealer
         let lower: Bool = player < dealer
 
-        //Then
+        // Then
         XCTAssertTrue(equal, "Player: \(player), Dealer: \(dealer)")
         XCTAssertFalse(notEqual, "Player: \(player), Dealer: \(dealer)")
         XCTAssertFalse(greater, "Player: \(player), Dealer: \(dealer)")
@@ -149,7 +148,7 @@ final class HandComparisonTests: XCTestCase {
     }
 
     func testPlayerDealerEqual_2() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards: [Card] = [
             Card(suit: .clubs, rank: .ace),
@@ -159,13 +158,13 @@ final class HandComparisonTests: XCTestCase {
         let player = PlayerHand(bet: bet, cards: cards)
         let dealer = DealerHand(cards: cards)
 
-        //When
+        // When
         let equal: Bool = dealer == player
         let notEqual: Bool = dealer != player
         let greater: Bool = dealer > player
         let lower: Bool = dealer < player
 
-        //Then
+        // Then
         XCTAssertTrue(equal, "Player: \(player), Dealer: \(dealer)")
         XCTAssertFalse(notEqual, "Player: \(player), Dealer: \(dealer)")
         XCTAssertFalse(greater, "Player: \(player), Dealer: \(dealer)")
@@ -173,8 +172,9 @@ final class HandComparisonTests: XCTestCase {
     }
 
     // MARK: Busted hands
+
     func testPlayerBustDealerOK_1() {
-        //Given
+        // Given
         let bet: UInt = 100
         let playerCards: [Card] = [
             Card(suit: .clubs, rank: .queen),
@@ -189,13 +189,13 @@ final class HandComparisonTests: XCTestCase {
         let player = PlayerHand(bet: bet, cards: playerCards)
         let dealer = DealerHand(cards: dealerCards)
 
-        //When
+        // When
         let equal: Bool = player == dealer
         let notEqual: Bool = player != dealer
         let greater: Bool = player > dealer
         let lower: Bool = player < dealer
 
-        //Then
+        // Then
         XCTAssertFalse(equal, "Player: \(player), Dealer: \(dealer)")
         XCTAssertTrue(notEqual, "Player: \(player), Dealer: \(dealer)")
         XCTAssertFalse(greater, "Player: \(player), Dealer: \(dealer)")
@@ -203,7 +203,7 @@ final class HandComparisonTests: XCTestCase {
     }
 
     func testPlayerBustDealerOK_2() {
-        //Given
+        // Given
         let bet: UInt = 100
         let playerCards: [Card] = [
             Card(suit: .clubs, rank: .queen),
@@ -218,13 +218,13 @@ final class HandComparisonTests: XCTestCase {
         let player = PlayerHand(bet: bet, cards: playerCards)
         let dealer = DealerHand(cards: dealerCards)
 
-        //When
+        // When
         let equal: Bool = dealer == player
         let notEqual: Bool = dealer != player
         let greater: Bool = dealer > player
         let lower: Bool = dealer < player
 
-        //Then
+        // Then
         XCTAssertFalse(equal, "Player: \(player), Dealer: \(dealer)")
         XCTAssertTrue(notEqual, "Player: \(player), Dealer: \(dealer)")
         XCTAssertTrue(greater, "Player: \(player), Dealer: \(dealer)")
@@ -232,7 +232,7 @@ final class HandComparisonTests: XCTestCase {
     }
 
     func testPlayerOKDealerBust_1() {
-        //Given
+        // Given
         let bet: UInt = 100
         let playerCards: [Card] = [
             Card(suit: .clubs, rank: .five),
@@ -247,13 +247,13 @@ final class HandComparisonTests: XCTestCase {
         let player = PlayerHand(bet: bet, cards: playerCards)
         let dealer = DealerHand(cards: dealerCards)
 
-        //When
+        // When
         let equal: Bool = player == dealer
         let notEqual: Bool = player != dealer
         let greater: Bool = player > dealer
         let lower: Bool = player < dealer
 
-        //Then
+        // Then
         XCTAssertFalse(equal, "Player: \(player), Dealer: \(dealer)")
         XCTAssertTrue(notEqual, "Player: \(player), Dealer: \(dealer)")
         XCTAssertTrue(greater, "Player: \(player), Dealer: \(dealer)")
@@ -261,7 +261,7 @@ final class HandComparisonTests: XCTestCase {
     }
 
     func testPlayerOKDealerBust_2() {
-        //Given
+        // Given
         let bet: UInt = 100
         let playerCards: [Card] = [
             Card(suit: .clubs, rank: .five),
@@ -276,13 +276,13 @@ final class HandComparisonTests: XCTestCase {
         let player = PlayerHand(bet: bet, cards: playerCards)
         let dealer = DealerHand(cards: dealerCards)
 
-        //When
+        // When
         let equal: Bool = dealer == player
         let notEqual: Bool = dealer != player
         let greater: Bool = dealer > player
         let lower: Bool = dealer < player
 
-        //Then
+        // Then
         XCTAssertFalse(equal, "Player: \(player), Dealer: \(dealer)")
         XCTAssertTrue(notEqual, "Player: \(player), Dealer: \(dealer)")
         XCTAssertFalse(greater, "Player: \(player), Dealer: \(dealer)")
@@ -290,7 +290,7 @@ final class HandComparisonTests: XCTestCase {
     }
 
     func testPlayerBustDealerBust_1() {
-        //Given
+        // Given
         let bet: UInt = 100
         let playerCards: [Card] = [
             Card(suit: .clubs, rank: .five),
@@ -306,13 +306,13 @@ final class HandComparisonTests: XCTestCase {
         let player = PlayerHand(bet: bet, cards: playerCards)
         let dealer = DealerHand(cards: dealerCards)
 
-        //When
+        // When
         let equal: Bool = player == dealer
         let notEqual: Bool = player != dealer
         let greater: Bool = player > dealer
         let lower: Bool = player < dealer
 
-        //Then
+        // Then
         XCTAssertTrue(equal, "Player: \(player), Dealer: \(dealer)")
         XCTAssertFalse(notEqual, "Player: \(player), Dealer: \(dealer)")
         XCTAssertFalse(greater, "Player: \(player), Dealer: \(dealer)")
@@ -320,7 +320,7 @@ final class HandComparisonTests: XCTestCase {
     }
 
     func testPlayerBustDealerBust_2() {
-        //Given
+        // Given
         let bet: UInt = 100
         let playerCards: [Card] = [
             Card(suit: .clubs, rank: .five),
@@ -336,13 +336,13 @@ final class HandComparisonTests: XCTestCase {
         let player = PlayerHand(bet: bet, cards: playerCards)
         let dealer = DealerHand(cards: dealerCards)
 
-        //When
+        // When
         let equal: Bool = dealer == player
         let notEqual: Bool = dealer != player
         let greater: Bool = dealer > player
         let lower: Bool = dealer < player
 
-        //Then
+        // Then
         XCTAssertTrue(equal, "Player: \(player), Dealer: \(dealer)")
         XCTAssertFalse(notEqual, "Player: \(player), Dealer: \(dealer)")
         XCTAssertFalse(greater, "Player: \(player), Dealer: \(dealer)")
@@ -352,7 +352,7 @@ final class HandComparisonTests: XCTestCase {
     // MARK: Blackjack and "21" hands
 
     func testPlayerHasBlackjackDealerHasBlackjack_1() {
-        //Given
+        // Given
         let bet: UInt = 100
         let playerCards: [Card] = [
             Card(suit: .clubs, rank: .queen),
@@ -365,13 +365,13 @@ final class HandComparisonTests: XCTestCase {
         let player = PlayerHand(bet: bet, cards: playerCards)
         let dealer = DealerHand(cards: dealerCards)
 
-        //When
+        // When
         let equal: Bool = player == dealer
         let notEqual: Bool = player != dealer
         let greater: Bool = player > dealer
         let lower: Bool = player < dealer
 
-        //Then
+        // Then
         XCTAssertTrue(equal, "Player: \(player), Dealer: \(dealer)")
         XCTAssertFalse(notEqual, "Player: \(player), Dealer: \(dealer)")
         XCTAssertFalse(greater, "Player: \(player), Dealer: \(dealer)")
@@ -379,7 +379,7 @@ final class HandComparisonTests: XCTestCase {
     }
 
     func testPlayerHasBlackjackDealerHasBlackjack_2() {
-        //Given
+        // Given
         let bet: UInt = 100
         let playerCards: [Card] = [
             Card(suit: .clubs, rank: .queen),
@@ -392,13 +392,13 @@ final class HandComparisonTests: XCTestCase {
         let player = PlayerHand(bet: bet, cards: playerCards)
         let dealer = DealerHand(cards: dealerCards)
 
-        //When
+        // When
         let equal: Bool = dealer == player
         let notEqual: Bool = dealer != player
         let greater: Bool = dealer > player
         let lower: Bool = dealer < player
 
-        //Then
+        // Then
         XCTAssertTrue(equal, "Player: \(player), Dealer: \(dealer)")
         XCTAssertFalse(notEqual, "Player: \(player), Dealer: \(dealer)")
         XCTAssertFalse(greater, "Player: \(player), Dealer: \(dealer)")
@@ -406,7 +406,7 @@ final class HandComparisonTests: XCTestCase {
     }
 
     func testPlayerHasBlackjackDealerHas21_1() {
-        //Given
+        // Given
         let bet: UInt = 100
         let playerCards: [Card] = [
             Card(suit: .clubs, rank: .queen),
@@ -420,13 +420,13 @@ final class HandComparisonTests: XCTestCase {
         let player = PlayerHand(bet: bet, cards: playerCards)
         let dealer = DealerHand(cards: dealerCards)
 
-        //When
+        // When
         let equal: Bool = player == dealer
         let notEqual: Bool = player != dealer
         let greater: Bool = player > dealer
         let lower: Bool = player < dealer
 
-        //Then
+        // Then
         XCTAssertFalse(equal, "Player: \(player), Dealer: \(dealer)")
         XCTAssertTrue(notEqual, "Player: \(player), Dealer: \(dealer)")
         XCTAssertTrue(greater, "Player: \(player), Dealer: \(dealer)")
@@ -434,7 +434,7 @@ final class HandComparisonTests: XCTestCase {
     }
 
     func testPlayerHasBlackjackDealerHas21_2() {
-        //Given
+        // Given
         let bet: UInt = 100
         let playerCards: [Card] = [
             Card(suit: .clubs, rank: .queen),
@@ -448,13 +448,13 @@ final class HandComparisonTests: XCTestCase {
         let player = PlayerHand(bet: bet, cards: playerCards)
         let dealer = DealerHand(cards: dealerCards)
 
-        //When
+        // When
         let equal: Bool = dealer == player
         let notEqual: Bool = dealer != player
         let greater: Bool = dealer > player
         let lower: Bool = dealer < player
 
-        //Then
+        // Then
         XCTAssertFalse(equal, "Player: \(player), Dealer: \(dealer)")
         XCTAssertTrue(notEqual, "Player: \(player), Dealer: \(dealer)")
         XCTAssertFalse(greater, "Player: \(player), Dealer: \(dealer)")
@@ -462,7 +462,7 @@ final class HandComparisonTests: XCTestCase {
     }
 
     func testPlayerHas21DealerHasBlackjack_1() {
-        //Given
+        // Given
         let bet: UInt = 100
         let playerCards: [Card] = [
             Card(suit: .clubs, rank: .queen),
@@ -476,13 +476,13 @@ final class HandComparisonTests: XCTestCase {
         let player = PlayerHand(bet: bet, cards: playerCards)
         let dealer = DealerHand(cards: dealerCards)
 
-        //When
+        // When
         let equal: Bool = player == dealer
         let notEqual: Bool = player != dealer
         let greater: Bool = player > dealer
         let lower: Bool = player < dealer
 
-        //Then
+        // Then
         XCTAssertFalse(equal, "Player: \(player), Dealer: \(dealer)")
         XCTAssertTrue(notEqual, "Player: \(player), Dealer: \(dealer)")
         XCTAssertFalse(greater, "Player: \(player), Dealer: \(dealer)")
@@ -490,7 +490,7 @@ final class HandComparisonTests: XCTestCase {
     }
 
     func testPlayerHas21DealerHasBlackjack_2() {
-        //Given
+        // Given
         let bet: UInt = 100
         let playerCards: [Card] = [
             Card(suit: .clubs, rank: .queen),
@@ -504,17 +504,18 @@ final class HandComparisonTests: XCTestCase {
         let player = PlayerHand(bet: bet, cards: playerCards)
         let dealer = DealerHand(cards: dealerCards)
 
-        //When
+        // When
         let equal: Bool = dealer == player
         let notEqual: Bool = dealer != player
         let greater: Bool = dealer > player
         let lower: Bool = dealer < player
 
-        //Then
+        // Then
         XCTAssertFalse(equal, "Player: \(player), Dealer: \(dealer)")
         XCTAssertTrue(notEqual, "Player: \(player), Dealer: \(dealer)")
         XCTAssertTrue(greater, "Player: \(player), Dealer: \(dealer)")
         XCTAssertFalse(lower, "Player: \(player), Dealer: \(dealer)")
     }
 }
-//swiftlint:enable type_body_length
+
+// swiftlint:enable type_body_length

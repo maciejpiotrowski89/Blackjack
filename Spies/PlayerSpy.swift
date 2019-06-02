@@ -5,8 +5,8 @@
 //  Created by Maciej Piotrowski on 19/4/19.
 //
 
-import PlayingCards
 @testable import Blackjack
+import PlayingCards
 
 final class PlayerSpy: Player {
     weak var game: Player.GameDelegate?
@@ -24,6 +24,7 @@ final class PlayerSpy: Player {
         createdHandWithCards = cards
         createdHandWithBet = bet
     }
+
     var playHandCalled: Bool = false
     func playHand() throws { playHandCalled = true }
     var chipsValue: UInt = 0

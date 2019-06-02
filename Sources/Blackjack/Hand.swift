@@ -39,12 +39,12 @@ extension Hand {
             .sorted(by: >)
             .reduce(0) { (result, card) -> UInt in
                 var value = card.blackjackValue
-                if  card.rank == .ace &&
+                if card.rank == .ace,
                     result + card.highValue <= Int.Blackjack {
                     value = card.highValue
                 }
                 return result + value
-        }
+            }
     }
 }
 
@@ -53,10 +53,11 @@ public func < (lhs: Hand, rhs: Hand) -> Bool {
     if lhs == rhs { return false }
     if lhs.outcome == .bust { return true }
     if rhs.outcome == .bust { return false }
-    if lhs.outcome == .blackjack && rhs.outcome != .blackjack { return false }
-    if lhs.outcome != .blackjack && rhs.outcome == .blackjack { return true }
+    if lhs.outcome == .blackjack, rhs.outcome != .blackjack { return false }
+    if lhs.outcome != .blackjack, rhs.outcome == .blackjack { return true }
     return lhs.highValue < rhs.highValue
 }
+
 // swiftlint:enable cyclomatic_complexity
 
 public func > (lhs: Hand, rhs: Hand) -> Bool {
@@ -64,7 +65,7 @@ public func > (lhs: Hand, rhs: Hand) -> Bool {
 }
 
 public func == (lhs: Hand, rhs: Hand) -> Bool {
-    if lhs.outcome == .bust && rhs.outcome == .bust { return true }
+    if lhs.outcome == .bust, rhs.outcome == .bust { return true }
     if ([lhs, rhs].filter { $0.outcome == .blackjack }).count == 1 { return false }
     return lhs.highValue == rhs.highValue
 }

@@ -8,19 +8,19 @@
 import PlayingCards
 
 public struct PlayerHand: BettingHand {
-
     private var initialBet: UInt
     public var bet: UInt {
         return doubled ? initialBet * 2 : initialBet
     }
+
     public private(set) var cards: [Card]
     public init(bet: UInt, first: Card, second: Card) {
-        self.initialBet = bet
-        self.cards = [first, second]
+        initialBet = bet
+        cards = [first, second]
     }
 
     public var options: HandOption {
-        if  outcome != .playing {
+        if outcome != .playing {
             return []
         }
 
@@ -32,7 +32,7 @@ public struct PlayerHand: BettingHand {
             return cards[0].blackjackValue == cards[1].blackjackValue ? .pair : .initial
         }
 
-        return  []
+        return []
     }
 
     public var outcome: HandOutcome {
@@ -70,7 +70,7 @@ public struct PlayerHand: BettingHand {
 extension PlayerHand {
     init(bet: UInt, cards: [Card]) {
         precondition(cards.count >= 2)
-        self.initialBet = bet
+        initialBet = bet
         self.cards = cards
     }
 }

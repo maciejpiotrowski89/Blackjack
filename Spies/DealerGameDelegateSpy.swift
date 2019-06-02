@@ -5,8 +5,8 @@
 //  Created by Maciej Piotrowski on 3/5/19.
 //
 
-import PlayingCards
 @testable import Blackjack
+import PlayingCards
 
 class DealerGameDelegateSpy: Dealer.GameDelegate {
     var dealCardCalled = false

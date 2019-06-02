@@ -5,8 +5,8 @@
 //  Created by Maciej Piotrowski on 22/4/19.
 //
 
-import PlayingCards
 @testable import Blackjack
+import PlayingCards
 
 final class DealerSpy: Dealer {
     weak var delegate: Dealer.GameDelegate?
@@ -20,6 +20,7 @@ final class DealerSpy: Dealer {
         discardHandCalled = true
         return hand?.cards ?? []
     }
+
     var collectedBet: UInt?
     public func collect(bet: UInt) {
         collectedBet = bet

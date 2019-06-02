@@ -5,8 +5,8 @@
 //  Created by Maciej Piotrowski on 19/4/19.
 //
 
-import PlayingCards
 @testable import Blackjack
+import PlayingCards
 
 final class GameStateNavigatorSpy: GameStateNavigator {
     var state: GameState = .readyToPlay

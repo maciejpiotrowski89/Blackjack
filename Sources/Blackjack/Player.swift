@@ -12,7 +12,7 @@ public protocol HandPlaying {
     func discardHand() throws -> [Card]
 }
 
-public protocol Player: class, ChipsManaging, HandPlaying {
+public protocol Player: AnyObject, ChipsManaging, HandPlaying {
     typealias GameDelegate = (Starting & PlayersTurnDelegate)
     var game: GameDelegate? { get set }
     var dealer: CardDealer? { get set }
@@ -31,11 +31,10 @@ public protocol Player: class, ChipsManaging, HandPlaying {
 }
 
 public class PlayerImpl: Player {
-
     public var hand: BettingHand? { return playerHand }
     private(set) var playerHand: PlayerHand?
     public weak var game: Player.GameDelegate?
-    public weak  var dealer: CardDealer?
+    public weak var dealer: CardDealer?
 
     public func bet(_ chip: Chip) {
         game?.bet(chip)
@@ -55,21 +54,17 @@ public class PlayerImpl: Player {
         playerHand = PlayerHand(bet: bet, cards: cards)
     }
 
-    public func playHand() throws { }
+    public func playHand() throws {}
 
-    public func hit() {
-    }
+    public func hit() {}
 
-    public func doubleDown() {
-    }
+    public func doubleDown() {}
 
-    public func stand() {
-    }
+    public func stand() {}
 
     public var chipsValue: UInt = 0
 
-    public func receive(chips: UInt) {
-    }
+    public func receive(chips _: UInt) {}
 
     public func discardHand() throws -> [Card] {
         return []

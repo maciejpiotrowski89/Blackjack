@@ -5,9 +5,9 @@
 //  Created by Maciej Piotrowski on 22/4/19.
 //
 
-import XCTest
-import PlayingCards
 @testable import Blackjack
+import PlayingCards
+import XCTest
 
 final class GameDelegateSpy: PlayersTurnDelegate, CardDealer, Starting {
     enum Error: Swift.Error {
@@ -24,16 +24,19 @@ final class GameDelegateSpy: PlayersTurnDelegate, CardDealer, Starting {
         betChip = chip
         betChipCallCount += 1
     }
+
     var resetCalled: Bool = false
     func resetBet() {
         resetCalled = true
     }
+
     var shouldThrowOnStart: Bool = false
     var startCalled: Bool = false
     func start() throws {
         guard !shouldThrowOnStart else { throw Error.somethingWentWrong }
         startCalled = true
     }
+
     var finishPlayersTurnCalled: Bool = false
     func finishPlayersTurn() throws {
         finishPlayersTurnCalled = true
@@ -41,7 +44,6 @@ final class GameDelegateSpy: PlayersTurnDelegate, CardDealer, Starting {
 }
 
 final class PlayerTests: XCTestCase {
-
     var sut: PlayerImpl!
     var game: GameDelegateSpy!
 
@@ -59,133 +61,134 @@ final class PlayerTests: XCTestCase {
     }
 
     // MARK: Bet
+
     func testBet_ShoulCallDelegate() {
-        //Given
+        // Given
         let chip: Chip = .ten
 
-        //When
+        // When
         sut.bet(chip)
 
-        //Then
+        // Then
         XCTAssertEqual(game.betChip, chip)
     }
 
     func testBet_CanCallDelegateMultipleTimes() {
-        //Given
+        // Given
         let chips: [Chip] = [.ten, .thousand, .fifty]
 
-        //When
+        // When
         chips.forEach { sut.bet($0) }
 
-        //Then
+        // Then
         XCTAssertEqual(game.betChipCallCount, chips.count)
     }
 
     // MARK: Reset
-    func testClearBet() {
-        //Given
-        //Nothing
 
-        //When
+    func testClearBet() {
+        // Given
+        // Nothing
+
+        // When
         sut.clearBet()
 
-        //Then
+        // Then
         XCTAssertTrue(game.resetCalled)
     }
 
     // MARK: Start game
+
     func testStartGame() {
-        //Given
+        // Given
         game.shouldThrowOnStart = false
 
-        //When
+        // When
         XCTAssertNoThrow(try sut.startGame())
 
-        //Then
+        // Then
         XCTAssertTrue(game.startCalled)
     }
 
     func testStartGame_ShouldRethrowErrorFromGame() {
-        //Given
+        // Given
         game.shouldThrowOnStart = true
 
-        //When
+        // When
         XCTAssertThrowsError(try sut.startGame())
 
-        //Then
+        // Then
         XCTAssertFalse(game.startCalled)
     }
 
     // MARK: Create hand
+
     func testCreateHand_with0Bet_ShouldFail() {
-        //Given
+        // Given
         let bet: UInt = 0
         let cards: [Card] = Card.sample2()
 
-        //When
+        // When
         XCTAssertThrowsError(try sut.createHand(with: cards, bet: bet))
 
-        //Then
+        // Then
         XCTAssertNil(sut.hand)
     }
 
     func testCreateHand_ShouldFail_withNoCards() {
-        //Given
+        // Given
         let bet: UInt = 1
         let cards: [Card] = []
 
-        //When
+        // When
         XCTAssertThrowsError(try sut.createHand(with: cards, bet: bet))
 
-        //Then
+        // Then
         XCTAssertNil(sut.hand)
     }
 
     func testCreateHand_ShouldFail_with1Card() {
-        //Given
+        // Given
         let bet: UInt = 1
         let cards: [Card] = [Card.sample()]
 
-        //When
+        // When
         XCTAssertThrowsError(try sut.createHand(with: cards, bet: bet))
 
-        //Then
+        // Then
         XCTAssertNil(sut.hand)
     }
 
     func testCreateHand_ShouldFail_with3Cards() {
-        //Given
+        // Given
         let bet: UInt = 1
         let cards: [Card] = [Card.sample()]
 
-        //When
+        // When
         XCTAssertThrowsError(try sut.createHand(with: cards, bet: bet))
 
-        //Then
+        // Then
         XCTAssertNil(sut.hand)
     }
 
     func testCreateHand_ShouldSucceed_with2Cards_andProperBet() {
-        //Given
+        // Given
         let bet: UInt = 1
         let cards: [Card] = Card.sample2()
 
-        //When
+        // When
         XCTAssertNoThrow(try sut.createHand(with: cards, bet: bet))
 
-        //Then
+        // Then
         XCTAssertNotNil(sut.hand)
     }
 
-/*
+    /*
      func playHand()
      func hit()
      func doubleDown()
      func stand() {
      func receive(chips: UInt)
      func discardHand() throws -> [Card]
-     
-     swiftlint
-     swiftformat
- */
+     */
 }

@@ -5,8 +5,8 @@
 //  Created by Maciej Piotrowski on 19/4/19.
 //
 
-import PlayingCards
 @testable import Blackjack
+import PlayingCards
 
 final class CardShoeSpy: PlayingCardShoe {
     var isEmpty: Bool = false
@@ -21,6 +21,7 @@ final class CardShoeSpy: PlayingCardShoe {
         dealCount += 1
         return card
     }
+
     var discardedCards: [Card] = []
     func discard(_ card: Card) { discardedCards.append(card) }
     func discard(_ cards: [Card]) { discardedCards += cards }

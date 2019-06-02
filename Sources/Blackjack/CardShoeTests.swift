@@ -5,12 +5,11 @@
 //  Created by Maciej Piotrowski on 28/2/19.
 //
 
-import XCTest
-import PlayingCards
 @testable import Blackjack
+import PlayingCards
+import XCTest
 
 final class CardShoeTests: XCTestCase {
-
     var sut: CardShoe!
     var shuffler: ShufflerSpy!
     var card: Card!
@@ -30,142 +29,142 @@ final class CardShoeTests: XCTestCase {
     }
 
     func testShoeInitializedWith1StandardDeckHas52Cards() {
-        //Given
+        // Given
         let deck = Deck.standardDeck()
 
-        //When
+        // When
         sut = CardShoe(deck: deck)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.cards, deck.cards, "Should have \(deck.cards.count) cards")
         XCTAssertEqual(sut.discardBox.count, 0, "Should have an empty discard box")
     }
 
     func testShoeInitializedWithMultipleDecks() {
-        //Given
+        // Given
         let deck = Deck.standardDeck()
         let decks = [deck, deck, deck]
         let expected = deck.cards.count * decks.count
 
-        //When
+        // When
         sut = CardShoe(decks: decks)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.cards.count, expected, "Should have \(expected) cards")
         XCTAssertEqual(sut.discardBox.count, 0, "Should have an empty discard box")
     }
 
     func testShoeWithMultipleDecks() {
-        for i in 0...8 {
-            //Given
+        for i in 0 ... 8 {
+            // Given
             let n = i
             let expected = Deck.standardCount * n
 
-            //When
+            // When
             sut = CardShoe.with(numberOfDecks: UInt(n))
 
-            //Then
+            // Then
             XCTAssertEqual(sut.cards.count, expected, "Should have \(expected) cards")
             XCTAssertEqual(sut.discardBox.count, 0, "Should have an empty discard box")
         }
     }
 
     func testStandardShoe() {
-        //Given
+        // Given
         let n = 6
 
-        //When
+        // When
         sut = CardShoe.standardShoe()
 
-        //Then
+        // Then
         XCTAssertEqual(sut.cards.count, Deck.standardCount * n, "Should contain \(n) decks")
         XCTAssertEqual(sut.discardBox.count, 0, "Should have an empty discard box")
     }
 
     func testDealCardReturnsFirstCardFromTheShoe() {
-        //Given
+        // Given
         let expectedCard = sut.cards.first
         let expectedCount = sut.cards.count - 1
 
-        //When
+        // When
         let card = sut.deal()
 
-        //Then
+        // Then
         XCTAssertEqual(card, expectedCard, "Should deal first card from the shoe")
         XCTAssertEqual(sut.cards.count, expectedCount, "Should remove card from the shoe")
         XCTAssertEqual(sut.discardBox.count, 0, "Should not put card to a discard box by itself")
     }
 
-    //swiftlint:disable force_cast
+    // swiftlint:disable force_cast
     func testDealCardDoesNotReturnACardIfItIsEmpty() {
-        //Given
+        // Given
         XCTAssertFalse(sut.cards.isEmpty)
         _ = sut.removeAllCards(from: \CardShoe.cards as! ReferenceWritableKeyPath<CardShoe, [Card]>)
         XCTAssertTrue(sut.cards.isEmpty)
 
-        //When
+        // When
         let card = sut.deal()
 
-        //Then
+        // Then
         XCTAssertNil(card, "Should not deal any card")
     }
-    //swiftlint:enable force_cast
+
+    // swiftlint:enable force_cast
 
     func testDiscardingACard() {
-        //Given
+        // Given
         XCTAssertTrue(sut.discardBox.isEmpty)
 
-        //When
+        // When
         sut.discard(card)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.discardBox.first, card, "Should put card to a discard box")
     }
 
     func testDiscardingCards() {
-        //Given
+        // Given
         XCTAssertTrue(sut.discardBox.isEmpty)
         let cards = [card!, card!, card!]
 
-        //When
+        // When
         sut.discard(cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.discardBox.count, cards.count, "Should put cards to a discard box")
         XCTAssertEqual(sut.discardBox, cards, "Should put cards to a discard box")
     }
 
     func testClearingDiscardBox() {
-        //Given
+        // Given
         let expectedCard: Card = card
         sut.discard(expectedCard)
 
-        //When
+        // When
         let cards = sut.emptyDiscardBox()
 
-        //Then
+        // Then
         XCTAssertTrue(sut.discardBox.isEmpty, "Should remove cards from a discard box")
         XCTAssertEqual([expectedCard], cards)
-
     }
 
     func testFillingShoeFromDiscardBox() {
-        //Given
+        // Given
         let expectedCount = sut.cards.count + 1
         let expectedCard: Card = card
         sut.discard(expectedCard)
 
-        //When
+        // When
         sut.fillFromDiscardBox()
 
-        //Then
+        // Then
         XCTAssertEqual(sut.cards.last, expectedCard, "Should put cards from discard box back to the shoe")
         XCTAssertEqual(sut.cards.count, expectedCount, "Should put cards from discard box back to the shoe")
         XCTAssertEqual(sut.discardBox.count, 0, "Should empty discard box")
     }
 
     func testShufflingAddsCardsToShoe() {
-        //Given
+        // Given
         let discarded = [Card(suit: .diamonds, rank: .ace),
                          Card(suit: .clubs, rank: .king),
                          Card(suit: .spades, rank: .queen),
@@ -173,10 +172,10 @@ final class CardShoeTests: XCTestCase {
         sut.discard(discarded)
         let expectedCards = sut.cards + discarded
 
-        //When
+        // When
         sut.shuffleCards()
 
-        //Then
+        // Then
         XCTAssertTrue(sut.discardBox.isEmpty, "Should empty the discard box")
         XCTAssertTrue(shuffler.shuffleCalled, "Should use shuffler")
         XCTAssertEqual(shuffler.collectionForShuffling as? [Card], expectedCards,

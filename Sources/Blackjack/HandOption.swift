@@ -11,6 +11,7 @@ public struct HandOption: OptionSet {
     public init(rawValue: Int) {
         self.rawValue = rawValue
     }
+
     public let rawValue: Int
     public static let hit = HandOption(rawValue: 1 << 0)
     public static let stand = HandOption(rawValue: 1 << 1)

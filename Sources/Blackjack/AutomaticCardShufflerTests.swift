@@ -5,12 +5,11 @@
 //  Created by Maciej Piotrowski on 4/3/19.
 //
 
-import XCTest
-import PlayingCards
 @testable import Blackjack
+import PlayingCards
+import XCTest
 
 final class AutomaticCardShufflerTests: XCTestCase {
-
     var sut: AutomaticCardShuffler!
     var shuffler: ShufflerSpy!
     var deck: Deck!
@@ -31,90 +30,90 @@ final class AutomaticCardShufflerTests: XCTestCase {
 
     func testDiscardingACardDoesNotShuffleShoe() {
         let p = Int(0.74 * Double(deck.cards.count))
-        for i in 1...p {
-            //Given
+        for i in 1 ... p {
+            // Given
             let card = sut.deal()!
 
-            //When
+            // When
             sut.discard(card)
 
-            //Then
+            // Then
             XCTAssertFalse(shuffler.shuffleCalled, "Should not shuffle Shoe")
             XCTAssertEqual(sut.discardBox.count, i, "Should add a card to discard box")
         }
     }
 
     func testDiscardingCardsDoesNotShuffleShoe() {
-        //Given
+        // Given
         let p = Int(0.74 * Double(deck.cards.count))
         var cards: [Card] = []
 
-        for _ in 1...p {
+        for _ in 1 ... p {
             cards.append(sut.deal()!)
         }
 
-        //When
+        // When
         sut.discard(cards)
 
-        //Then
+        // Then
         XCTAssertFalse(shuffler.shuffleCalled, "Should not shuffle Shoe")
         XCTAssertEqual(sut.discardBox.count, p, "Should add a card to discard box")
     }
 
     func testDiscardingACardDoesNotShuffleShoeUntil75PercentOfCardsAreInDiscardBox() {
-        //Given
+        // Given
         let p = Int(0.75 * Double(deck.cards.count))
         var cards: [Card] = []
 
-        for _ in 1...p {
+        for _ in 1 ... p {
             cards.append(sut.deal()!)
         }
 
-        for i in 0..<p-1 {
-            //When
+        for i in 0 ..< p - 1 {
+            // When
             sut.discard(cards[i])
 
-            //Then
+            // Then
             XCTAssertFalse(shuffler.shuffleCalled, "Should not shuffle Shoe")
-            let expectedCount = i+1
+            let expectedCount = i + 1
             XCTAssertEqual(sut.discardBox.count, expectedCount, "Should add a card to discard box")
         }
     }
 
     func testDiscardingCardsDoesNotShuffleShoeUntil75PercentOfCardsAreInDiscardBox() {
-        //Given
+        // Given
         let p = Int(0.75 * Double(deck.cards.count))
         var cards: [Card] = []
 
-        for _ in 1...p {
+        for _ in 1 ... p {
             cards.append(sut.deal()!)
         }
 
         _ = cards.removeLast()
 
-        //When
+        // When
         sut.discard(cards)
 
-        //Then
+        // Then
         XCTAssertFalse(shuffler.shuffleCalled, "Should not shuffle Shoe")
         XCTAssertEqual(sut.discardBox.count, cards.count, "Should add a card to discard box")
     }
 
     func testDiscardingACardShufflesShoeWhen75PercentOfCardsAreInDiscardBox() {
-        //Given
+        // Given
         let p = Int(0.75 * Double(deck.cards.count))
 
-        for _ in 1...p-1 {
+        for _ in 1 ... p - 1 {
             sut.discard(sut.deal()!)
             XCTAssertFalse(shuffler.shuffleCalled, "Should not shuffle Shoe")
         }
         let lastCard = sut.deal()!
         let expectedCards = sut.cards + sut.discardBox + [lastCard]
 
-        //When
+        // When
         sut.discard(lastCard)
 
-        //Then
+        // Then
         XCTAssertTrue(sut.discardBox.isEmpty, "Should empty the discard box")
         XCTAssertTrue(shuffler.shuffleCalled, "Should use shuffler")
         XCTAssertEqual(shuffler.collectionForShuffling as? [Card], expectedCards,
@@ -123,25 +122,24 @@ final class AutomaticCardShufflerTests: XCTestCase {
     }
 
     func testDiscardingCardsShufflesShoeWhen75PercentOfCardsAreInDiscardBox() {
-        //Given
+        // Given
         let p = Int(0.75 * Double(deck.cards.count))
         var cards: [Card] = []
 
-        for _ in 1...p {
+        for _ in 1 ... p {
             cards.append(sut.deal()!)
         }
 
         let expectedCards = sut.cards + cards
 
-        //When
+        // When
         sut.discard(cards)
 
-        //Then
+        // Then
         XCTAssertTrue(sut.discardBox.isEmpty, "Should empty the discard box")
         XCTAssertTrue(shuffler.shuffleCalled, "Should use shuffler")
         XCTAssertEqual(shuffler.collectionForShuffling as? [Card], expectedCards,
                        "Should use cards from the shoe and discard box in the shuffler")
         XCTAssertEqual(sut.cards, shuffler.shuffledCollection as? [Card], "Should put cards from shuffler to the shoe")
     }
-
 }

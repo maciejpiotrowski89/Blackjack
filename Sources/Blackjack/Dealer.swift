@@ -16,7 +16,6 @@ public protocol Dealer: HandPlaying {
 }
 
 public final class DealerImpl: Dealer {
-
     var dealerHand: DealerHand?
     public var hand: Hand? { return dealerHand }
     public weak var delegate: Dealer.GameDelegate?
@@ -46,5 +45,4 @@ public final class DealerImpl: Dealer {
     public func collect(bet: UInt) {
         betsWon += bet
     }
-
 }

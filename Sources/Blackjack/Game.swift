@@ -9,33 +9,33 @@ import PlayingCards
 
 public enum GameError: Error {
     case unknown,
-    cardShoeIsEmpty,
-    roundInProgress,
-    cannotDealWhenRoundIsNotInProgress,
-    impossibleStateTransition(from: GameState, to: GameState),
-    noPlayersHand(in: GameState),
-    noDealersHand(in: GameState),
-    cannotCreateHandFromCards([Card]),
-    noHandToPlay,
-    noHandToDiscard,
-    cannotBetZero
+        cardShoeIsEmpty,
+        roundInProgress,
+        cannotDealWhenRoundIsNotInProgress,
+        impossibleStateTransition(from: GameState, to: GameState),
+        noPlayersHand(in: GameState),
+        noDealersHand(in: GameState),
+        cannotCreateHandFromCards([Card]),
+        noHandToPlay,
+        noHandToDiscard,
+        cannotBetZero
 }
 
-public protocol CardDealer: class {
+public protocol CardDealer: AnyObject {
     func dealCard() throws -> Card
 }
 
-public protocol Starting: class {
+public protocol Starting: AnyObject {
     func start() throws
 }
 
-public protocol PlayersTurnDelegate: class {
+public protocol PlayersTurnDelegate: AnyObject {
     func bet(_ chip: Chip)
     func resetBet()
     func finishPlayersTurn() throws
 }
 
-public protocol DealersTurnDelegate: class {
+public protocol DealersTurnDelegate: AnyObject {
     func finishDealersTurn() throws
 }
 
@@ -43,7 +43,7 @@ public enum GameOutcome {
     case playerHadBlackjack, playerWon, playerBusted, playerLost, draw
 }
 
-public protocol GameOutcomeDelegate: class {
+public protocol GameOutcomeDelegate: AnyObject {
     func game(_ game: Game, didFinishWithOutcome outcome: GameOutcome)
 }
 

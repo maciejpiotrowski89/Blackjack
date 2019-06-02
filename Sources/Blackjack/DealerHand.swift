@@ -8,13 +8,13 @@
 import PlayingCards
 
 public struct DealerHand: Hand {
-
     public private(set) var cards: [Card]
     public var faceUpCard: Card! {
         return cards.first
     }
+
     public init(faceUp: Card, faceDown: Card) {
-        self.cards = [faceUp, faceDown]
+        cards = [faceUp, faceDown]
     }
 
     public var options: HandOption {
@@ -26,7 +26,7 @@ public struct DealerHand: Hand {
     }
 
     public var outcome: HandOutcome {
-        if highValue == Int.Blackjack && cards.count == 2 {
+        if highValue == Int.Blackjack, cards.count == 2 {
             return .blackjack
         } else if highValue > Int.Blackjack {
             return .bust

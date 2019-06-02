@@ -5,12 +5,11 @@
 //  Created by Maciej Piotrowski on 19/4/19.
 //
 
-import XCTest
-import PlayingCards
 @testable import Blackjack
+import PlayingCards
+import XCTest
 
 final class GameStateNavigatorImplTestsTests: XCTestCase {
-
     var sut: GameStateNavigatorImpl!
 
     override func setUp() {
@@ -24,6 +23,7 @@ final class GameStateNavigatorImplTestsTests: XCTestCase {
     }
 
     // MARK: Transitions from Ready to Play state
+
     func testNavigationFrom_ReadyToPlay_To_ReadyToPlay_Possible() {
         XCTAssertThrowsError(try sut.navigate(to: .readyToPlay))
         XCTAssertEqual(sut.state, .readyToPlay)
@@ -45,6 +45,7 @@ final class GameStateNavigatorImplTestsTests: XCTestCase {
     }
 
     // MARK: Transitions from Player's Turn state
+
     func testNavigationFrom_PlayersTurn_To_ReadyToPlay_Impossible() {
         try! sut.navigate(to: .playersTurn)
         XCTAssertThrowsError(try sut.navigate(to: .readyToPlay))
@@ -70,6 +71,7 @@ final class GameStateNavigatorImplTestsTests: XCTestCase {
     }
 
     // MARK: Transitions from Dealer's Turn state
+
     func testNavigationFrom_DealersTurn_To_ReadyToPlay_ImPossible() {
         try! sut.navigate(to: .playersTurn)
         try! sut.navigate(to: .dealersTurn)
@@ -99,6 +101,7 @@ final class GameStateNavigatorImplTestsTests: XCTestCase {
     }
 
     // MARK: Transitions from Managing Bets state
+
     func testNavigationFrom_ManagingBets_To_ReadyToPlay_Possible() {
         try! sut.navigate(to: .playersTurn)
         try! sut.navigate(to: .dealersTurn)

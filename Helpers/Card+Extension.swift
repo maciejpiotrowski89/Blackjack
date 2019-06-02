@@ -31,5 +31,4 @@ extension Card {
     static func sample(_ rank: Rank = .two) -> Card {
         return Card(suit: .clubs, rank: rank)
     }
-
 }

@@ -18,8 +18,7 @@ extension DealerHand {
             [
                 Card(suit: .clubs, rank: .queen),
                 Card(suit: .diamonds, rank: .two),
-            ]
-        )
+            ])
     }
 
     static func sample21Hand() -> DealerHand {
@@ -29,8 +28,7 @@ extension DealerHand {
                 Card(suit: .diamonds, rank: .five),
                 Card(suit: .hearts, rank: .three),
                 Card(suit: .clubs, rank: .three),
-            ]
-        )
+            ])
     }
 
     static func sampleBlackjackHand() -> DealerHand {
@@ -38,8 +36,7 @@ extension DealerHand {
             [
                 Card(suit: .clubs, rank: .ace),
                 Card(suit: .diamonds, rank: .king),
-            ]
-        )
+            ])
     }
 
     static func sample17Hand() -> DealerHand {
@@ -50,8 +47,7 @@ extension DealerHand {
                 Card(suit: .hearts, rank: .two),
                 Card(suit: .clubs, rank: .four),
                 Card(suit: .spades, rank: .six),
-            ]
-        )
+            ])
     }
 
     static func sample18Hand() -> DealerHand {
@@ -62,8 +58,7 @@ extension DealerHand {
                 Card(suit: .hearts, rank: .two),
                 Card(suit: .clubs, rank: .four),
                 Card(suit: .spades, rank: .six),
-            ]
-        )
+            ])
     }
 
     static func sampleBustHand() -> DealerHand {
@@ -73,8 +68,7 @@ extension DealerHand {
                 Card(suit: .diamonds, rank: .four),
                 Card(suit: .hearts, rank: .ten),
                 Card(suit: .clubs, rank: .king),
-            ]
-        )
+            ])
     }
 }
 
@@ -163,7 +157,6 @@ extension PlayerHand {
                 Card(suit: .diamonds, rank: .king),
                 Card(suit: .hearts, rank: .four),
                 Card(suit: .clubs, rank: .ten),
-            ]
-        )
+            ])
     }
 }

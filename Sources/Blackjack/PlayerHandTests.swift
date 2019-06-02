@@ -5,88 +5,88 @@
 //  Created by Maciej Piotrowski on 4/3/19.
 //
 
-import XCTest
-import PlayingCards
 @testable import Blackjack
+import PlayingCards
+import XCTest
 
-//swiftlint:disable type_body_length
+// swiftlint:disable type_body_length
 final class PlayerHandTests: XCTestCase {
-
     // MARK: Hand
+
     func testBetOfAHand() {
-        //Given:
+        // Given:
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .two),
-            ]
+        ]
 
-        //When:
+        // When:
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then:
+        // Then:
         XCTAssertEqual(sut.bet, bet)
     }
 
     func testOptionsForHandWithOnly2CardsOfDifferentValue() {
-        //Given:
+        // Given:
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .two),
-            ]
+        ]
 
-        //When:
+        // When:
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then:
+        // Then:
         XCTAssertNotNil(sut)
         XCTAssertEqual(sut.options, [.hit, .stand, .double])
     }
 
     func testOptionsForHandWithOnly2CardsOfSameValue() {
-        //Given:
+        // Given:
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .hearts, rank: .jack),
-            ]
+        ]
 
-        //When:
+        // When:
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then:
+        // Then:
         XCTAssertEqual(sut.options, [.hit, .stand, .double, .split])
     }
 
     func testHandWith3CardsCanHitOrStand() {
-        //Given:
+        // Given:
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .hearts, rank: .two),
             Card(suit: .hearts, rank: .three),
-            ]
+        ]
 
-        //When:
+        // When:
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then:
+        // Then:
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandInitlizer() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .three),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, first: cards.first!, second: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 4)
         XCTAssertEqual(sut.highValue, 14)
         XCTAssertEqual(sut.bet, bet)
@@ -94,18 +94,19 @@ final class PlayerHandTests: XCTestCase {
     }
 
     // MARK: Ace with another card
+
     func testHandWithAceAce() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .ace),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 2)
         XCTAssertEqual(sut.highValue, 12)
         XCTAssertEqual(sut.bet, bet)
@@ -113,17 +114,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithAceTwo() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .two),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 3)
         XCTAssertEqual(sut.highValue, 13)
         XCTAssertEqual(sut.bet, bet)
@@ -131,17 +132,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithAceThree() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .three),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 4)
         XCTAssertEqual(sut.highValue, 14)
         XCTAssertEqual(sut.bet, bet)
@@ -149,17 +150,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithAceFour() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .four),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 5)
         XCTAssertEqual(sut.highValue, 15)
         XCTAssertEqual(sut.bet, bet)
@@ -167,17 +168,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithAceFive() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .five),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 6)
         XCTAssertEqual(sut.highValue, 16)
         XCTAssertEqual(sut.bet, bet)
@@ -185,17 +186,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithAceSix() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .six),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 7)
         XCTAssertEqual(sut.highValue, 17)
         XCTAssertEqual(sut.bet, bet)
@@ -203,17 +204,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithAceSeven() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .seven),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 8)
         XCTAssertEqual(sut.highValue, 18)
         XCTAssertEqual(sut.bet, bet)
@@ -221,17 +222,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithAceEight() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .eight),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 9)
         XCTAssertEqual(sut.highValue, 19)
         XCTAssertEqual(sut.bet, bet)
@@ -239,17 +240,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithAceNine() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .nine),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 10)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.bet, bet)
@@ -257,17 +258,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithAceTen() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .ten),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 11)
         XCTAssertEqual(sut.highValue, 21)
         XCTAssertEqual(sut.outcome, .blackjack)
@@ -276,17 +277,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithAceJack() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .jack),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 11)
         XCTAssertEqual(sut.highValue, 21)
         XCTAssertEqual(sut.outcome, .blackjack)
@@ -295,17 +296,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithAceQueen() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .queen),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 11)
         XCTAssertEqual(sut.highValue, 21)
         XCTAssertEqual(sut.outcome, .blackjack)
@@ -314,17 +315,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithAceKing() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .king),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 11)
         XCTAssertEqual(sut.highValue, 21)
         XCTAssertEqual(sut.outcome, .blackjack)
@@ -333,18 +334,19 @@ final class PlayerHandTests: XCTestCase {
     }
 
     // MARK: Two with another card
+
     func testHandWithTwoAce() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .ace),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 3)
         XCTAssertEqual(sut.highValue, 13)
         XCTAssertEqual(sut.bet, bet)
@@ -352,17 +354,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithTwoTwo() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .two),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 4)
         XCTAssertEqual(sut.highValue, 4)
         XCTAssertEqual(sut.bet, bet)
@@ -370,17 +372,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithTwoThree() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .three),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 5)
         XCTAssertEqual(sut.highValue, 5)
         XCTAssertEqual(sut.bet, bet)
@@ -388,17 +390,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithTwoFour() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .four),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 6)
         XCTAssertEqual(sut.highValue, 6)
         XCTAssertEqual(sut.bet, bet)
@@ -406,17 +408,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithTwoFive() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .five),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 7)
         XCTAssertEqual(sut.highValue, 7)
         XCTAssertEqual(sut.bet, bet)
@@ -424,17 +426,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithTwoSix() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .six),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 8)
         XCTAssertEqual(sut.highValue, 8)
         XCTAssertEqual(sut.bet, bet)
@@ -442,17 +444,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithTwoSeven() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .seven),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 9)
         XCTAssertEqual(sut.highValue, 9)
         XCTAssertEqual(sut.bet, bet)
@@ -460,17 +462,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithTwoEight() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .eight),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 10)
         XCTAssertEqual(sut.highValue, 10)
         XCTAssertEqual(sut.bet, bet)
@@ -478,17 +480,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithTwoNine() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .nine),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 11)
         XCTAssertEqual(sut.highValue, 11)
         XCTAssertEqual(sut.bet, bet)
@@ -496,17 +498,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithTwoTen() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .ten),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 12)
         XCTAssertEqual(sut.highValue, 12)
         XCTAssertEqual(sut.bet, bet)
@@ -514,17 +516,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithTwoJack() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .jack),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 12)
         XCTAssertEqual(sut.highValue, 12)
         XCTAssertEqual(sut.bet, bet)
@@ -532,17 +534,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithTwoQueen() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .queen),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 12)
         XCTAssertEqual(sut.highValue, 12)
         XCTAssertEqual(sut.bet, bet)
@@ -550,17 +552,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithTwoKing() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .king),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 12)
         XCTAssertEqual(sut.highValue, 12)
         XCTAssertEqual(sut.bet, bet)
@@ -568,18 +570,19 @@ final class PlayerHandTests: XCTestCase {
     }
 
     // MARK: Three with another card
+
     func testHandWithThreeAce() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .ace),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 4)
         XCTAssertEqual(sut.highValue, 14)
         XCTAssertEqual(sut.bet, bet)
@@ -587,17 +590,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithThreeTwo() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .two),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 5)
         XCTAssertEqual(sut.highValue, 5)
         XCTAssertEqual(sut.bet, bet)
@@ -605,17 +608,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithThreeThree() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .three),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 6)
         XCTAssertEqual(sut.highValue, 6)
         XCTAssertEqual(sut.bet, bet)
@@ -623,17 +626,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithThreeFour() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .four),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 7)
         XCTAssertEqual(sut.highValue, 7)
         XCTAssertEqual(sut.bet, bet)
@@ -641,17 +644,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithThreeFive() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .five),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 8)
         XCTAssertEqual(sut.highValue, 8)
         XCTAssertEqual(sut.bet, bet)
@@ -659,17 +662,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithThreeSix() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .six),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 9)
         XCTAssertEqual(sut.highValue, 9)
         XCTAssertEqual(sut.bet, bet)
@@ -677,17 +680,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithThreeSeven() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .seven),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 10)
         XCTAssertEqual(sut.highValue, 10)
         XCTAssertEqual(sut.bet, bet)
@@ -695,17 +698,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithThreeEight() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .eight),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 11)
         XCTAssertEqual(sut.highValue, 11)
         XCTAssertEqual(sut.bet, bet)
@@ -713,17 +716,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithThreeNine() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .nine),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 12)
         XCTAssertEqual(sut.highValue, 12)
         XCTAssertEqual(sut.bet, bet)
@@ -731,17 +734,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithThreeTen() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .ten),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 13)
         XCTAssertEqual(sut.highValue, 13)
         XCTAssertEqual(sut.bet, bet)
@@ -749,17 +752,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithThreeJack() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .jack),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 13)
         XCTAssertEqual(sut.highValue, 13)
         XCTAssertEqual(sut.bet, bet)
@@ -767,17 +770,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithThreeQueen() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .queen),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 13)
         XCTAssertEqual(sut.highValue, 13)
         XCTAssertEqual(sut.bet, bet)
@@ -785,17 +788,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithThreeKing() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .king),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 13)
         XCTAssertEqual(sut.highValue, 13)
         XCTAssertEqual(sut.bet, bet)
@@ -803,18 +806,19 @@ final class PlayerHandTests: XCTestCase {
     }
 
     // MARK: Four with another card
+
     func testHandWithFourAce() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .ace),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 5)
         XCTAssertEqual(sut.highValue, 15)
         XCTAssertEqual(sut.bet, bet)
@@ -822,17 +826,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithFourTwo() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .two),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 6)
         XCTAssertEqual(sut.highValue, 6)
         XCTAssertEqual(sut.bet, bet)
@@ -840,17 +844,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithFourThree() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .three),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 7)
         XCTAssertEqual(sut.highValue, 7)
         XCTAssertEqual(sut.bet, bet)
@@ -858,17 +862,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithFourFour() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .four),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 8)
         XCTAssertEqual(sut.highValue, 8)
         XCTAssertEqual(sut.bet, bet)
@@ -876,17 +880,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithFourFive() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .five),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 9)
         XCTAssertEqual(sut.highValue, 9)
         XCTAssertEqual(sut.bet, bet)
@@ -894,17 +898,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithFourSix() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .six),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 10)
         XCTAssertEqual(sut.highValue, 10)
         XCTAssertEqual(sut.bet, bet)
@@ -912,17 +916,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithFourSeven() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .seven),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 11)
         XCTAssertEqual(sut.highValue, 11)
         XCTAssertEqual(sut.bet, bet)
@@ -930,17 +934,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithFourEight() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .eight),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 12)
         XCTAssertEqual(sut.highValue, 12)
         XCTAssertEqual(sut.bet, bet)
@@ -948,17 +952,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithFourNine() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .nine),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 13)
         XCTAssertEqual(sut.highValue, 13)
         XCTAssertEqual(sut.bet, bet)
@@ -966,17 +970,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithFourTen() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .ten),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 14)
         XCTAssertEqual(sut.highValue, 14)
         XCTAssertEqual(sut.bet, bet)
@@ -984,17 +988,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithFourJack() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .jack),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 14)
         XCTAssertEqual(sut.highValue, 14)
         XCTAssertEqual(sut.bet, bet)
@@ -1002,17 +1006,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithFourQueen() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .queen),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 14)
         XCTAssertEqual(sut.highValue, 14)
         XCTAssertEqual(sut.bet, bet)
@@ -1020,17 +1024,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithFourKing() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .king),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 14)
         XCTAssertEqual(sut.highValue, 14)
         XCTAssertEqual(sut.bet, bet)
@@ -1038,18 +1042,19 @@ final class PlayerHandTests: XCTestCase {
     }
 
     // MARK: Five with another card
+
     func testHandWithFiveAce() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .ace),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 6)
         XCTAssertEqual(sut.highValue, 16)
         XCTAssertEqual(sut.bet, bet)
@@ -1057,17 +1062,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithFiveTwo() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .two),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 7)
         XCTAssertEqual(sut.highValue, 7)
         XCTAssertEqual(sut.bet, bet)
@@ -1075,17 +1080,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithFiveThree() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .three),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 8)
         XCTAssertEqual(sut.highValue, 8)
         XCTAssertEqual(sut.bet, bet)
@@ -1093,17 +1098,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithFiveFour() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .four),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 9)
         XCTAssertEqual(sut.highValue, 9)
         XCTAssertEqual(sut.bet, bet)
@@ -1111,17 +1116,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithFiveFive() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .five),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 10)
         XCTAssertEqual(sut.highValue, 10)
         XCTAssertEqual(sut.bet, bet)
@@ -1129,17 +1134,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithFiveSix() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .six),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 11)
         XCTAssertEqual(sut.highValue, 11)
         XCTAssertEqual(sut.bet, bet)
@@ -1147,17 +1152,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithFiveSeven() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .seven),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 12)
         XCTAssertEqual(sut.highValue, 12)
         XCTAssertEqual(sut.bet, bet)
@@ -1165,17 +1170,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithFiveEight() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .eight),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 13)
         XCTAssertEqual(sut.highValue, 13)
         XCTAssertEqual(sut.bet, bet)
@@ -1183,17 +1188,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithFiveNine() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .nine),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 14)
         XCTAssertEqual(sut.highValue, 14)
         XCTAssertEqual(sut.bet, bet)
@@ -1201,17 +1206,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithFiveTen() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .ten),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 15)
         XCTAssertEqual(sut.highValue, 15)
         XCTAssertEqual(sut.bet, bet)
@@ -1219,17 +1224,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithFiveJack() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .jack),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 15)
         XCTAssertEqual(sut.highValue, 15)
         XCTAssertEqual(sut.bet, bet)
@@ -1237,17 +1242,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithFiveQueen() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .queen),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 15)
         XCTAssertEqual(sut.highValue, 15)
         XCTAssertEqual(sut.bet, bet)
@@ -1255,17 +1260,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithFiveKing() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .king),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 15)
         XCTAssertEqual(sut.highValue, 15)
         XCTAssertEqual(sut.bet, bet)
@@ -1273,18 +1278,19 @@ final class PlayerHandTests: XCTestCase {
     }
 
     // MARK: Six with another card
+
     func testHandWithSixAce() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .ace),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 7)
         XCTAssertEqual(sut.highValue, 17)
         XCTAssertEqual(sut.bet, bet)
@@ -1292,17 +1298,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithSixTwo() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .two),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 8)
         XCTAssertEqual(sut.highValue, 8)
         XCTAssertEqual(sut.bet, bet)
@@ -1310,17 +1316,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithSixThree() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .three),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 9)
         XCTAssertEqual(sut.highValue, 9)
         XCTAssertEqual(sut.bet, bet)
@@ -1328,17 +1334,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithSixFour() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .four),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 10)
         XCTAssertEqual(sut.highValue, 10)
         XCTAssertEqual(sut.bet, bet)
@@ -1346,17 +1352,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithSixFive() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .five),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 11)
         XCTAssertEqual(sut.highValue, 11)
         XCTAssertEqual(sut.bet, bet)
@@ -1364,17 +1370,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithSixSix() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .six),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 12)
         XCTAssertEqual(sut.highValue, 12)
         XCTAssertEqual(sut.bet, bet)
@@ -1382,17 +1388,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithSixSeven() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .seven),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 13)
         XCTAssertEqual(sut.highValue, 13)
         XCTAssertEqual(sut.bet, bet)
@@ -1400,17 +1406,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithSixEight() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .eight),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 14)
         XCTAssertEqual(sut.highValue, 14)
         XCTAssertEqual(sut.bet, bet)
@@ -1418,17 +1424,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithSixNine() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .nine),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 15)
         XCTAssertEqual(sut.highValue, 15)
         XCTAssertEqual(sut.bet, bet)
@@ -1436,17 +1442,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithSixTen() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .ten),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 16)
         XCTAssertEqual(sut.highValue, 16)
         XCTAssertEqual(sut.bet, bet)
@@ -1454,17 +1460,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithSixJack() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .jack),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 16)
         XCTAssertEqual(sut.highValue, 16)
         XCTAssertEqual(sut.bet, bet)
@@ -1472,17 +1478,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithSixQueen() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .queen),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 16)
         XCTAssertEqual(sut.highValue, 16)
         XCTAssertEqual(sut.bet, bet)
@@ -1490,17 +1496,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithSixKing() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .king),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 16)
         XCTAssertEqual(sut.highValue, 16)
         XCTAssertEqual(sut.bet, bet)
@@ -1508,18 +1514,19 @@ final class PlayerHandTests: XCTestCase {
     }
 
     // MARK: Seven with another card
+
     func testHandWithSevenAce() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .ace),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 8)
         XCTAssertEqual(sut.highValue, 18)
         XCTAssertEqual(sut.bet, bet)
@@ -1527,17 +1534,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithSevenTwo() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .two),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 9)
         XCTAssertEqual(sut.highValue, 9)
         XCTAssertEqual(sut.bet, bet)
@@ -1545,17 +1552,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithSevenThree() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .three),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 10)
         XCTAssertEqual(sut.highValue, 10)
         XCTAssertEqual(sut.bet, bet)
@@ -1563,17 +1570,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithSevenFour() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .four),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 11)
         XCTAssertEqual(sut.highValue, 11)
         XCTAssertEqual(sut.bet, bet)
@@ -1581,17 +1588,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithSevenFive() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .five),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 12)
         XCTAssertEqual(sut.highValue, 12)
         XCTAssertEqual(sut.bet, bet)
@@ -1599,17 +1606,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithSevenSix() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .six),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 13)
         XCTAssertEqual(sut.highValue, 13)
         XCTAssertEqual(sut.bet, bet)
@@ -1617,17 +1624,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithSevenSeven() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .seven),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 14)
         XCTAssertEqual(sut.highValue, 14)
         XCTAssertEqual(sut.bet, bet)
@@ -1635,17 +1642,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithSevenEight() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .eight),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 15)
         XCTAssertEqual(sut.highValue, 15)
         XCTAssertEqual(sut.bet, bet)
@@ -1653,17 +1660,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithSevenNine() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .nine),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 16)
         XCTAssertEqual(sut.highValue, 16)
         XCTAssertEqual(sut.bet, bet)
@@ -1671,17 +1678,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithSevenTen() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .ten),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 17)
         XCTAssertEqual(sut.highValue, 17)
         XCTAssertEqual(sut.bet, bet)
@@ -1689,17 +1696,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithSevenJack() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .jack),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 17)
         XCTAssertEqual(sut.highValue, 17)
         XCTAssertEqual(sut.bet, bet)
@@ -1707,17 +1714,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithSevenQueen() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .queen),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 17)
         XCTAssertEqual(sut.highValue, 17)
         XCTAssertEqual(sut.bet, bet)
@@ -1725,17 +1732,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithSevenKing() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .king),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 17)
         XCTAssertEqual(sut.highValue, 17)
         XCTAssertEqual(sut.bet, bet)
@@ -1743,18 +1750,19 @@ final class PlayerHandTests: XCTestCase {
     }
 
     // MARK: Eight with another card
+
     func testHandWithEightAce() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .ace),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 9)
         XCTAssertEqual(sut.highValue, 19)
         XCTAssertEqual(sut.bet, bet)
@@ -1762,17 +1770,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithEightTwo() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .two),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 10)
         XCTAssertEqual(sut.highValue, 10)
         XCTAssertEqual(sut.bet, bet)
@@ -1780,17 +1788,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithEightThree() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .three),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 11)
         XCTAssertEqual(sut.highValue, 11)
         XCTAssertEqual(sut.bet, bet)
@@ -1798,17 +1806,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithEightFour() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .four),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 12)
         XCTAssertEqual(sut.highValue, 12)
         XCTAssertEqual(sut.bet, bet)
@@ -1816,17 +1824,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithEightFive() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .five),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 13)
         XCTAssertEqual(sut.highValue, 13)
         XCTAssertEqual(sut.bet, bet)
@@ -1834,17 +1842,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithEightSix() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .six),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 14)
         XCTAssertEqual(sut.highValue, 14)
         XCTAssertEqual(sut.bet, bet)
@@ -1852,17 +1860,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithEightSeven() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .seven),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 15)
         XCTAssertEqual(sut.highValue, 15)
         XCTAssertEqual(sut.bet, bet)
@@ -1870,17 +1878,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithEightEight() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .eight),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 16)
         XCTAssertEqual(sut.highValue, 16)
         XCTAssertEqual(sut.bet, bet)
@@ -1888,17 +1896,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithEightNine() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .nine),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 17)
         XCTAssertEqual(sut.highValue, 17)
         XCTAssertEqual(sut.bet, bet)
@@ -1906,17 +1914,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithEightTen() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .ten),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 18)
         XCTAssertEqual(sut.highValue, 18)
         XCTAssertEqual(sut.bet, bet)
@@ -1924,17 +1932,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithEightJack() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .jack),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 18)
         XCTAssertEqual(sut.highValue, 18)
         XCTAssertEqual(sut.bet, bet)
@@ -1942,17 +1950,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithEightQueen() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .queen),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 18)
         XCTAssertEqual(sut.highValue, 18)
         XCTAssertEqual(sut.bet, bet)
@@ -1960,17 +1968,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithEightKing() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .king),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 18)
         XCTAssertEqual(sut.highValue, 18)
         XCTAssertEqual(sut.bet, bet)
@@ -1978,18 +1986,19 @@ final class PlayerHandTests: XCTestCase {
     }
 
     // MARK: Nine with another card
+
     func testHandWithNineAce() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .ace),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 10)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.bet, bet)
@@ -1997,17 +2006,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithNineTwo() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .two),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 11)
         XCTAssertEqual(sut.highValue, 11)
         XCTAssertEqual(sut.bet, bet)
@@ -2015,17 +2024,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithNineThree() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .three),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 12)
         XCTAssertEqual(sut.highValue, 12)
         XCTAssertEqual(sut.bet, bet)
@@ -2033,17 +2042,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithNineFour() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .four),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 13)
         XCTAssertEqual(sut.highValue, 13)
         XCTAssertEqual(sut.bet, bet)
@@ -2051,17 +2060,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithNineFive() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .five),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 14)
         XCTAssertEqual(sut.highValue, 14)
         XCTAssertEqual(sut.bet, bet)
@@ -2069,17 +2078,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithNineSix() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .six),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 15)
         XCTAssertEqual(sut.highValue, 15)
         XCTAssertEqual(sut.bet, bet)
@@ -2087,17 +2096,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithNineSeven() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .seven),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 16)
         XCTAssertEqual(sut.highValue, 16)
         XCTAssertEqual(sut.bet, bet)
@@ -2105,17 +2114,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithNineEight() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .eight),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 17)
         XCTAssertEqual(sut.highValue, 17)
         XCTAssertEqual(sut.bet, bet)
@@ -2123,17 +2132,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithNineNine() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .nine),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 18)
         XCTAssertEqual(sut.highValue, 18)
         XCTAssertEqual(sut.bet, bet)
@@ -2141,17 +2150,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithNineTen() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .ten),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 19)
         XCTAssertEqual(sut.highValue, 19)
         XCTAssertEqual(sut.bet, bet)
@@ -2159,17 +2168,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithNineJack() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .jack),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 19)
         XCTAssertEqual(sut.highValue, 19)
         XCTAssertEqual(sut.bet, bet)
@@ -2177,17 +2186,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithNineQueen() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .queen),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 19)
         XCTAssertEqual(sut.highValue, 19)
         XCTAssertEqual(sut.bet, bet)
@@ -2195,17 +2204,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithNineKing() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .king),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 19)
         XCTAssertEqual(sut.highValue, 19)
         XCTAssertEqual(sut.bet, bet)
@@ -2213,18 +2222,19 @@ final class PlayerHandTests: XCTestCase {
     }
 
     // MARK: Ten with another card
+
     func testHandWithTenAce() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .ace),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 11)
         XCTAssertEqual(sut.highValue, 21)
         XCTAssertEqual(sut.bet, bet)
@@ -2233,17 +2243,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithTenTwo() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .two),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 12)
         XCTAssertEqual(sut.highValue, 12)
         XCTAssertEqual(sut.bet, bet)
@@ -2251,17 +2261,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithTenThree() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .three),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 13)
         XCTAssertEqual(sut.highValue, 13)
         XCTAssertEqual(sut.bet, bet)
@@ -2269,17 +2279,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithTenFour() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .four),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 14)
         XCTAssertEqual(sut.highValue, 14)
         XCTAssertEqual(sut.bet, bet)
@@ -2287,17 +2297,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithTenFive() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .five),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 15)
         XCTAssertEqual(sut.highValue, 15)
         XCTAssertEqual(sut.bet, bet)
@@ -2305,17 +2315,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithTenSix() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .six),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 16)
         XCTAssertEqual(sut.highValue, 16)
         XCTAssertEqual(sut.bet, bet)
@@ -2323,17 +2333,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithTenSeven() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .seven),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 17)
         XCTAssertEqual(sut.highValue, 17)
         XCTAssertEqual(sut.bet, bet)
@@ -2341,17 +2351,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithTenEight() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .eight),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 18)
         XCTAssertEqual(sut.highValue, 18)
         XCTAssertEqual(sut.bet, bet)
@@ -2359,17 +2369,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithTenNine() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .nine),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 19)
         XCTAssertEqual(sut.highValue, 19)
         XCTAssertEqual(sut.bet, bet)
@@ -2377,17 +2387,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithTenTen() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .ten),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.bet, bet)
@@ -2395,17 +2405,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithTenJack() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .jack),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.bet, bet)
@@ -2413,17 +2423,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithTenQueen() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .queen),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.bet, bet)
@@ -2431,17 +2441,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithTenKing() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .king),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.bet, bet)
@@ -2449,18 +2459,19 @@ final class PlayerHandTests: XCTestCase {
     }
 
     // MARK: Jack with another card
+
     func testHandWithJackAce() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .ace),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 11)
         XCTAssertEqual(sut.highValue, 21)
         XCTAssertEqual(sut.bet, bet)
@@ -2469,17 +2480,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithJackTwo() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .two),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 12)
         XCTAssertEqual(sut.highValue, 12)
         XCTAssertEqual(sut.bet, bet)
@@ -2487,17 +2498,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithJackThree() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .three),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 13)
         XCTAssertEqual(sut.highValue, 13)
         XCTAssertEqual(sut.bet, bet)
@@ -2505,17 +2516,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithJackFour() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .four),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 14)
         XCTAssertEqual(sut.highValue, 14)
         XCTAssertEqual(sut.bet, bet)
@@ -2523,17 +2534,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithJackFive() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .five),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 15)
         XCTAssertEqual(sut.highValue, 15)
         XCTAssertEqual(sut.bet, bet)
@@ -2541,17 +2552,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithJackSix() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .six),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 16)
         XCTAssertEqual(sut.highValue, 16)
         XCTAssertEqual(sut.bet, bet)
@@ -2559,17 +2570,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithJackSeven() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .seven),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 17)
         XCTAssertEqual(sut.highValue, 17)
         XCTAssertEqual(sut.bet, bet)
@@ -2577,17 +2588,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithJackEight() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .eight),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 18)
         XCTAssertEqual(sut.highValue, 18)
         XCTAssertEqual(sut.bet, bet)
@@ -2595,17 +2606,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithJackNine() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .nine),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 19)
         XCTAssertEqual(sut.highValue, 19)
         XCTAssertEqual(sut.bet, bet)
@@ -2613,17 +2624,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithJackTen() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .ten),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.bet, bet)
@@ -2631,17 +2642,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithJackJack() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .jack),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.bet, bet)
@@ -2649,17 +2660,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithJackQueen() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .queen),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.bet, bet)
@@ -2667,17 +2678,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithJackKing() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .king),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.bet, bet)
@@ -2685,18 +2696,19 @@ final class PlayerHandTests: XCTestCase {
     }
 
     // MARK: Queen with another card
+
     func testHandWithQueenAce() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .ace),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 11)
         XCTAssertEqual(sut.highValue, 21)
         XCTAssertEqual(sut.bet, bet)
@@ -2705,17 +2717,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithQueenTwo() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .two),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 12)
         XCTAssertEqual(sut.highValue, 12)
         XCTAssertEqual(sut.bet, bet)
@@ -2723,17 +2735,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithQueenThree() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .three),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 13)
         XCTAssertEqual(sut.highValue, 13)
         XCTAssertEqual(sut.bet, bet)
@@ -2741,17 +2753,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithQueenFour() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .four),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 14)
         XCTAssertEqual(sut.highValue, 14)
         XCTAssertEqual(sut.bet, bet)
@@ -2759,17 +2771,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithQueenFive() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .five),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 15)
         XCTAssertEqual(sut.highValue, 15)
         XCTAssertEqual(sut.bet, bet)
@@ -2777,17 +2789,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithQueenSix() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .six),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 16)
         XCTAssertEqual(sut.highValue, 16)
         XCTAssertEqual(sut.bet, bet)
@@ -2795,17 +2807,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithQueenSeven() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .seven),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 17)
         XCTAssertEqual(sut.highValue, 17)
         XCTAssertEqual(sut.bet, bet)
@@ -2813,17 +2825,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithQueenEight() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .eight),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 18)
         XCTAssertEqual(sut.highValue, 18)
         XCTAssertEqual(sut.bet, bet)
@@ -2831,17 +2843,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithQueenNine() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .nine),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 19)
         XCTAssertEqual(sut.highValue, 19)
         XCTAssertEqual(sut.bet, bet)
@@ -2849,17 +2861,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithQueenTen() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .ten),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.bet, bet)
@@ -2867,17 +2879,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithQueenJack() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .jack),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.bet, bet)
@@ -2885,17 +2897,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithQueenQueen() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .queen),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.bet, bet)
@@ -2903,17 +2915,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithQueenKing() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .king),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.bet, bet)
@@ -2921,18 +2933,19 @@ final class PlayerHandTests: XCTestCase {
     }
 
     // MARK: King with another card
+
     func testHandWithKingAce() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .ace),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 11)
         XCTAssertEqual(sut.highValue, 21)
         XCTAssertEqual(sut.bet, bet)
@@ -2941,17 +2954,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithKingTwo() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .two),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 12)
         XCTAssertEqual(sut.highValue, 12)
         XCTAssertEqual(sut.bet, bet)
@@ -2959,17 +2972,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithKingThree() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .three),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 13)
         XCTAssertEqual(sut.highValue, 13)
         XCTAssertEqual(sut.bet, bet)
@@ -2977,17 +2990,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithKingFour() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .four),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 14)
         XCTAssertEqual(sut.highValue, 14)
         XCTAssertEqual(sut.bet, bet)
@@ -2995,17 +3008,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithKingFive() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .five),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 15)
         XCTAssertEqual(sut.highValue, 15)
         XCTAssertEqual(sut.bet, bet)
@@ -3013,17 +3026,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithKingSix() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .six),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 16)
         XCTAssertEqual(sut.highValue, 16)
         XCTAssertEqual(sut.bet, bet)
@@ -3031,17 +3044,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithKingSeven() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .seven),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 17)
         XCTAssertEqual(sut.highValue, 17)
         XCTAssertEqual(sut.bet, bet)
@@ -3049,17 +3062,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithKingEight() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .eight),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 18)
         XCTAssertEqual(sut.highValue, 18)
         XCTAssertEqual(sut.bet, bet)
@@ -3067,17 +3080,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithKingNine() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .nine),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 19)
         XCTAssertEqual(sut.highValue, 19)
         XCTAssertEqual(sut.bet, bet)
@@ -3085,17 +3098,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithKingTen() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .ten),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.bet, bet)
@@ -3103,17 +3116,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithKingJack() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .jack),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.bet, bet)
@@ -3121,17 +3134,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithKingQueen() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .queen),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.bet, bet)
@@ -3139,17 +3152,17 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithKingKing() {
-        //Given
+        // Given
         let bet: UInt = 100
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .king),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.bet, bet)
@@ -3157,19 +3170,20 @@ final class PlayerHandTests: XCTestCase {
     }
 
     // MARK: Values of more than 2 cards
+
     func testHandWith3Cards() {
-        //Given
+        // Given
         let bet: UInt = 200
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .king),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 15)
         XCTAssertEqual(sut.highValue, 15)
         XCTAssertEqual(sut.bet, bet)
@@ -3177,19 +3191,19 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWith4Cardss() {
-        //Given
+        // Given
         let bet: UInt = 200
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .five),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 18)
         XCTAssertEqual(sut.highValue, 18)
         XCTAssertEqual(sut.bet, bet)
@@ -3197,7 +3211,7 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWith5CardssWith2Aces() {
-        //Given
+        // Given
         let bet: UInt = 200
         let cards = [
             Card(suit: .clubs, rank: .two),
@@ -3205,12 +3219,12 @@ final class PlayerHandTests: XCTestCase {
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .ace),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 19)
         XCTAssertEqual(sut.highValue, 19)
         XCTAssertEqual(sut.bet, bet)
@@ -3218,19 +3232,19 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWith4CardsIncludingAce() {
-        //Given
+        // Given
         let bet: UInt = 200
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .four),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 10)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.bet, bet)
@@ -3238,19 +3252,19 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testHandWithValueOf21() {
-        //Given
+        // Given
         let bet: UInt = 200
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .five),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 21)
         XCTAssertEqual(sut.highValue, 21)
         XCTAssertEqual(sut.bet, bet)
@@ -3259,19 +3273,20 @@ final class PlayerHandTests: XCTestCase {
     }
 
     // MARK: Bust
+
     func testBust1() {
-        //Given
+        // Given
         let bet: UInt = 200
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .two),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 22)
         XCTAssertEqual(sut.highValue, 22)
         XCTAssertEqual(sut.bet, bet)
@@ -3280,18 +3295,18 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testBust2() {
-        //Given
+        // Given
         let bet: UInt = 200
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .diamonds, rank: .queen),
             Card(suit: .clubs, rank: .ten),
-            ]
+        ]
 
-        //When
+        // When
         let sut = PlayerHand(bet: bet, cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 30)
         XCTAssertEqual(sut.highValue, 30)
         XCTAssertEqual(sut.bet, bet)
@@ -3300,98 +3315,100 @@ final class PlayerHandTests: XCTestCase {
     }
 
     // MARK: Standing
+
     func testStand() {
-        //Given
+        // Given
         let bet: UInt = 200
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .six),
-            ]
+        ]
         var sut = PlayerHand(bet: bet, cards: cards)
 
-        //When
+        // When
         sut.stand()
 
-        //Then
+        // Then
         XCTAssertEqual(sut.outcome, .stood)
     }
 
     // MARK: Adding a card
+
     func testAddACard() {
-        //Given
+        // Given
         let bet: UInt = 200
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .six),
-            ]
+        ]
         var sut = PlayerHand(bet: bet, cards: cards)
         let next = Card(suit: .hearts, rank: .three)
 
-        //When
+        // When
         sut.add(card: next)
         sut.add(card: next)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.bet, bet)
         XCTAssertEqual(sut.options, [.hit, .stand])
         XCTAssertEqual(sut.cards.count, 4)
     }
 
     func testCannotAddACardAfterStanding1() {
-        //Given
+        // Given
         let bet: UInt = 200
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .six),
-            ]
+        ]
         var sut = PlayerHand(bet: bet, cards: cards)
         let next = Card(suit: .hearts, rank: .three)
 
-        //When
+        // When
         sut.stand()
         sut.add(card: next)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.bet, bet)
         XCTAssertEqual(sut.options, [])
         XCTAssertEqual(sut.cards.count, 2)
     }
 
     func testCannotAddACardAfterStanding2() {
-        //Given
+        // Given
         let bet: UInt = 200
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .six),
-            ]
+        ]
         var sut = PlayerHand(bet: bet, cards: cards)
         let next = Card(suit: .hearts, rank: .three)
 
-        //When
+        // When
         sut.add(card: next)
         sut.stand()
         sut.add(card: next)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.bet, bet)
         XCTAssertEqual(sut.options, [])
         XCTAssertEqual(sut.cards.count, 3)
     }
 
     func testStandReturnsHighValueAsValue() {
-        //Given
+        // Given
         let bet: UInt = 200
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .three),
-            ]
+        ]
         var sut = PlayerHand(bet: bet, cards: cards)
 
-        //When
+        // When
         sut.stand()
 
-        //Then
+        // Then
         XCTAssertEqual(sut.bet, bet)
         XCTAssertEqual(sut.options, [])
         XCTAssertEqual(sut.value, 15)
@@ -3399,39 +3416,40 @@ final class PlayerHandTests: XCTestCase {
     }
 
     // MARK: Doubling the bet
+
     func testDoubleDownDoublesTheBet() {
-        //Given
+        // Given
         let bet: UInt = 200
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .six),
-            ]
+        ]
         var sut = PlayerHand(bet: bet, cards: cards)
 
-        //When
+        // When
         sut.doubleBet()
 
-        //Then
+        // Then
         XCTAssertEqual(sut.bet, 2 * bet)
         XCTAssertEqual(sut.options, [])
         XCTAssertEqual(sut.outcome, .doubled)
     }
 
     func testDoubleDownAllowsAddingOneCard() {
-        //Given
+        // Given
         let bet: UInt = 200
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .six),
-            ]
+        ]
         var sut = PlayerHand(bet: bet, cards: cards)
         let next = Card(suit: .hearts, rank: .three)
 
-        //When
+        // When
         sut.doubleBet()
         sut.add(card: next)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.bet, 2 * bet)
         XCTAssertEqual(sut.options, [])
         XCTAssertEqual(sut.outcome, .stood)
@@ -3439,21 +3457,21 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testDoubleDownAllowsAddingOnlyOneCard() {
-        //Given
+        // Given
         let bet: UInt = 200
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .six),
-            ]
+        ]
         var sut = PlayerHand(bet: bet, cards: cards)
         let next = Card(suit: .hearts, rank: .three)
 
-        //When
+        // When
         sut.doubleBet()
         sut.add(card: next)
         sut.add(card: next)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.bet, 2 * bet)
         XCTAssertEqual(sut.options, [])
         XCTAssertEqual(sut.outcome, .stood)
@@ -3461,156 +3479,158 @@ final class PlayerHandTests: XCTestCase {
     }
 
     func testDoubleDownCanBeDoneOnlyOnAHandConsistingOfTwoCards() {
-        //Given
+        // Given
         let bet: UInt = 200
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .two),
-            ]
+        ]
         var sut = PlayerHand(bet: bet, cards: cards)
 
-        //When
+        // When
         sut.doubleBet()
 
-        //Then
+        // Then
         XCTAssertEqual(sut.bet, bet)
         XCTAssertEqual(sut.options, [.hit, .stand])
         XCTAssertEqual(sut.outcome, .playing)
     }
 
     // MARK: Comparing 2 hands
+
     func testHandGreaterThanAnotherHand() {
-        //Given
+        // Given
         let hand1 = PlayerHand(bet: 100, cards: [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .two),
-            ])
+        ])
         let hand2 = PlayerHand(bet: 100, cards: [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .two),
-            ])
+        ])
 
-        //When
+        // When
         let greater = hand1 > hand2
         let less = hand1 < hand2
 
-        //Then
+        // Then
         XCTAssertTrue(greater)
         XCTAssertFalse(less)
     }
 
     func testEqualHands1() {
-        //Given
+        // Given
         let hand1 = PlayerHand(bet: 100, cards: [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .two),
-            ])
+        ])
         let hand2 = PlayerHand(bet: 100, cards: [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .two),
-            ])
+        ])
 
-        //When
+        // When
         let equal = hand1 == hand2
 
-        //Then
+        // Then
         XCTAssertTrue(equal)
     }
 
     func testEqualHands2() {
-        //Given
+        // Given
         let hand1 = PlayerHand(bet: 100, cards: [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .two),
-            ])
+        ])
         let hand2 = PlayerHand(bet: 100, cards: [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .two),
-            ])
+        ])
 
-        //When
+        // When
         let equal = hand2 == hand1
 
-        //Then
+        // Then
         XCTAssertTrue(equal)
     }
 
     func testHandsAreNotEqual1() {
-        //Given
+        // Given
         let hand1 = PlayerHand(bet: 100, cards: [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .two),
-            ])
+        ])
         let hand2 = PlayerHand(bet: 100, cards: [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .two),
-            ])
+        ])
 
-        //When
+        // When
         let equal = hand1 == hand2
 
-        //Then
+        // Then
         XCTAssertFalse(equal)
     }
 
     func testHandsAreNotEqual2() {
-        //Given
+        // Given
         let hand1 = PlayerHand(bet: 100, cards: [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .two),
-            ])
+        ])
         let hand2 = PlayerHand(bet: 100, cards: [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .two),
-            ])
+        ])
 
-        //When
+        // When
         let equal = hand2 == hand1
 
-        //Then
+        // Then
         XCTAssertFalse(equal)
     }
 
     func testHandsAreNotEqual3() {
-        //Given
+        // Given
         let hand1 = PlayerHand(bet: 100, cards: [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .two),
-            ])
+        ])
         let hand2 = PlayerHand(bet: 100, cards: [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .two),
-            ])
+        ])
 
-        //When
+        // When
         let equal = hand1 != hand2
 
-        //Then
+        // Then
         XCTAssertTrue(equal)
     }
 
     func testHandsAreNotEqual4() {
-        //Given
+        // Given
         let hand1 = PlayerHand(bet: 100, cards: [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .two),
-            ])
+        ])
         let hand2 = PlayerHand(bet: 100, cards: [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .two),
-            ])
+        ])
 
-        //When
+        // When
         let equal = hand2 != hand1
 
-        //Then
+        // Then
         XCTAssertTrue(equal)
     }
 }
-//swiftlint:enable type_body_length
+
+// swiftlint:enable type_body_length

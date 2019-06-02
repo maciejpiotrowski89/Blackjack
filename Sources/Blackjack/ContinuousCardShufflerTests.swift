@@ -5,12 +5,11 @@
 //  Created by Maciej Piotrowski on 4/3/19.
 //
 
-import XCTest
-import PlayingCards
 @testable import Blackjack
+import PlayingCards
+import XCTest
 
 final class ContinuousCardShufflerTests: XCTestCase {
-
     var sut: ContinuousCardShuffler!
     var shuffler: ShufflerSpy!
 
@@ -28,17 +27,17 @@ final class ContinuousCardShufflerTests: XCTestCase {
     }
 
     func testDiscardingCardsShufflesEntireShoe() {
-        //Given
+        // Given
         let discarded = [Card(suit: .diamonds, rank: .ace),
                          Card(suit: .clubs, rank: .king),
                          Card(suit: .spades, rank: .queen),
                          Card(suit: .hearts, rank: .jack)]
         let expectedCards = sut.cards + discarded
 
-        //When
+        // When
         sut.discard(discarded)
 
-        //Then
+        // Then
         XCTAssertTrue(sut.discardBox.isEmpty, "Should empty the discard box")
         XCTAssertTrue(shuffler.shuffleCalled, "Should use shuffler")
         XCTAssertEqual(shuffler.collectionForShuffling as? [Card], expectedCards,
@@ -47,19 +46,18 @@ final class ContinuousCardShufflerTests: XCTestCase {
     }
 
     func testDiscardingACardShufflesEntireShoe() {
-        //Given
+        // Given
         let discarded = Card(suit: .diamonds, rank: .ace)
         let expectedCards = sut.cards + [discarded]
 
-        //When
+        // When
         sut.discard(discarded)
 
-        //Then
+        // Then
         XCTAssertTrue(sut.discardBox.isEmpty, "Should empty the discard box")
         XCTAssertTrue(shuffler.shuffleCalled, "Should use shuffler")
         XCTAssertEqual(shuffler.collectionForShuffling as? [Card], expectedCards,
                        "Should use cards from the shoe and discard box in the shuffler")
         XCTAssertEqual(sut.cards, shuffler.shuffledCollection as? [Card], "Should put cards from shuffler to the shoe")
     }
-
 }

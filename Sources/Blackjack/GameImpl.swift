@@ -8,7 +8,6 @@
 import PlayingCards
 
 public final class GameImpl: Game {
-
     public weak var delegate: GameOutcomeDelegate?
     private let shoe: PlayingCardShoe
     private let gameState: GameStateNavigator
@@ -30,7 +29,7 @@ public final class GameImpl: Game {
         self.shoe = shoe
         self.player = player
         self.dealer = dealer
-        self.gameState = stateNavigator
+        gameState = stateNavigator
         self.player.game = self
         self.player.dealer = self
         self.dealer.delegate = self
@@ -38,7 +37,6 @@ public final class GameImpl: Game {
 }
 
 extension GameImpl: CardDealer {
-
     public func dealCard() throws -> Card {
         guard state == .playersTurn || state == .dealersTurn else { throw GameError.cannotDealWhenRoundIsNotInProgress }
         guard let card = shoe.deal() else { throw GameError.cardShoeIsEmpty }
@@ -59,7 +57,6 @@ extension GameImpl: Starting {
 }
 
 extension GameImpl: PlayersTurnDelegate {
-
     public func bet(_ chip: Chip) {
         guard state == .readyToPlay else { return }
         wager += chip.rawValue
@@ -83,7 +80,6 @@ extension GameImpl: PlayersTurnDelegate {
 }
 
 extension GameImpl: DealersTurnDelegate {
-
     public func finishDealersTurn() throws {
         guard state == .dealersTurn else { throw GameError.impossibleStateTransition(from: state, to: .managingBets) }
         try settleRound()
@@ -99,7 +95,7 @@ extension GameImpl {
     private func dealCards() throws -> Cards {
         var playerCards: [Card] = []
         var dealerCards: [Card] = []
-        for i in 1...4 {
+        for i in 1 ... 4 {
             guard let card = shoe.deal() else { throw GameError.cardShoeIsEmpty }
             if i.isMultiple(of: 2) {
                 dealerCards.append(card)
@@ -116,11 +112,11 @@ extension GameImpl {
         try dealer.playHand()
     }
 
-    //swiftlint:disable cyclomatic_complexity
+    // swiftlint:disable cyclomatic_complexity
     private func settleRound() throws {
         try gameState.navigate(to: .managingBets)
-        guard let playerHand = playerHand else { throw GameError.noPlayersHand(in: self.state) }
-        guard let dealerHand = dealerHand else { throw GameError.noDealersHand(in: self.state) }
+        guard let playerHand = playerHand else { throw GameError.noPlayersHand(in: state) }
+        guard let dealerHand = dealerHand else { throw GameError.noDealersHand(in: state) }
 
         let gameOutcome: GameOutcome = outcome(from: playerHand, dealerHand)
 
@@ -140,7 +136,8 @@ extension GameImpl {
 
         delegate?.game(self, didFinishWithOutcome: gameOutcome)
     }
-    //swiftlint:enable cyclomatic_complexity
+
+    // swiftlint:enable cyclomatic_complexity
 
     private func clearBet() {
         wager = 0

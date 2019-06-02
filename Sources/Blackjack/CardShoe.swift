@@ -30,7 +30,7 @@ public class CardShoe: PlayingCardShoe {
     let shuffler: Shuffling
 
     public init(decks: [Deck], shuffler: Shuffling = Shuffler()) {
-        self.cards = decks.flatMap({ $0.cards })
+        cards = decks.flatMap { $0.cards }
         self.shuffler = shuffler
     }
 
@@ -41,7 +41,7 @@ public class CardShoe: PlayingCardShoe {
     public static func with(numberOfDecks n: UInt) -> CardShoe {
         var decks: [Deck] = []
         guard n > 0 else { return CardShoe(decks: decks) }
-        for _ in 1...n {
+        for _ in 1 ... n {
             decks.append(Deck.standardDeck())
         }
         return CardShoe(decks: decks)
@@ -57,7 +57,7 @@ public class CardShoe: PlayingCardShoe {
     }
 
     public final func discard(_ card: Card) {
-        self.discard([card])
+        discard([card])
     }
 
     public func discard(_ cards: [Card]) {

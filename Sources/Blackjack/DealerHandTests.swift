@@ -5,134 +5,135 @@
 //  Created by Maciej Piotrowski on 9/3/19.
 //
 
-import XCTest
-import PlayingCards
 @testable import Blackjack
+import PlayingCards
+import XCTest
 
-//swiftlint:disable type_body_length
+// swiftlint:disable type_body_length
 final class DealerHandTests: XCTestCase {
-
     // MARK: Hand
+
     func testHand() {
-        //Given:
+        // Given:
         let faceUp: Card = Card(suit: .diamonds, rank: .three)
         let faceDown: Card = Card(suit: .clubs, rank: .king)
 
-        //When:
+        // When:
         let sut = DealerHand(faceUp: faceUp, faceDown: faceDown)
 
-        //Then:
+        // Then:
         XCTAssertEqual(sut.faceUpCard, faceUp)
         XCTAssertEqual(sut.cards, [faceUp, faceDown])
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testOptionsForHandWithOnly2CardsOfSameValue() {
-        //Given:
+        // Given:
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .hearts, rank: .two),
-            ]
+        ]
 
-        //When:
+        // When:
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then:
+        // Then:
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     // MARK: Ace with another card
+
     func testHandWithAceAce() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .ace),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 2)
         XCTAssertEqual(sut.highValue, 12)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithAceTwo() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .two),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 3)
         XCTAssertEqual(sut.highValue, 13)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithAceThree() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .three),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 4)
         XCTAssertEqual(sut.highValue, 14)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithAceFour() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .four),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 5)
         XCTAssertEqual(sut.highValue, 15)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithAceFive() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .five),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 6)
         XCTAssertEqual(sut.highValue, 16)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithAceSix() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .six),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 17)
         XCTAssertEqual(sut.highValue, 17)
         XCTAssertEqual(sut.options, [])
@@ -140,16 +141,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithAceSeven() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .seven),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 18)
         XCTAssertEqual(sut.highValue, 18)
         XCTAssertEqual(sut.options, [])
@@ -157,16 +158,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithAceEight() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .eight),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 19)
         XCTAssertEqual(sut.highValue, 19)
         XCTAssertEqual(sut.options, [])
@@ -174,34 +175,33 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithAceNine() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .nine),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.options, [])
         XCTAssertEqual(sut.outcome, .stood)
-
     }
 
     func testHandWithAceTen() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .ten),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 11)
         XCTAssertEqual(sut.highValue, 21)
         XCTAssertEqual(sut.outcome, .blackjack)
@@ -209,16 +209,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithAceJack() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .jack),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 11)
         XCTAssertEqual(sut.highValue, 21)
         XCTAssertEqual(sut.outcome, .blackjack)
@@ -226,16 +226,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithAceQueen() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .queen),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 11)
         XCTAssertEqual(sut.highValue, 21)
         XCTAssertEqual(sut.outcome, .blackjack)
@@ -243,16 +243,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithAceKing() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .king),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 11)
         XCTAssertEqual(sut.highValue, 21)
         XCTAssertEqual(sut.outcome, .blackjack)
@@ -260,1064 +260,1069 @@ final class DealerHandTests: XCTestCase {
     }
 
     // MARK: Two with another card
+
     func testHandWithTwoAce() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .ace),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 3)
         XCTAssertEqual(sut.highValue, 13)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithTwoTwo() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .two),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 4)
         XCTAssertEqual(sut.highValue, 4)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithTwoThree() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .three),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 5)
         XCTAssertEqual(sut.highValue, 5)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithTwoFour() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .four),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 6)
         XCTAssertEqual(sut.highValue, 6)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithTwoFive() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .five),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 7)
         XCTAssertEqual(sut.highValue, 7)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithTwoSix() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .six),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 8)
         XCTAssertEqual(sut.highValue, 8)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithTwoSeven() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .seven),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 9)
         XCTAssertEqual(sut.highValue, 9)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithTwoEight() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .eight),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 10)
         XCTAssertEqual(sut.highValue, 10)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithTwoNine() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .nine),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 11)
         XCTAssertEqual(sut.highValue, 11)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithTwoTen() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .ten),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 12)
         XCTAssertEqual(sut.highValue, 12)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithTwoJack() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .jack),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 12)
         XCTAssertEqual(sut.highValue, 12)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithTwoQueen() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .queen),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 12)
         XCTAssertEqual(sut.highValue, 12)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithTwoKing() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .king),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 12)
         XCTAssertEqual(sut.highValue, 12)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     // MARK: Three with another card
+
     func testHandWithThreeAce() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .ace),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 4)
         XCTAssertEqual(sut.highValue, 14)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithThreeTwo() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .two),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 5)
         XCTAssertEqual(sut.highValue, 5)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithThreeThree() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .three),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 6)
         XCTAssertEqual(sut.highValue, 6)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithThreeFour() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .four),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 7)
         XCTAssertEqual(sut.highValue, 7)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithThreeFive() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .five),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 8)
         XCTAssertEqual(sut.highValue, 8)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithThreeSix() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .six),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 9)
         XCTAssertEqual(sut.highValue, 9)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithThreeSeven() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .seven),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 10)
         XCTAssertEqual(sut.highValue, 10)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithThreeEight() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .eight),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 11)
         XCTAssertEqual(sut.highValue, 11)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithThreeNine() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .nine),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 12)
         XCTAssertEqual(sut.highValue, 12)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithThreeTen() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .ten),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 13)
         XCTAssertEqual(sut.highValue, 13)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithThreeJack() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .jack),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 13)
         XCTAssertEqual(sut.highValue, 13)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithThreeQueen() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .queen),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 13)
         XCTAssertEqual(sut.highValue, 13)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithThreeKing() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .king),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 13)
         XCTAssertEqual(sut.highValue, 13)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     // MARK: Four with another card
+
     func testHandWithFourAce() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .ace),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 5)
         XCTAssertEqual(sut.highValue, 15)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithFourTwo() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .two),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 6)
         XCTAssertEqual(sut.highValue, 6)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithFourThree() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .three),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 7)
         XCTAssertEqual(sut.highValue, 7)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithFourFour() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .four),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 8)
         XCTAssertEqual(sut.highValue, 8)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithFourFive() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .five),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 9)
         XCTAssertEqual(sut.highValue, 9)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithFourSix() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .six),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 10)
         XCTAssertEqual(sut.highValue, 10)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithFourSeven() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .seven),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 11)
         XCTAssertEqual(sut.highValue, 11)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithFourEight() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .eight),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 12)
         XCTAssertEqual(sut.highValue, 12)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithFourNine() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .nine),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 13)
         XCTAssertEqual(sut.highValue, 13)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithFourTen() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .ten),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 14)
         XCTAssertEqual(sut.highValue, 14)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithFourJack() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .jack),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 14)
         XCTAssertEqual(sut.highValue, 14)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithFourQueen() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .queen),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 14)
         XCTAssertEqual(sut.highValue, 14)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithFourKing() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .king),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 14)
         XCTAssertEqual(sut.highValue, 14)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     // MARK: Five with another card
+
     func testHandWithFiveAce() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .ace),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 6)
         XCTAssertEqual(sut.highValue, 16)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithFiveTwo() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .two),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 7)
         XCTAssertEqual(sut.highValue, 7)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithFiveThree() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .three),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 8)
         XCTAssertEqual(sut.highValue, 8)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithFiveFour() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .four),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 9)
         XCTAssertEqual(sut.highValue, 9)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithFiveFive() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .five),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 10)
         XCTAssertEqual(sut.highValue, 10)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithFiveSix() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .six),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 11)
         XCTAssertEqual(sut.highValue, 11)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithFiveSeven() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .seven),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 12)
         XCTAssertEqual(sut.highValue, 12)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithFiveEight() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .eight),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 13)
         XCTAssertEqual(sut.highValue, 13)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithFiveNine() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .nine),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 14)
         XCTAssertEqual(sut.highValue, 14)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithFiveTen() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .ten),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 15)
         XCTAssertEqual(sut.highValue, 15)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithFiveJack() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .jack),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 15)
         XCTAssertEqual(sut.highValue, 15)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithFiveQueen() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .queen),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 15)
         XCTAssertEqual(sut.highValue, 15)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithFiveKing() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .king),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 15)
         XCTAssertEqual(sut.highValue, 15)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     // MARK: Six with another card
+
     func testHandWithSixAce() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .ace),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 17)
         XCTAssertEqual(sut.highValue, 17)
         XCTAssertEqual(sut.options, [])
         XCTAssertEqual(sut.outcome, .stood)
-
     }
 
     func testHandWithSixTwo() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .two),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 8)
         XCTAssertEqual(sut.highValue, 8)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithSixThree() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .three),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 9)
         XCTAssertEqual(sut.highValue, 9)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithSixFour() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .four),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 10)
         XCTAssertEqual(sut.highValue, 10)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithSixFive() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .five),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 11)
         XCTAssertEqual(sut.highValue, 11)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithSixSix() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .six),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 12)
         XCTAssertEqual(sut.highValue, 12)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithSixSeven() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .seven),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 13)
         XCTAssertEqual(sut.highValue, 13)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithSixEight() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .eight),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 14)
         XCTAssertEqual(sut.highValue, 14)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithSixNine() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .nine),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 15)
         XCTAssertEqual(sut.highValue, 15)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithSixTen() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .ten),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 16)
         XCTAssertEqual(sut.highValue, 16)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithSixJack() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .jack),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 16)
         XCTAssertEqual(sut.highValue, 16)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithSixQueen() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .queen),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 16)
         XCTAssertEqual(sut.highValue, 16)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithSixKing() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .king),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 16)
         XCTAssertEqual(sut.highValue, 16)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     // MARK: Seven with another card
+
     func testHandWithSevenAce() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .ace),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 18)
         XCTAssertEqual(sut.highValue, 18)
         XCTAssertEqual(sut.options, [])
@@ -1325,144 +1330,144 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithSevenTwo() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .two),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 9)
         XCTAssertEqual(sut.highValue, 9)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithSevenThree() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .three),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 10)
         XCTAssertEqual(sut.highValue, 10)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithSevenFour() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .four),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 11)
         XCTAssertEqual(sut.highValue, 11)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithSevenFive() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .five),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 12)
         XCTAssertEqual(sut.highValue, 12)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithSevenSix() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .six),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 13)
         XCTAssertEqual(sut.highValue, 13)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithSevenSeven() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .seven),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 14)
         XCTAssertEqual(sut.highValue, 14)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithSevenEight() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .eight),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 15)
         XCTAssertEqual(sut.highValue, 15)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithSevenNine() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .nine),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 16)
         XCTAssertEqual(sut.highValue, 16)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithSevenTen() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .ten),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 17)
         XCTAssertEqual(sut.highValue, 17)
         XCTAssertEqual(sut.options, [])
@@ -1470,16 +1475,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithSevenJack() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .jack),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 17)
         XCTAssertEqual(sut.highValue, 17)
         XCTAssertEqual(sut.options, [])
@@ -1487,16 +1492,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithSevenQueen() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .queen),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 17)
         XCTAssertEqual(sut.highValue, 17)
         XCTAssertEqual(sut.options, [])
@@ -1504,16 +1509,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithSevenKing() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .king),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 17)
         XCTAssertEqual(sut.highValue, 17)
         XCTAssertEqual(sut.options, [])
@@ -1521,17 +1526,18 @@ final class DealerHandTests: XCTestCase {
     }
 
     // MARK: Eight with another card
+
     func testHandWithEightAce() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .ace),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 19)
         XCTAssertEqual(sut.highValue, 19)
         XCTAssertEqual(sut.options, [])
@@ -1539,128 +1545,128 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithEightTwo() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .two),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 10)
         XCTAssertEqual(sut.highValue, 10)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithEightThree() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .three),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 11)
         XCTAssertEqual(sut.highValue, 11)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithEightFour() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .four),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 12)
         XCTAssertEqual(sut.highValue, 12)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithEightFive() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .five),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 13)
         XCTAssertEqual(sut.highValue, 13)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithEightSix() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .six),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 14)
         XCTAssertEqual(sut.highValue, 14)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithEightSeven() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .seven),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 15)
         XCTAssertEqual(sut.highValue, 15)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithEightEight() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .eight),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 16)
         XCTAssertEqual(sut.highValue, 16)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithEightNine() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .nine),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 17)
         XCTAssertEqual(sut.highValue, 17)
         XCTAssertEqual(sut.options, [])
@@ -1668,16 +1674,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithEightTen() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .ten),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 18)
         XCTAssertEqual(sut.highValue, 18)
         XCTAssertEqual(sut.options, [])
@@ -1685,16 +1691,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithEightJack() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .jack),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 18)
         XCTAssertEqual(sut.highValue, 18)
         XCTAssertEqual(sut.options, [])
@@ -1702,16 +1708,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithEightQueen() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .queen),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 18)
         XCTAssertEqual(sut.highValue, 18)
         XCTAssertEqual(sut.options, [])
@@ -1719,16 +1725,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithEightKing() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .king),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 18)
         XCTAssertEqual(sut.highValue, 18)
         XCTAssertEqual(sut.options, [])
@@ -1736,17 +1742,18 @@ final class DealerHandTests: XCTestCase {
     }
 
     // MARK: Nine with another card
+
     func testHandWithNineAce() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .ace),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.options, [])
@@ -1754,16 +1761,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithNineTwo() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .two),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 11)
         XCTAssertEqual(sut.highValue, 11)
         XCTAssertEqual(sut.options, [.hit, .stand])
@@ -1771,96 +1778,96 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithNineThree() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .three),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 12)
         XCTAssertEqual(sut.highValue, 12)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithNineFour() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .four),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 13)
         XCTAssertEqual(sut.highValue, 13)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithNineFive() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .five),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 14)
         XCTAssertEqual(sut.highValue, 14)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithNineSix() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .six),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 15)
         XCTAssertEqual(sut.highValue, 15)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithNineSeven() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .seven),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 16)
         XCTAssertEqual(sut.highValue, 16)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithNineEight() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .eight),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 17)
         XCTAssertEqual(sut.highValue, 17)
         XCTAssertEqual(sut.options, [])
@@ -1868,16 +1875,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithNineNine() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .nine),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 18)
         XCTAssertEqual(sut.highValue, 18)
         XCTAssertEqual(sut.options, [])
@@ -1885,16 +1892,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithNineTen() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .ten),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 19)
         XCTAssertEqual(sut.highValue, 19)
         XCTAssertEqual(sut.options, [])
@@ -1902,16 +1909,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithNineJack() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .jack),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 19)
         XCTAssertEqual(sut.highValue, 19)
         XCTAssertEqual(sut.options, [])
@@ -1919,16 +1926,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithNineQueen() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .queen),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 19)
         XCTAssertEqual(sut.highValue, 19)
         XCTAssertEqual(sut.options, [])
@@ -1936,16 +1943,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithNineKing() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .nine),
             Card(suit: .clubs, rank: .king),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 19)
         XCTAssertEqual(sut.highValue, 19)
         XCTAssertEqual(sut.options, [])
@@ -1953,17 +1960,18 @@ final class DealerHandTests: XCTestCase {
     }
 
     // MARK: Ten with another card
+
     func testHandWithTenAce() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .ace),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 11)
         XCTAssertEqual(sut.highValue, 21)
         XCTAssertEqual(sut.options, [])
@@ -1971,96 +1979,96 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithTenTwo() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .two),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 12)
         XCTAssertEqual(sut.highValue, 12)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithTenThree() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .three),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 13)
         XCTAssertEqual(sut.highValue, 13)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithTenFour() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .four),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 14)
         XCTAssertEqual(sut.highValue, 14)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithTenFive() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .five),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 15)
         XCTAssertEqual(sut.highValue, 15)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithTenSix() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .six),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 16)
         XCTAssertEqual(sut.highValue, 16)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithTenSeven() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .seven),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 17)
         XCTAssertEqual(sut.highValue, 17)
         XCTAssertEqual(sut.options, [])
@@ -2068,16 +2076,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithTenEight() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .eight),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 18)
         XCTAssertEqual(sut.highValue, 18)
         XCTAssertEqual(sut.options, [])
@@ -2085,16 +2093,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithTenNine() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .nine),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 19)
         XCTAssertEqual(sut.highValue, 19)
         XCTAssertEqual(sut.options, [])
@@ -2102,16 +2110,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithTenTen() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .ten),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.options, [])
@@ -2119,16 +2127,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithTenJack() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .jack),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.options, [])
@@ -2136,16 +2144,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithTenQueen() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .queen),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.options, [])
@@ -2153,16 +2161,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithTenKing() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .ten),
             Card(suit: .clubs, rank: .king),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.options, [])
@@ -2170,17 +2178,18 @@ final class DealerHandTests: XCTestCase {
     }
 
     // MARK: Jack with another card
+
     func testHandWithJackAce() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .ace),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 11)
         XCTAssertEqual(sut.highValue, 21)
         XCTAssertEqual(sut.options, [])
@@ -2188,96 +2197,96 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithJackTwo() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .two),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 12)
         XCTAssertEqual(sut.highValue, 12)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithJackThree() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .three),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 13)
         XCTAssertEqual(sut.highValue, 13)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithJackFour() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .four),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 14)
         XCTAssertEqual(sut.highValue, 14)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithJackFive() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .five),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 15)
         XCTAssertEqual(sut.highValue, 15)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithJackSix() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .six),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 16)
         XCTAssertEqual(sut.highValue, 16)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithJackSeven() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .seven),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 17)
         XCTAssertEqual(sut.highValue, 17)
         XCTAssertEqual(sut.options, [])
@@ -2285,16 +2294,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithJackEight() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .eight),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 18)
         XCTAssertEqual(sut.highValue, 18)
         XCTAssertEqual(sut.options, [])
@@ -2302,16 +2311,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithJackNine() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .nine),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 19)
         XCTAssertEqual(sut.highValue, 19)
         XCTAssertEqual(sut.options, [])
@@ -2319,16 +2328,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithJackTen() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .ten),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.options, [])
@@ -2336,16 +2345,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithJackJack() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .jack),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.options, [])
@@ -2353,16 +2362,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithJackQueen() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .queen),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.options, [])
@@ -2370,16 +2379,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithJackKing() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .jack),
             Card(suit: .clubs, rank: .king),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.options, [])
@@ -2387,17 +2396,18 @@ final class DealerHandTests: XCTestCase {
     }
 
     // MARK: Queen with another card
+
     func testHandWithQueenAce() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .ace),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 11)
         XCTAssertEqual(sut.highValue, 21)
         XCTAssertEqual(sut.options, [])
@@ -2405,96 +2415,96 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithQueenTwo() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .two),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 12)
         XCTAssertEqual(sut.highValue, 12)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithQueenThree() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .three),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 13)
         XCTAssertEqual(sut.highValue, 13)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithQueenFour() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .four),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 14)
         XCTAssertEqual(sut.highValue, 14)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithQueenFive() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .five),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 15)
         XCTAssertEqual(sut.highValue, 15)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithQueenSix() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .six),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 16)
         XCTAssertEqual(sut.highValue, 16)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithQueenSeven() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .seven),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 17)
         XCTAssertEqual(sut.highValue, 17)
         XCTAssertEqual(sut.options, [])
@@ -2502,16 +2512,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithQueenEight() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .eight),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 18)
         XCTAssertEqual(sut.highValue, 18)
         XCTAssertEqual(sut.options, [])
@@ -2519,16 +2529,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithQueenNine() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .nine),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 19)
         XCTAssertEqual(sut.highValue, 19)
         XCTAssertEqual(sut.options, [])
@@ -2536,16 +2546,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithQueenTen() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .ten),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.options, [])
@@ -2553,16 +2563,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithQueenJack() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .jack),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.options, [])
@@ -2570,16 +2580,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithQueenQueen() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .queen),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.options, [])
@@ -2587,16 +2597,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithQueenKing() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .king),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.options, [])
@@ -2604,17 +2614,18 @@ final class DealerHandTests: XCTestCase {
     }
 
     // MARK: King with another card
+
     func testHandWithKingAce() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .ace),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 11)
         XCTAssertEqual(sut.highValue, 21)
         XCTAssertEqual(sut.options, [])
@@ -2622,96 +2633,96 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithKingTwo() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .two),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 12)
         XCTAssertEqual(sut.highValue, 12)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithKingThree() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .three),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 13)
         XCTAssertEqual(sut.highValue, 13)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithKingFour() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .four),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 14)
         XCTAssertEqual(sut.highValue, 14)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithKingFive() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .five),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 15)
         XCTAssertEqual(sut.highValue, 15)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithKingSix() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .six),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 16)
         XCTAssertEqual(sut.highValue, 16)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWithKingSeven() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .seven),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 17)
         XCTAssertEqual(sut.highValue, 17)
         XCTAssertEqual(sut.options, [])
@@ -2719,16 +2730,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithKingEight() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .eight),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 18)
         XCTAssertEqual(sut.highValue, 18)
         XCTAssertEqual(sut.options, [])
@@ -2736,16 +2747,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithKingNine() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .nine),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 19)
         XCTAssertEqual(sut.highValue, 19)
         XCTAssertEqual(sut.options, [])
@@ -2753,16 +2764,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithKingTen() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .ten),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.options, [])
@@ -2770,16 +2781,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithKingJack() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .jack),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.options, [])
@@ -2787,16 +2798,16 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithKingQueen() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .queen),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
         XCTAssertEqual(sut.options, [])
@@ -2804,40 +2815,41 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testHandWithKingKing() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .king),
         ]
 
-        //When
+        // When
         let sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
     }
 
     // MARK: Values of more than 2 cards
+
     func testHandWith3Cards() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .three),
             Card(suit: .clubs, rank: .king),
         ]
 
-        //When
+        // When
         let sut = DealerHand(cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 15)
         XCTAssertEqual(sut.highValue, 15)
         XCTAssertEqual(sut.options, [.hit, .stand])
     }
 
     func testHandWith4Cards() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .ace),
@@ -2845,16 +2857,16 @@ final class DealerHandTests: XCTestCase {
             Card(suit: .clubs, rank: .five),
         ]
 
-        //When
+        // When
         let sut = DealerHand(cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 18)
         XCTAssertEqual(sut.highValue, 18)
     }
 
     func testHandWith5CardssWith2Aces() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .king),
@@ -2863,16 +2875,16 @@ final class DealerHandTests: XCTestCase {
             Card(suit: .clubs, rank: .ace),
         ]
 
-        //When
+        // When
         let sut = DealerHand(cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 19)
         XCTAssertEqual(sut.highValue, 19)
     }
 
     func testHandWith4CardsIncludingAce() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .ace),
@@ -2880,16 +2892,16 @@ final class DealerHandTests: XCTestCase {
             Card(suit: .clubs, rank: .four),
         ]
 
-        //When
+        // When
         let sut = DealerHand(cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 20)
         XCTAssertEqual(sut.highValue, 20)
     }
 
     func testHandWithValueOf21() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .two),
             Card(suit: .clubs, rank: .ace),
@@ -2897,27 +2909,28 @@ final class DealerHandTests: XCTestCase {
             Card(suit: .clubs, rank: .five),
         ]
 
-        //When
+        // When
         let sut = DealerHand(cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 21)
         XCTAssertEqual(sut.highValue, 21)
     }
 
     // MARK: Bust
+
     func testBust1() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .clubs, rank: .queen),
             Card(suit: .clubs, rank: .two),
         ]
 
-        //When
+        // When
         let sut = DealerHand(cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 22)
         XCTAssertEqual(sut.highValue, 22)
         XCTAssertEqual(sut.options, [])
@@ -2925,17 +2938,17 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testBust2() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .king),
             Card(suit: .diamonds, rank: .queen),
             Card(suit: .clubs, rank: .ten),
         ]
 
-        //When
+        // When
         let sut = DealerHand(cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.value, 30)
         XCTAssertEqual(sut.highValue, 30)
         XCTAssertEqual(sut.options, [])
@@ -2943,80 +2956,81 @@ final class DealerHandTests: XCTestCase {
     }
 
     // MARK: Auto - standing
+
     func testAutoStandAt17_1() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .six),
             Card(suit: .clubs, rank: .six),
         ]
 
-        //When
+        // When
         let sut = DealerHand(cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.outcome, .stood)
     }
 
     func testAutoStandAt17_2() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .six),
         ]
 
-        //When
+        // When
         let sut = DealerHand(cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.outcome, .stood)
     }
 
     func testAutoStandAt17_3() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .king),
         ]
 
-        //When
+        // When
         let sut = DealerHand(cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.outcome, .stood)
     }
 
     func testAutoStandAt18() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .king),
         ]
 
-        //When
+        // When
         let sut = DealerHand(cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.outcome, .stood)
     }
 
     func testAutoStandAt19() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .eight),
             Card(suit: .clubs, rank: .ace),
             Card(suit: .clubs, rank: .king),
         ]
 
-        //When
+        // When
         let sut = DealerHand(cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.outcome, .stood)
     }
 
     func testAutoStandAt20() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .seven),
             Card(suit: .clubs, rank: .five),
@@ -3024,16 +3038,17 @@ final class DealerHandTests: XCTestCase {
             Card(suit: .diamonds, rank: .six),
         ]
 
-        //When
+        // When
         let sut = DealerHand(cards: cards)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.outcome, .stood)
     }
 
     // MARK: Adding a card
+
     func testAddACard() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .six),
@@ -3041,11 +3056,11 @@ final class DealerHandTests: XCTestCase {
         var sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
         let next = Card(suit: .hearts, rank: .two)
 
-        //When
+        // When
         sut.add(card: next)
         sut.add(card: next)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.options, [.hit, .stand])
         XCTAssertEqual(sut.outcome, .playing)
         XCTAssertEqual(sut.value, 15)
@@ -3054,7 +3069,7 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testCannotAddACardAfterStanding1() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .six),
@@ -3062,11 +3077,11 @@ final class DealerHandTests: XCTestCase {
         var sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
         let next = Card(suit: .hearts, rank: .three)
 
-        //When
+        // When
         sut.add(card: next)
         sut.add(card: next)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.options, [])
         XCTAssertEqual(sut.outcome, .stood)
         XCTAssertEqual(sut.value, 17)
@@ -3075,7 +3090,7 @@ final class DealerHandTests: XCTestCase {
     }
 
     func testCannotAddACardAfterStanding2() {
-        //Given
+        // Given
         let cards = [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .six),
@@ -3083,12 +3098,12 @@ final class DealerHandTests: XCTestCase {
         var sut = DealerHand(faceUp: cards.first!, faceDown: cards.last!)
         let next = Card(suit: .hearts, rank: .three)
 
-        //When
+        // When
         sut.add(card: next)
         sut.add(card: next)
         sut.add(card: next)
 
-        //Then
+        // Then
         XCTAssertEqual(sut.options, [])
         XCTAssertEqual(sut.outcome, .stood)
         XCTAssertEqual(sut.value, 17)
@@ -3097,137 +3112,139 @@ final class DealerHandTests: XCTestCase {
     }
 
     // MARK: Comparing 2 hands
+
     func testHandGreaterThanAnotherHand() {
-        //Given
+        // Given
         let hand1 = DealerHand(cards: [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .two),
-            ])
+        ])
         let hand2 = DealerHand(cards: [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .two),
-            ])
+        ])
 
-        //When
+        // When
         let greater = hand1 > hand2
         let less = hand1 < hand2
 
-        //Then
+        // Then
         XCTAssertTrue(greater)
         XCTAssertFalse(less)
     }
 
     func testEqualHands1() {
-        //Given
+        // Given
         let hand1 = DealerHand(cards: [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .two),
-            ])
+        ])
         let hand2 = DealerHand(cards: [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .two),
-            ])
+        ])
 
-        //When
+        // When
         let equal = hand1 == hand2
 
-        //Then
+        // Then
         XCTAssertTrue(equal)
     }
 
     func testEqualHands2() {
-        //Given
+        // Given
         let hand1 = DealerHand(cards: [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .two),
-            ])
+        ])
         let hand2 = DealerHand(cards: [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .two),
-            ])
+        ])
 
-        //When
+        // When
         let equal = hand2 == hand1
 
-        //Then
+        // Then
         XCTAssertTrue(equal)
     }
 
     func testHandsAreNotEqual1() {
-        //Given
+        // Given
         let hand1 = DealerHand(cards: [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .two),
-            ])
+        ])
         let hand2 = DealerHand(cards: [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .two),
-            ])
+        ])
 
-        //When
+        // When
         let equal = hand1 == hand2
 
-        //Then
+        // Then
         XCTAssertFalse(equal)
     }
 
     func testHandsAreNotEqual2() {
-        //Given
+        // Given
         let hand1 = DealerHand(cards: [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .two),
-            ])
+        ])
         let hand2 = DealerHand(cards: [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .two),
-            ])
+        ])
 
-        //When
+        // When
         let equal = hand2 == hand1
 
-        //Then
+        // Then
         XCTAssertFalse(equal)
     }
 
     func testHandsAreNotEqual3() {
-        //Given
+        // Given
         let hand1 = DealerHand(cards: [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .two),
-            ])
+        ])
         let hand2 = DealerHand(cards: [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .two),
-            ])
+        ])
 
-        //When
+        // When
         let equal = hand1 != hand2
 
-        //Then
+        // Then
         XCTAssertTrue(equal)
     }
 
     func testHandsAreNotEqual4() {
-        //Given
+        // Given
         let hand1 = DealerHand(cards: [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .four),
             Card(suit: .clubs, rank: .two),
-            ])
+        ])
         let hand2 = DealerHand(cards: [
             Card(suit: .clubs, rank: .five),
             Card(suit: .clubs, rank: .two),
-            ])
+        ])
 
-        //When
+        // When
         let equal = hand2 != hand1
 
-        //Then
+        // Then
         XCTAssertTrue(equal)
     }
 }
-//swiftlint:enable type_body_length
+
+// swiftlint:enable type_body_length
