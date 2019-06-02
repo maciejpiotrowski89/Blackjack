@@ -9,7 +9,7 @@ import XCTest
 @testable import Blackjack
 import PlayingCards
 
-class DealerTests: XCTestCase {
+final class DealerTests: XCTestCase {
 
     var sut: DealerImpl!
     var delegate: DealerGameDelegateSpy!

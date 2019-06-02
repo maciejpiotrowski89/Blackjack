@@ -45,11 +45,15 @@ final class GameImplTests: XCTestCase {
     
     //MARK: Init
     func testIsPlayersGameDelegate() {
-        XCTAssertTrue(player.delegate === sut)
+        XCTAssertTrue(player.game === sut)
     }
     
     func testIsDealersGameDelegate() {
         XCTAssertTrue(dealer.delegate === sut)
+    }
+    
+    func testIsPlayersCardDealer() {
+        XCTAssertTrue(player.dealer === sut)
     }
     
     //MARK: Betting & Reseting a bet
@@ -115,7 +119,7 @@ final class GameImplTests: XCTestCase {
         XCTAssertEqual(sut.bet, 10)
 
         //When
-        sut.reset()
+        sut.resetBet()
         
         //Then
         XCTAssertEqual(sut.bet, 0)
@@ -131,7 +135,7 @@ final class GameImplTests: XCTestCase {
         stateNavigator.state = .playersTurn
 
         //When
-        sut.reset()
+        sut.resetBet()
         
         //Then
         XCTAssertEqual(sut.bet, bet)
@@ -168,7 +172,7 @@ final class GameImplTests: XCTestCase {
         //no betting
         
         //When
-        XCTAssertNoThrow(try sut.play())
+        XCTAssertNoThrow(try sut.start())
         
         //Then
         XCTAssertNil(stateNavigator.navigatedToState)
@@ -181,7 +185,7 @@ final class GameImplTests: XCTestCase {
         sut.bet(.ten)
         
         //When
-        XCTAssertNoThrow(try sut.play())
+        XCTAssertNoThrow(try sut.start())
 
         //Then
         XCTAssertEqual(stateNavigator.navigatedToState, .playersTurn)
@@ -193,7 +197,7 @@ final class GameImplTests: XCTestCase {
         sut.bet(.ten)
         
         //When
-        XCTAssertNoThrow(try sut.play())
+        XCTAssertNoThrow(try sut.start())
 
         //Then
         XCTAssertEqual(shoe.dealCount, 4)
@@ -204,7 +208,7 @@ final class GameImplTests: XCTestCase {
         stateNavigator.state = .playersTurn
         
         //When
-        XCTAssertThrowsError(try self.sut.play(), "Should throw GameError.roundInProgress error")
+        XCTAssertThrowsError(try self.sut.start(), "Should throw GameError.roundInProgress error")
 
         //Then
         XCTAssertEqual(shoe.dealCount, 0)
@@ -218,7 +222,7 @@ final class GameImplTests: XCTestCase {
         let bet = sut.bet
         
         //When
-        XCTAssertNoThrow(try sut.play())
+        XCTAssertNoThrow(try sut.start())
 
         //Then
         XCTAssertNotNil(player.createdHandWithCards)
@@ -232,7 +236,7 @@ final class GameImplTests: XCTestCase {
         sut.bet(.ten)
         
         //When
-        XCTAssertNoThrow(try sut.play())
+        XCTAssertNoThrow(try sut.start())
 
         //Then
         XCTAssertEqual(player.createdHandWithCards?.count, 2)
@@ -250,7 +254,7 @@ final class GameImplTests: XCTestCase {
         sut.bet(.ten)
         
         //When
-        XCTAssertNoThrow(try sut.play())
+        XCTAssertNoThrow(try sut.start())
 
         //Then
         XCTAssertTrue(player.playHandCalled)
@@ -262,7 +266,7 @@ final class GameImplTests: XCTestCase {
         sut.bet(.ten)
 
         //When
-        XCTAssertThrowsError(try sut.play(), "Should throw GameError.cardShoeEmpty error")
+        XCTAssertThrowsError(try sut.start(), "Should throw GameError.cardShoeEmpty error")
 
         //Then
         XCTAssertNil(player.createdHandWithCards)

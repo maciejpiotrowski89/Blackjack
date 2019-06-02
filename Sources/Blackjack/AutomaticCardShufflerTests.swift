@@ -9,7 +9,6 @@ import XCTest
 import PlayingCards
 @testable import Blackjack
 
-
 final class AutomaticCardShufflerTests: XCTestCase {
     
     var sut: AutomaticCardShuffler!

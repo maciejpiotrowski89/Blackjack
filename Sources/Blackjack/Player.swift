@@ -12,25 +12,42 @@ public protocol HandPlaying {
     func discardHand() throws -> [Card] 
 }
 
-extension HandPlaying {
-    public func playHand() throws { }
-}
-
-public protocol Player: ChipsManaging, HandPlaying {
-    typealias GameDelegate = (CardDealer & PlayersTurnDelegate)
-    var delegate: GameDelegate? { get set }
-    var hand: BettingHand? { get }
-    mutating func createHand(with cards: [Card], bet: UInt) throws
+public protocol Player: class, ChipsManaging, HandPlaying {
+    typealias GameDelegate = (Starting & PlayersTurnDelegate)
+    var game: GameDelegate? { get set }
+    var dealer: CardDealer? {get set}
+    
     func bet(_: Chip)
+    func clearBet()
+    
+    func startGame() throws
+    
+    var hand: BettingHand? { get }
+    func createHand(with cards: [Card], bet: UInt) throws
+    
     func hit()
     func doubleDown()
     func stand()
 }
 
 public class PlayerImpl: Player {
+    
     public var hand: BettingHand? { return playerHand }
     private(set) var playerHand: PlayerHand?
-    public weak var delegate: Player.GameDelegate?
+    public weak var game: Player.GameDelegate?
+    public weak  var dealer: CardDealer?
+
+    public func bet(_ chip: Chip) {
+        game?.bet(chip)
+    }
+    
+    public func clearBet() {
+        game?.resetBet()
+    }
+    
+    public func startGame() throws {
+        try game?.start()
+    }
     
     public func createHand(with cards: [Card], bet: UInt) throws {
         guard cards.count == 2 else { throw GameError.cannotCreateHandFromCards(cards)}
@@ -38,9 +55,8 @@ public class PlayerImpl: Player {
         playerHand = PlayerHand(bet: bet, cards: cards)
     }
     
-    public func bet(_ chip: Chip) {
-    }
-    
+    public func playHand() throws { }
+
     public func hit() {
     }
     

@@ -9,8 +9,11 @@ import PlayingCards
 @testable import Blackjack
 
 final class PlayerSpy: Player {
-    weak var delegate: Player.GameDelegate?
+    weak var game: Player.GameDelegate?
+    weak var dealer: CardDealer?
     var hand: BettingHand?
+    func startGame() {}
+    func clearBet() {}
     func bet(_: Chip) {}
     func hit() {}
     func doubleDown() {}

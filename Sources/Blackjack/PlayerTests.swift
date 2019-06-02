@@ -9,13 +9,48 @@ import XCTest
 import PlayingCards
 @testable import Blackjack
 
-class PlayerTests: XCTestCase {
+final class GameDelegateSpy: PlayersTurnDelegate, CardDealer, Starting {
+    enum Error: Swift.Error {
+        case somethingWentWrong
+    }
+    
+    func dealCard() throws -> Card {
+        return Card.sample()
+    }
+    
+    var betChipCallCount: Int = 0
+    var betChip: Chip?
+    func bet(_ chip: Chip) {
+        betChip = chip
+        betChipCallCount += 1
+    }
+    var resetCalled: Bool = false
+    func resetBet() {
+        resetCalled = true
+    }
+    var shouldThrowOnStart: Bool = false
+    var startCalled: Bool = false
+    func start() throws {
+        guard !shouldThrowOnStart else { throw Error.somethingWentWrong }
+        startCalled = true
+    }
+    var finishPlayersTurnCalled: Bool = false
+    func finishPlayersTurn() throws {
+        finishPlayersTurnCalled = true
+    }
+}
+
+final class PlayerTests: XCTestCase {
     
     var sut: PlayerImpl!
+    var game: GameDelegateSpy!
     
     override func setUp() {
         super.setUp()
         sut = PlayerImpl()
+        game = GameDelegateSpy()
+        sut.game = game
+        sut.dealer = game
     }
 
     override func tearDown() {
@@ -23,7 +58,66 @@ class PlayerTests: XCTestCase {
         super.tearDown()
     }
     
-    func testCreateHand_with0Bet_shouldFail() {
+    //MARK: Bet
+    func testBet_ShoulCallDelegate() {
+        //Given
+        let chip: Chip = .ten
+        
+        //When
+        sut.bet(chip)
+        
+        //Then
+        XCTAssertEqual(game.betChip, chip)
+    }
+    
+    func testBet_CanCallDelegateMultipleTimes() {
+        //Given
+        let chips: [Chip] = [.ten, .thousand, .fifty]
+        
+        //When
+        chips.forEach { sut.bet($0) }
+        
+        //Then
+        XCTAssertEqual(game.betChipCallCount, chips.count)
+    }
+    
+    //MARK: Reset
+    func testClearBet() {
+        //Given
+        //Nothing
+        
+        //When
+        sut.clearBet()
+        
+        //Then
+        XCTAssertTrue(game.resetCalled)
+    }
+    
+    //MARK: Start game
+    func testStartGame() {
+        //Given
+        game.shouldThrowOnStart = false
+        
+        //When
+        XCTAssertNoThrow(try sut.startGame())
+        
+        //Then
+        XCTAssertTrue(game.startCalled)
+    }
+    
+    func testStartGame_ShouldRethrowErrorFromGame() {
+        //Given
+        game.shouldThrowOnStart = true
+        
+        //When
+        XCTAssertThrowsError(try sut.startGame())
+        
+        //Then
+        XCTAssertFalse(game.startCalled)
+    }
+    
+    //MARK: Create hand
+    func testCreateHand_with0Bet_ShouldFail() {
         //Given
         let bet: UInt = 0
         let cards: [Card] = Card.sample2()
@@ -34,8 +128,8 @@ class PlayerTests: XCTestCase {
         //Then
         XCTAssertNil(sut.hand)
     }
-
-    func testCreateHand_shouldFail_withNoCards() {
+    
+    func testCreateHand_ShouldFail_withNoCards() {
         //Given
         let bet: UInt = 1
         let cards: [Card] = []
@@ -47,7 +141,7 @@ class PlayerTests: XCTestCase {
         XCTAssertNil(sut.hand)
     }
     
-    func testCreateHand_shouldFail_with1Card() {
+    func testCreateHand_ShouldFail_with1Card() {
         //Given
         let bet: UInt = 1
         let cards: [Card] = [Card.sample()]
@@ -59,7 +153,7 @@ class PlayerTests: XCTestCase {
         XCTAssertNil(sut.hand)
     }
     
-    func testCreateHand_shouldFail_with3Cards() {
+    func testCreateHand_ShouldFail_with3Cards() {
         //Given
         let bet: UInt = 1
         let cards: [Card] = [Card.sample()]
@@ -71,7 +165,7 @@ class PlayerTests: XCTestCase {
         XCTAssertNil(sut.hand)
     }
     
-    func testCreateHand_shouldSucceed_with2Cards_andProperBet() {
+    func testCreateHand_ShouldSucceed_with2Cards_andProperBet() {
         //Given
         let bet: UInt = 1
         let cards: [Card] = Card.sample2()
@@ -82,6 +176,5 @@ class PlayerTests: XCTestCase {
         //Then
         XCTAssertNotNil(sut.hand)
     }
-    
     
 }

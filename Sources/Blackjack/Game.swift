@@ -25,10 +25,13 @@ public protocol CardDealer: class {
     func dealCard() throws -> Card
 }
 
+public protocol Starting: class {
+    func start() throws
+}
+
 public protocol PlayersTurnDelegate: class {
     func bet(_ chip: Chip)
-    func reset()
-    func play() throws
+    func resetBet()
     func finishPlayersTurn() throws
 }
 
@@ -44,7 +47,7 @@ public protocol GameOutcomeDelegate: class {
     func game(_ game: Game, didFinishWithOutcome outcome: GameOutcome)
 }
 
-public protocol Game {
+public protocol Game: Starting {
     var dealerHand: Hand? { get }
     var playerHand: BettingHand? { get }
     var bet: UInt { get }

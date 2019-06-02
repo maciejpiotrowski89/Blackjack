@@ -31,7 +31,8 @@ public final class GameImpl: Game {
         self.player = player
         self.dealer = dealer
         self.gameState = stateNavigator
-        self.player.delegate = self
+        self.player.game = self
+        self.player.dealer = self
         self.dealer.delegate = self
     }
 }
@@ -45,20 +46,8 @@ extension GameImpl: CardDealer {
     }
 }
 
-extension GameImpl: PlayersTurnDelegate {
-    
-    public func bet(_ chip: Chip) {
-        guard state == .readyToPlay else { return }
-        wager += chip.rawValue
-    }
-    
-    public func reset() {
-        guard state == .readyToPlay else { return }
-        player.receive(chips: bet)
-        wager = 0
-    }
-    
-    public func play() throws {
+extension GameImpl: Starting {
+    public func start() throws {
         guard state == .readyToPlay else { throw GameError.roundInProgress }
         guard bet > 0 else { return }
         let cards = try dealCards()
@@ -66,6 +55,20 @@ extension GameImpl: PlayersTurnDelegate {
         try dealer.createHand(with: cards.dealer)
         try gameState.navigate(to: .playersTurn)
         try player.playHand()
+    }
+}
+
+extension GameImpl: PlayersTurnDelegate {
+    
+    public func bet(_ chip: Chip) {
+        guard state == .readyToPlay else { return }
+        wager += chip.rawValue
+    }
+    
+    public func resetBet() {
+        guard state == .readyToPlay else { return }
+        player.receive(chips: bet)
+        wager = 0
     }
     
     public func finishPlayersTurn() throws {
