@@ -51,13 +51,17 @@ final class GameImplTests: XCTestCase {
     }
 
     func testIsDealersGameDelegate() {
-        XCTAssertTrue(dealer.delegate === sut)
+        XCTAssertTrue(dealer.game === sut)
     }
 
     func testIsPlayersCardDealer() {
         XCTAssertTrue(player.dealer === sut)
     }
-
+    
+    func testIsDealersCardDealer() {
+        XCTAssertTrue(dealer.cardDealer === sut)
+    }
+    
     // MARK: Betting & Reseting a bet
 
     func testBetChip() {

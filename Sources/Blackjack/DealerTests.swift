@@ -17,7 +17,8 @@ final class DealerTests: XCTestCase {
         super.setUp()
         sut = DealerImpl()
         game = DealerGameDelegateSpy()
-        sut.delegate = game
+        sut.game = game
+        sut.cardDealer = game
     }
 
     override func tearDown() {

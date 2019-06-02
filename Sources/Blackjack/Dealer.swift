@@ -9,8 +9,9 @@ import PlayingCards
 
 public protocol Dealer: HandPlaying {
     var hand: Hand? { get }
-    typealias GameDelegate = (CardDealer & DealersTurnDelegate)
-    var delegate: GameDelegate? { get set }
+    typealias GameDelegate = DealersTurnDelegate
+    var game: GameDelegate? { get set }
+    var cardDealer: CardDealer? { get set }
     mutating func createHand(with cards: [Card]) throws
     mutating func collect(bet: UInt)
 }
@@ -18,7 +19,8 @@ public protocol Dealer: HandPlaying {
 public final class DealerImpl: Dealer {
     var dealerHand: DealerHand?
     public var hand: Hand? { return dealerHand }
-    public weak var delegate: Dealer.GameDelegate?
+    public weak var game: Dealer.GameDelegate?
+    public weak var cardDealer: CardDealer?
 
     public func createHand(with cards: [Card]) throws {
         guard cards.count == 2 else { throw GameError.cannotCreateHandFromCards(cards) }
@@ -28,11 +30,11 @@ public final class DealerImpl: Dealer {
     public func playHand() throws {
         guard var hand = self.dealerHand else { throw GameError.noHandToPlay }
         repeat {
-            guard let card = try delegate?.dealCard() else { throw GameError.cardShoeIsEmpty }
+            guard let card = try cardDealer?.dealCard() else { throw GameError.cardShoeIsEmpty }
             hand.add(card: card)
         } while hand.outcome == .playing
         dealerHand = hand
-        try delegate?.finishDealersTurn()
+        try game?.finishDealersTurn()
     }
 
     public func discardHand() throws -> [Card] {

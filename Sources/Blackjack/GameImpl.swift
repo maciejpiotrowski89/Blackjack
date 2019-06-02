@@ -32,7 +32,8 @@ public final class GameImpl: Game {
         gameState = stateNavigator
         self.player.game = self
         self.player.dealer = self
-        self.dealer.delegate = self
+        self.dealer.game = self
+        self.dealer.cardDealer = self
     }
 }
 

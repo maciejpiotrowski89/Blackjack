@@ -9,7 +9,8 @@
 import PlayingCards
 
 final class DealerSpy: Dealer {
-    weak var delegate: Dealer.GameDelegate?
+    weak var game: Dealer.GameDelegate?
+    weak var cardDealer: CardDealer?
     var hand: Hand?
     var createdHandWithCards: [Card]?
     func createHand(with cards: [Card]) throws { createdHandWithCards = cards }

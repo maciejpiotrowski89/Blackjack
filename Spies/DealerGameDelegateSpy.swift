@@ -8,7 +8,7 @@
 @testable import Blackjack
 import PlayingCards
 
-class DealerGameDelegateSpy: Dealer.GameDelegate {
+class DealerGameDelegateSpy: Dealer.GameDelegate, CardDealer {
     var dealCardCalled = false
     var dealCardReturned: Card!
     func dealCard() throws -> Card {
