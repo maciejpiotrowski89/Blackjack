@@ -10,7 +10,7 @@ import PlayingCards
 
 final class GameStateNavigatorSpy: GameStateNavigator {
     var state: GameState = .readyToPlay
-    
+
     var navigatedToState: GameState?
     var navigatedToStateCount = 0
     func navigate(to state: GameState) {

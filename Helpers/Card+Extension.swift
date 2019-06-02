@@ -16,20 +16,20 @@ extension Card {
             Card(suit: .hearts, rank: .two),
         ]
     }
-    
+
     static func sample2() -> [Card] {
         return [
             Card(suit: .clubs, rank: .queen),
             Card(suit: .spades, rank: .four),
         ]
     }
-    
+
     static func sampleCard() -> Card {
         return sample(.ten)
     }
-    
+
     static func sample(_ rank: Rank = .two) -> Card {
         return Card(suit: .clubs, rank: rank)
     }
-    
+
 }

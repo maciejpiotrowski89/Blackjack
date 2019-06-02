@@ -29,14 +29,14 @@ public final class GameStateNavigatorImpl: GameStateNavigator {
         }
         self.state = state
     }
-    
+
     private func assertState(_ state: GameState,
                              expected expectedState: GameState) throws {
         guard state == expectedState else {
             throw GameError.impossibleStateTransition(from: self.state, to: state)
         }
     }
-    
+
     private func assertState(_ state: GameState,
                              expected expectedStates: [GameState]) throws {
         guard expectedStates.contains(state) else {

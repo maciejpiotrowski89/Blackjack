@@ -12,79 +12,79 @@ import PlayingCards
 final class DealerTests: XCTestCase {
 
     var sut: DealerImpl!
-    var delegate: DealerGameDelegateSpy!
-    
+    var game: DealerGameDelegateSpy!
+
     override func setUp() {
         super.setUp()
         sut = DealerImpl()
-        delegate = DealerGameDelegateSpy()
-        sut.delegate = delegate
+        game = DealerGameDelegateSpy()
+        sut.delegate = game
     }
-    
+
     override func tearDown() {
         sut = nil
-        delegate = nil
+        game = nil
         super.tearDown()
     }
-    
-    //MARK: Hand
+
+    // MARK: Hand
     func testHasEmptyHand() {
         XCTAssertNil(sut.hand)
     }
-    
+
     func testCreatingHandWithNoCards() {
         //Given
         let cards: [Card] = []
-        
+
         //When
         XCTAssertThrowsError(try sut.createHand(with: cards))
-        
+
         //Then
         XCTAssertNil(sut.hand)
     }
-    
+
     func testCreatingHandWithOneCard() {
         //Given
         let cards: [Card] = [Card.sampleCard()]
-        
+
         //When
         XCTAssertThrowsError(try sut.createHand(with: cards))
-        
+
         //Then
         XCTAssertNil(sut.hand)
     }
-    
+
     func testCreatingHandWithTwoCards() {
         //Given
         let cards: [Card] = [Card.sampleCard(), Card.sampleCard()]
-        
+
         //When
         XCTAssertNoThrow(try sut.createHand(with: cards))
-        
+
         //Then
         XCTAssertNotNil(sut.hand)
         XCTAssertEqual(sut.hand?.cards, cards)
     }
-    
+
     func testCreatingHandWithManyCards() {
         //Given
         let cards: [Card] = Card.sample4()
-        
+
         //When
         XCTAssertThrowsError(try sut.createHand(with: cards))
-        
+
         //Then
         XCTAssertNil(sut.hand)
     }
-    
-    //MARK: Discarding hand
+
+    // MARK: Discarding hand
     func testDiscardingHandWithoutAHand() {
         //Given
         sut.dealerHand = nil
-        
+
         //When
         XCTAssertThrowsError(try sut.discardHand())
-        
+
         //Then
         XCTAssertNil(sut.hand)
     }
@@ -93,46 +93,46 @@ final class DealerTests: XCTestCase {
         //Given
         let hand = DealerHand.sampleHand()
         sut.dealerHand = hand
-        
+
         //When
         let cards = try! sut.discardHand()
-        
+
         //Then
         XCTAssertNil(sut.hand)
         XCTAssertEqual(cards, hand.cards)
     }
-    
-    //MARK: Collecting a bet
+
+    // MARK: Collecting a bet
     func testCollectingBet0() {
         //Given
         let bet: UInt = 0
-        
+
         //When
         XCTAssertEqual(sut.betsWon, 0)
         sut.collect(bet: bet)
-        
+
         //Then
         XCTAssertEqual(sut.betsWon, 0)
     }
-    
+
     func testCollectingBet100() {
         //Given
         let bet: UInt = 100
-        
+
         //When
         XCTAssertEqual(sut.betsWon, 0)
         sut.collect(bet: bet)
-        
+
         //Then
         XCTAssertEqual(sut.betsWon, 100)
     }
-    
+
     func testCollectingBetAFewTimes() {
         //Given
         let bet: UInt = 100
         let bet1: UInt = 50
         let bet2: UInt = 28
-        
+
         //When
         XCTAssertEqual(sut.betsWon, 0)
         sut.collect(bet: bet)
@@ -142,68 +142,68 @@ final class DealerTests: XCTestCase {
         //Then
         XCTAssertEqual(sut.betsWon, 178)
     }
-    
-    //MARK: Playing a hand
+
+    // MARK: Playing a hand
     func testPlayHandWhenThereIsNoHand() {
         //Given
         sut.dealerHand = nil
-        
+
         //When
         XCTAssertThrowsError(try sut.playHand())
-        
+
         //Then
-        XCTAssertFalse(delegate.dealCardCalled)
-        XCTAssertFalse(delegate.finishDealersTurnCalled)
+        XCTAssertFalse(game.dealCardCalled)
+        XCTAssertFalse(game.finishDealersTurnCalled)
     }
-    
+
     func testPlayHandGetsCard() {
         //Given
         let hand = DealerHand.sample12Hand()
         sut.dealerHand = hand
-        
+
         //When
         XCTAssertNoThrow(try sut.playHand())
-        
+
         //Then
-        XCTAssertTrue(delegate.dealCardCalled)
+        XCTAssertTrue(game.dealCardCalled)
     }
-    
+
     func testPlayHandAddsCardToAHand() {
         //Given
         let hand = DealerHand.sample12Hand()
         sut.dealerHand = hand
         XCTAssertEqual(sut.dealerHand?.cards.count, 2)
-        
+
         //When
         XCTAssertNoThrow(try sut.playHand())
-        
+
         //Then
         XCTAssertEqual(sut.dealerHand?.cards.count, 3)
     }
-    
+
     func testPlayHandGetsCardUntil17orMore() {
         //Given
         let hand = DealerHand.sample12Hand()
         sut.dealerHand = hand
-        delegate.dealCardReturned = Card.sample(.two)
-        
+        game.dealCardReturned = Card.sample(.two)
+
         //When
         XCTAssertNoThrow(try sut.playHand())
-        
+
         //Then
         XCTAssertEqual(sut.dealerHand?.cards.count, 5)
         XCTAssertEqual(sut.dealerHand?.highValue, 18)
     }
-    
+
     func testPlayHandGetsCardUntilBust() {
         //Given
         let hand = DealerHand.sample12Hand()
         sut.dealerHand = hand
-        delegate.dealCardReturned = Card.sample(.ten)
-        
+        game.dealCardReturned = Card.sample(.ten)
+
         //When
         XCTAssertNoThrow(try sut.playHand())
-        
+
         //Then
         XCTAssertEqual(sut.dealerHand?.cards.count, 3)
         XCTAssertEqual(sut.dealerHand?.highValue, 22)
@@ -213,25 +213,25 @@ final class DealerTests: XCTestCase {
         //Given
         let hand = DealerHand.sample12Hand()
         sut.dealerHand = hand
-        delegate.dealCardReturned = Card.sample(.two)
-        
+        game.dealCardReturned = Card.sample(.two)
+
         //When
         XCTAssertNoThrow(try sut.playHand())
-        
+
         //Then
-        XCTAssertTrue(delegate.finishDealersTurnCalled)
+        XCTAssertTrue(game.finishDealersTurnCalled)
     }
-    
+
     func testPlayHandGetsCardUntilBustFinishesDealersTurn() {
         //Given
         let hand = DealerHand.sample12Hand()
         sut.dealerHand = hand
-        delegate.dealCardReturned = Card.sample(.ten)
-        
+        game.dealCardReturned = Card.sample(.ten)
+
         //When
         XCTAssertNoThrow(try sut.playHand())
-        
+
         //Then
-        XCTAssertTrue(delegate.finishDealersTurnCalled)
+        XCTAssertTrue(game.finishDealersTurnCalled)
     }
 }

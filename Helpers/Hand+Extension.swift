@@ -12,7 +12,7 @@ extension DealerHand {
     static func sampleHand() -> DealerHand {
         return DealerHand.sample12Hand()
     }
-    
+
     static func sample12Hand() -> DealerHand {
         return DealerHand(cards:
             [
@@ -21,7 +21,7 @@ extension DealerHand {
             ]
         )
     }
-    
+
     static func sample21Hand() -> DealerHand {
         return DealerHand(cards:
             [
@@ -32,7 +32,7 @@ extension DealerHand {
             ]
         )
     }
-    
+
     static func sampleBlackjackHand() -> DealerHand {
         return DealerHand(cards:
             [
@@ -41,7 +41,7 @@ extension DealerHand {
             ]
         )
     }
-    
+
     static func sample17Hand() -> DealerHand {
         return DealerHand(cards:
             [
@@ -53,7 +53,7 @@ extension DealerHand {
             ]
         )
     }
-    
+
     static func sample18Hand() -> DealerHand {
         return DealerHand(cards:
             [
@@ -65,7 +65,7 @@ extension DealerHand {
             ]
         )
     }
-    
+
     static func sampleBustHand() -> DealerHand {
         return DealerHand(cards:
             [
@@ -84,7 +84,7 @@ extension PlayerHand {
                           first: Card(suit: .hearts, rank: .two),
                           second: Card(suit: .hearts, rank: .four))
     }
-    
+
     static func sample21Hand(with bet: UInt = 10) -> PlayerHand {
         return PlayerHand(bet: bet, cards:
             [
@@ -96,7 +96,7 @@ extension PlayerHand {
                 Card(suit: .clubs, rank: .two),
             ])
     }
-    
+
     static func sampleBlackjackHand(with bet: UInt = 10) -> PlayerHand {
         return PlayerHand(bet: bet, cards:
             [
@@ -104,7 +104,7 @@ extension PlayerHand {
                 Card(suit: .spades, rank: .ace),
             ])
     }
-    
+
     static func sample17Hand(with bet: UInt = 10) -> PlayerHand {
         return PlayerHand(bet: bet, cards:
             [
@@ -116,7 +116,7 @@ extension PlayerHand {
                 Card(suit: .clubs, rank: .five),
             ])
     }
-    
+
     static func sample18Hand(with bet: UInt = 10) -> PlayerHand {
         return PlayerHand(bet: bet, cards:
             [
@@ -127,7 +127,7 @@ extension PlayerHand {
                 Card(suit: .clubs, rank: .four),
             ])
     }
-    
+
     static func sample19Hand(with bet: UInt = 10) -> PlayerHand {
         return PlayerHand(bet: bet, cards:
             [
@@ -138,7 +138,7 @@ extension PlayerHand {
                 Card(suit: .clubs, rank: .four),
             ])
     }
-    
+
     static func sample19_2card_Hand(with bet: UInt = 10) -> PlayerHand {
         return PlayerHand(bet: bet, cards:
             [
@@ -146,7 +146,7 @@ extension PlayerHand {
                 Card(suit: .hearts, rank: .king),
             ])
     }
-    
+
     static func sample20_2card_Hand(with bet: UInt = 10) -> PlayerHand {
         return PlayerHand(bet: bet, cards:
             [
@@ -154,7 +154,7 @@ extension PlayerHand {
                 Card(suit: .hearts, rank: .king),
             ])
     }
-    
+
     static func sampleBustHand(with bet: UInt = 10) -> PlayerHand {
         return PlayerHand(bet: bet, cards:
             [

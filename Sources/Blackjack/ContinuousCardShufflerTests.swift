@@ -15,6 +15,7 @@ final class ContinuousCardShufflerTests: XCTestCase {
     var shuffler: ShufflerSpy!
 
     override func setUp() {
+        super.setUp()
         let deck = Deck.standardDeck()
         shuffler = ShufflerSpy()
         sut = ContinuousCardShuffler(deck: deck, shuffler: shuffler)
@@ -23,8 +24,9 @@ final class ContinuousCardShufflerTests: XCTestCase {
     override func tearDown() {
         shuffler = nil
         sut = nil
+        super.tearDown()
     }
-    
+
     func testDiscardingCardsShufflesEntireShoe() {
         //Given
         let discarded = [Card(suit: .diamonds, rank: .ace),
@@ -35,26 +37,28 @@ final class ContinuousCardShufflerTests: XCTestCase {
 
         //When
         sut.discard(discarded)
-        
+
         //Then
         XCTAssertTrue(sut.discardBox.isEmpty, "Should empty the discard box")
         XCTAssertTrue(shuffler.shuffleCalled, "Should use shuffler")
-        XCTAssertEqual(shuffler.collectionForShuffling as? [Card], expectedCards, "Should use cards from the shoe and discard box in the shuffler")
+        XCTAssertEqual(shuffler.collectionForShuffling as? [Card], expectedCards,
+                       "Should use cards from the shoe and discard box in the shuffler")
         XCTAssertEqual(sut.cards, shuffler.shuffledCollection as? [Card], "Should put cards from shuffler to the shoe")
     }
-    
+
     func testDiscardingACardShufflesEntireShoe() {
         //Given
         let discarded = Card(suit: .diamonds, rank: .ace)
         let expectedCards = sut.cards + [discarded]
-        
+
         //When
         sut.discard(discarded)
-        
+
         //Then
         XCTAssertTrue(sut.discardBox.isEmpty, "Should empty the discard box")
         XCTAssertTrue(shuffler.shuffleCalled, "Should use shuffler")
-        XCTAssertEqual(shuffler.collectionForShuffling as? [Card], expectedCards, "Should use cards from the shoe and discard box in the shuffler")
+        XCTAssertEqual(shuffler.collectionForShuffling as? [Card], expectedCards,
+                       "Should use cards from the shoe and discard box in the shuffler")
         XCTAssertEqual(sut.cards, shuffler.shuffledCollection as? [Card], "Should put cards from shuffler to the shoe")
     }
 

@@ -16,7 +16,7 @@ public class AutomaticCardShuffler: CardShoe {
         super.init(decks: decks, shuffler: shuffler)
         threshold = Int(Double(cards.count) * 0.75)
     }
-    
+
     public override func discard(_ cards: [Card]) {
         super.discard(cards)
         if discardBox.count >= threshold {
@@ -24,4 +24,3 @@ public class AutomaticCardShuffler: CardShoe {
         }
     }
 }
-

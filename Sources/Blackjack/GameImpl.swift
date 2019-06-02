@@ -8,7 +8,7 @@
 import PlayingCards
 
 public final class GameImpl: Game {
-    
+
     public weak var delegate: GameOutcomeDelegate?
     private let shoe: PlayingCardShoe
     private let gameState: GameStateNavigator
@@ -22,7 +22,7 @@ public final class GameImpl: Game {
         if state == .readyToPlay || state == .managingBets { return wager }
         return playerHand?.bet ?? 0
     }
-    
+
     init(shoe: PlayingCardShoe,
          player: Player,
          dealer: Dealer,
@@ -38,7 +38,7 @@ public final class GameImpl: Game {
 }
 
 extension GameImpl: CardDealer {
-    
+
     public func dealCard() throws -> Card {
         guard state == .playersTurn || state == .dealersTurn else { throw GameError.cannotDealWhenRoundIsNotInProgress }
         guard let card = shoe.deal() else { throw GameError.cardShoeIsEmpty }
@@ -59,18 +59,18 @@ extension GameImpl: Starting {
 }
 
 extension GameImpl: PlayersTurnDelegate {
-    
+
     public func bet(_ chip: Chip) {
         guard state == .readyToPlay else { return }
         wager += chip.rawValue
     }
-    
+
     public func resetBet() {
         guard state == .readyToPlay else { return }
         player.receive(chips: bet)
         wager = 0
     }
-    
+
     public func finishPlayersTurn() throws {
         guard state == .playersTurn else { throw GameError.impossibleStateTransition(from: state, to: .dealersTurn) }
         guard let playerHand = playerHand else { throw GameError.noPlayersHand(in: state) }
@@ -83,7 +83,7 @@ extension GameImpl: PlayersTurnDelegate {
 }
 
 extension GameImpl: DealersTurnDelegate {
-    
+
     public func finishDealersTurn() throws {
         guard state == .dealersTurn else { throw GameError.impossibleStateTransition(from: state, to: .managingBets) }
         try settleRound()
@@ -95,7 +95,7 @@ extension GameImpl {
         var player: [Card]
         var dealer: [Card]
     }
-    
+
     private func dealCards() throws -> Cards {
         var playerCards: [Card] = []
         var dealerCards: [Card] = []
@@ -110,20 +110,21 @@ extension GameImpl {
         return Cards(player: playerCards,
                      dealer: dealerCards)
     }
-    
+
     private func playDealersTurn() throws {
         try gameState.navigate(to: .dealersTurn)
         try dealer.playHand()
     }
-    
+
+    //swiftlint:disable cyclomatic_complexity
     private func settleRound() throws {
         try gameState.navigate(to: .managingBets)
         guard let playerHand = playerHand else { throw GameError.noPlayersHand(in: self.state) }
         guard let dealerHand = dealerHand else { throw GameError.noDealersHand(in: self.state) }
-        
+
         let gameOutcome: GameOutcome = outcome(from: playerHand, dealerHand)
-        
-        switch(gameOutcome) {
+
+        switch gameOutcome {
         case .draw:
             player.receive(chips: playerHand.bet)
         case .playerHadBlackjack:
@@ -133,31 +134,32 @@ extension GameImpl {
         case .playerLost, .playerBusted:
             dealer.collect(bet: playerHand.bet)
         }
-        
+
         clearBet()
         try discardCards()
-        
+
         delegate?.game(self, didFinishWithOutcome: gameOutcome)
     }
-    
+    //swiftlint:enable cyclomatic_complexity
+
     private func clearBet() {
         wager = 0
     }
-    
+
     private func discardCards() throws {
         let discardable: [HandPlaying] = [player, dealer]
         let cards: [Card] = try discardable
             .compactMap { try $0.discardHand() }
             .reduce([]) { $0 + $1 }
-        
+
         shoe.discard(cards)
     }
-    
+
     private func pay(for playerHand: BettingHand, withMultiplier multiplier: Double) {
         let payout: Double = (multiplier * Double(playerHand.bet)).rounded(FloatingPointRoundingRule.up)
         player.receive(chips: UInt(payout))
     }
-    
+
     private func outcome(from playerHand: Hand,
                          _ dealerHand: Hand) -> GameOutcome {
         let outcome: GameOutcome

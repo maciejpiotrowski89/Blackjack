@@ -15,7 +15,7 @@ class DealerGameDelegateSpy: Dealer.GameDelegate {
         dealCardCalled = true
         return dealCardReturned ?? Card.sampleCard()
     }
-    
+
     var finishDealersTurnCalled = false
     func finishDealersTurn() throws {
         finishDealersTurnCalled = true
