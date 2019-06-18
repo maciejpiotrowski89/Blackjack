@@ -1,5 +1,4 @@
 disabled_rules: # rule identifiers to exclude from running
-- valid_docs
 - missing_docs
 - nesting
 - trailing_comma
@@ -13,7 +12,6 @@ opt_in_rules: # some rules are only opt-in
   - closure_spacing
   - explicit_init
   - overridden_super_call
-  - redundant_nil_coalesing
   - private_outlet
   - file_header
 excluded: # paths to ignore during linting. Takes precedence over `included`.
@@ -35,10 +33,10 @@ function_parameter_count:
   error: 6
 cyclomatic_complexity:
   warning: 4
-error: 6
+  error: 6
 function_body_length:
   warning: 50
   error: 200
-variable_name:
+identifier_name:
   min_length: 2
   max_length: 30

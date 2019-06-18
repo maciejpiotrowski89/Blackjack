@@ -1,10 +1,3 @@
-//
-//  Player.swift
-//  Blackjack
-//
-//  Created by Maciej Piotrowski on 16/4/19.
-//
-
 import PlayingCards
 
 public protocol HandPlaying {
