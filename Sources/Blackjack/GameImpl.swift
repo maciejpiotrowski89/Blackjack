@@ -1,10 +1,3 @@
-//
-//  GameImpl.swift
-//  Blackjack
-//
-//  Created by Maciej Piotrowski on 3/5/19.
-//
-
 import PlayingCards
 
 public final class GameImpl: Game {
@@ -17,10 +10,7 @@ public final class GameImpl: Game {
     public var playerHand: BettingHand? { return player.hand }
     public var dealerHand: Hand? { return dealer.hand }
     private var wager: UInt = 0
-    public var bet: UInt {
-        if state == .readyToPlay || state == .managingBets { return wager }
-        return playerHand?.bet ?? 0
-    }
+    public var bet: UInt { return wager }
 
     init(shoe: PlayingCardShoe,
          player: Player,
@@ -61,6 +51,11 @@ extension GameImpl: PlayersTurnDelegate {
     public func bet(_ chip: Chip) {
         guard state == .readyToPlay else { return }
         wager += chip.rawValue
+    }
+
+    public func bet(_ chipsValue: UInt) {
+        guard state == .playersTurn else { return }
+        wager += chipsValue
     }
 
     public func resetBet() {

@@ -13,8 +13,6 @@ public protocol Player: AnyObject, ChipsManaging, HandPlaying {
     func bet(_: Chip)
     func clearBet()
 
-    func startGame() throws
-
     var hand: BettingHand? { get }
     func createHand(with cards: [Card], bet: UInt) throws
 
@@ -25,20 +23,18 @@ public protocol Player: AnyObject, ChipsManaging, HandPlaying {
 
 public class PlayerImpl: Player {
     public var hand: BettingHand? { return playerHand }
-    private(set) var playerHand: PlayerHand?
+    var playerHand: PlayerHand?
     public weak var game: Player.GameDelegate?
     public weak var dealer: CardDealer?
 
     public func bet(_ chip: Chip) {
+        guard chipsValue >= chip.rawValue else { return }
+        chipsValue -= chip.rawValue
         game?.bet(chip)
     }
 
     public func clearBet() {
         game?.resetBet()
-    }
-
-    public func startGame() throws {
-        try game?.start()
     }
 
     public func createHand(with cards: [Card], bet: UInt) throws {
@@ -47,19 +43,57 @@ public class PlayerImpl: Player {
         playerHand = PlayerHand(bet: bet, cards: cards)
     }
 
-    public func playHand() throws {}
+    public func playHand() throws {
+        guard let hand = playerHand else { throw GameError.noHandToPlay }
+        actOnOutcome(of: hand)
+    }
 
-    public func hit() {}
+    public func hit() {
+        guard var hand = playerHand else { return }
+        guard let card = try? dealer?.dealCard() else { return }
+        hand.add(card: card)
+        playerHand = hand
+        actOnOutcome(of: hand)
+    }
 
-    public func doubleDown() {}
+    public func doubleDown() {
+        guard var hand = playerHand else { return }
+        guard hand.cards.count == 2 else { return }
+        guard chipsValue >= hand.bet else { return }
+        game?.bet(hand.bet)
+        chipsValue -= hand.bet
+        hand.doubleBet()
+        if hand.outcome == .doubled {
+            playerHand = hand
+            hit()
+        }
+    }
 
-    public func stand() {}
+    public func stand() {
+        guard var hand = playerHand else { return }
+        hand.stand()
+        playerHand? = hand
+        actOnOutcome(of: hand)
+    }
 
     public var chipsValue: UInt = 0
 
-    public func receive(chips _: UInt) {}
+    public func receive(chips: UInt) {
+        chipsValue += chips
+    }
 
     public func discardHand() throws -> [Card] {
-        return []
+        guard let hand = playerHand else { throw GameError.noHandToDiscard }
+        let cards = hand.cards
+        playerHand = nil
+        return cards
+    }
+
+    private func actOnOutcome(of hand: PlayerHand) {
+        switch hand.outcome {
+        case .bust, .blackjack, .stood:
+            try? game?.finishPlayersTurn()
+        default: return
+        }
     }
 }

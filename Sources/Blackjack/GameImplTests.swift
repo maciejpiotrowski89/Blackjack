@@ -1,10 +1,3 @@
-//
-//  GameImplTests.swift
-//  BlackjackTests
-//
-//  Created by Maciej Piotrowski on 18/4/19.
-//
-
 @testable import Blackjack
 import PlayingCards
 import XCTest
@@ -57,11 +50,11 @@ final class GameImplTests: XCTestCase {
     func testIsPlayersCardDealer() {
         XCTAssertTrue(player.dealer === sut)
     }
-    
+
     func testIsDealersCardDealer() {
         XCTAssertTrue(dealer.cardDealer === sut)
     }
-    
+
     // MARK: Betting & Reseting a bet
 
     func testBetChip() {
@@ -107,15 +100,16 @@ final class GameImplTests: XCTestCase {
 
     func testBetIsEqualToPlayersHandBetDuringTheRound() {
         // Given
-        let bet: UInt = 300
-        player.hand = PlayerHand.sampleHand(with: bet)
-        stateNavigator.state = .playersTurn
+        let bet: Chip = .fiveHundered
 
         // When
+        stateNavigator.state = .readyToPlay
+        sut.bet(bet)
+        stateNavigator.state = .playersTurn
         sut.bet(.fifty)
 
         // Then
-        XCTAssertEqual(sut.bet, bet)
+        XCTAssertEqual(sut.bet, bet.rawValue)
         XCTAssertEqual(sut.state, .playersTurn)
         XCTAssertNil(player.receivedChips)
     }
@@ -136,15 +130,85 @@ final class GameImplTests: XCTestCase {
 
     func testResettingIsImpossibleDuringTheRound() {
         // Given
-        let bet: UInt = 300
-        player.hand = PlayerHand.sampleHand(with: bet)
+        let bet: Chip = .hundered
+
+        // When
+        stateNavigator.state = .readyToPlay
+        sut.bet(bet)
         stateNavigator.state = .playersTurn
+        sut.resetBet()
+
+        // Then
+        XCTAssertEqual(sut.bet, bet.rawValue)
+        XCTAssertEqual(sut.state, .playersTurn)
+        XCTAssertNil(player.receivedChips)
+    }
+
+    // MARK: Betting chips value
+
+    func testBetChipsValue_WorksDuringPlayersTurn() {
+        // Given
+        let chipsValue: UInt = 51
+        stateNavigator.state = .playersTurn
+
+        // When
+        sut.bet(chipsValue)
+
+        // Then
+        XCTAssertEqual(sut.bet, chipsValue)
+        XCTAssertEqual(sut.state, .playersTurn)
+    }
+
+    func testBetChipsValue_DoesntWorkOnDealersTurn() {
+        // Given
+        let chipsValue: UInt = 51
+        stateNavigator.state = .dealersTurn
+
+        // When
+        sut.bet(chipsValue)
+
+        // Then
+        XCTAssertEqual(sut.bet, 0)
+        XCTAssertEqual(sut.state, .dealersTurn)
+    }
+
+    func testBetChipsValue_DoesntWorkBeforeTheGame() {
+        // Given
+        let chipsValue: UInt = 51
+        stateNavigator.state = .readyToPlay
+
+        // When
+        sut.bet(chipsValue)
+
+        // Then
+        XCTAssertEqual(sut.bet, 0)
+        XCTAssertEqual(sut.state, .readyToPlay)
+    }
+
+    func testBetChipsValue_DoesntWorkWhileBetsAreBeingManaged() {
+        // Given
+        let chipsValue: UInt = 51
+        stateNavigator.state = .managingBets
+
+        // When
+        sut.bet(chipsValue)
+
+        // Then
+        XCTAssertEqual(sut.bet, 0)
+        XCTAssertEqual(sut.state, .managingBets)
+    }
+
+    func testResetting_DoesNotWorkOnChipsValue() {
+        // Given
+        let chipsValue: UInt = 51
+        stateNavigator.state = .playersTurn
+        sut.bet(chipsValue)
 
         // When
         sut.resetBet()
 
         // Then
-        XCTAssertEqual(sut.bet, bet)
+        XCTAssertEqual(sut.bet, chipsValue)
         XCTAssertEqual(sut.state, .playersTurn)
         XCTAssertNil(player.receivedChips)
     }

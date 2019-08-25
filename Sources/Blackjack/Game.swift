@@ -1,10 +1,3 @@
-//
-//  Game.swift
-//  Blackjack
-//
-//  Created by Maciej Piotrowski on 16/4/19.
-//
-
 import PlayingCards
 
 public enum GameError: Error {
@@ -31,6 +24,7 @@ public protocol Starting: AnyObject {
 
 public protocol PlayersTurnDelegate: AnyObject {
     func bet(_ chip: Chip)
+    func bet(_ chipsValue: UInt)
     func resetBet()
     func finishPlayersTurn() throws
 }
